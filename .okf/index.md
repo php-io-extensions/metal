@@ -47,6 +47,7 @@ macOS-only PHP extension: Zephir static classes → thin C ABI → Objective-C (
 * [Framework link via METAL_SHARED_LIBADD](traps/framework-shared-libadd.md) - PHP_ADD_FRAMEWORK is not enough
 * [Explicit CAMetalLayer assignment](traps/cametal-layer-assign.md) - Do not rely on layerClass alone
 * [Prefer make -j1](traps/parallel-make.md) - Conservative ObjC fragment builds
+* [NSBeep on unhandled keys](traps/nsbeep-unhandled-keys.md) - View must swallow keyDown for polled input
 
 # Playbooks
 

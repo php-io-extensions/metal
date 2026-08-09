@@ -33,6 +33,30 @@
     return self;
 }
 
+/*
+ * Accept and swallow key events so AppKit does not NSBeep on arrows / space
+ * when PHP polls key state via mtl_input_key_down (game-style input).
+ */
+- (BOOL)acceptsFirstResponder
+{
+    return YES;
+}
+
+- (BOOL)becomeFirstResponder
+{
+    return YES;
+}
+
+- (void)keyDown:(NSEvent *)event
+{
+    (void)event;
+}
+
+- (void)keyUp:(NSEvent *)event
+{
+    (void)event;
+}
+
 - (void)layout
 {
     [super layout];
@@ -135,6 +159,7 @@ uintptr_t mtl_window_create(const char *title, int width, int height)
         box->queue = NULL;
 
         [window makeKeyAndOrderFront:nil];
+        [window makeFirstResponder:view];
         [NSApp activateIgnoringOtherApps:YES];
 
         return (uintptr_t)box;

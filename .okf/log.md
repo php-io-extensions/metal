@@ -1,6 +1,7 @@
 # Directory Update Log
 
 ## 2026-08-09
+* **Input NSBeep**: `MTLPhpView` accepts first responder + swallows `keyDown`/`keyUp`; window `makeFirstResponder:view`. Trap: `traps/nsbeep-unhandled-keys.md`. Rebuild via `/tmp` copy of `ext/` only (ship-ready `ext/` left clean).
 * **Installer**: `install-macos.sh` stages `phpize`/`configure`/`make` into a space-free temp tree when `SCRIPT_DIR` contains whitespace (Homebrew phpize hard-fails on paths like `metal copy/ext`). Trap: `traps/phpize-whitespace-path.md`.
 * **Version lock 0.7.2**: Corrected mistaken `0.7.3` bump. Package target is **`0.7.2`** everywhere (`composer.json`, `config.json`, `PHP_METAL_VERSION`, `ide/0.7.2/`). Removed `ide/0.7.3/`. Input + presentTexture ship in this cut.
 * **Docs 0.7.2 catch-up**: OKF Window/C ABI/overview + ScrapyardIO seeders document `Window::getDevice` / `Window::presentTexture` (blit offscreen RGBA8 → CAMetalLayer). Stale `ide/0.7.1` path pointers → current stubs (`ide/0.7.2/`).
