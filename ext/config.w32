@@ -1,0 +1,17 @@
+ARG_ENABLE("metal", "enable metal", "no");
+
+if (PHP_METAL != "no") {
+  EXTENSION("metal", "metal.c", null, "-I"+configure_module_dirname);
+  ADD_SOURCES(configure_module_dirname + "/kernel", "main.c memory.c exception.c debug.c backtrace.c object.c array.c string.c fcall.c require.c file.c operators.c math.c concat.c variables.c filter.c iterator.c exit.c time.c", "metal");
+  /* PCRE is always included on WIN32 */
+  AC_DEFINE("ZEPHIR_USE_PHP_PCRE", 1, "Whether PHP pcre extension is present at compile time");
+  if (PHP_JSON != "no") {
+    ADD_EXTENSION_DEP("metal", "json");
+    AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
+  }
+  ADD_SOURCES(configure_module_dirname + "/src", "metal-app.m metal-window.m metal-menu.m metal-device.m", "metal");
+  ADD_SOURCES(configure_module_dirname + "/metal/mtl", "app.zep.c device.zep.c menu.zep.c window.zep.c", "metal");
+  ADD_FLAG("CFLAGS_METAL", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
+  ADD_FLAG("CFLAGS", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");
+  ADD_FLAG("LDFLAGS", "/LTCG");
+}

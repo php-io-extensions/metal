@@ -1,0 +1,31 @@
+{
+    "name": "php-io-extensions/metal",
+    "type": "php-ext",
+    "description": "PHP-Controllable Darwin Metal + AppKit window, menu, and drawing extension",
+    "license": "MIT",
+    "version": "0.7.0",
+    "authors": [
+        {
+            "name": "Project Saturn Studios, LLC",
+            "email": "info@projectsaturnstudios.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "php-ext": {
+        "extension-name": "metal",
+        "priority": 30,
+        "build-path": "ext",
+        "support-zts": true,
+        "support-nts": true,
+        "os-families": ["darwin"],
+        "configure-options": [
+            {
+                "name": "enable-metal",
+                "description": "Enable the metal extension (macOS / Darwin only)",
+                "needs-value": false
+            }
+        ]
+    }
+}
