@@ -4,6 +4,7 @@
 * [No SDL3/GLFW coupling](no-sdl-glfw-coupling.md) - Standalone product boundary
 * [poll vs run](poll-vs-run.md) - Prefer App::poll() from PHP event loops
 * [ObjC Makefile.frag required](objc-makefile-frag.md) - phpize mishandles .m sources
+* [phpize rejects whitespace paths](phpize-whitespace-path.md) - stage build under `$TMPDIR` when cwd has spaces (`metal copy`)
 * [Framework link via METAL_SHARED_LIBADD](framework-shared-libadd.md) - PHP_ADD_FRAMEWORK is not enough
 * [Explicit CAMetalLayer assignment](cametal-layer-assign.md) - Do not rely on layerClass alone
 * [Prefer make -j1](parallel-make.md) - Conservative ObjC fragment builds

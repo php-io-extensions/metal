@@ -10,8 +10,17 @@ set -Eeuo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EXTENSION_NAME="metal"
-BUILD_SO="${SCRIPT_DIR}/ext/modules/${EXTENSION_NAME}.so"
 LOG_FILE="${SCRIPT_DIR}/build.log"
+# Homebrew phpize rejects whitespace in the build cwd ("metal copy", etc.).
+# Stage phpize/configure/make under a space-free temp tree when needed.
+BUILD_ROOT="${SCRIPT_DIR}"
+BUILD_TMP=""
+cleanup_build_tmp() {
+    if [ -n "${BUILD_TMP}" ] && [ -d "${BUILD_TMP}" ]; then
+        rm -rf "${BUILD_TMP}"
+    fi
+}
+trap cleanup_build_tmp EXIT
 
 if [ "$(uname -s)" != "Darwin" ]; then
     echo "❌ metal is macOS (Darwin) only."
@@ -149,7 +158,30 @@ ok "Sources prepared"
 echo ""
 
 step "🔨 Building extension..."
-cd "${SCRIPT_DIR}/ext"
+case "${SCRIPT_DIR}" in
+    *\ * | *$'\t'*)
+        BUILD_TMP="$(mktemp -d "${TMPDIR:-/tmp}/metal-ext-build.XXXXXX")"
+        case "${BUILD_TMP}" in
+            *\ * | *$'\t'*)
+                die "Temp build dir still contains whitespace: ${BUILD_TMP}. Set TMPDIR to a path without spaces."
+                ;;
+        esac
+        step "   Staging build in ${BUILD_TMP} (phpize forbids whitespace in source path)..."
+        # Prepared ext/ only — keep the Finder-copy working tree out of phpize's cwd.
+        if command -v rsync >/dev/null 2>&1; then
+            rsync -a --delete "${SCRIPT_DIR}/ext/" "${BUILD_TMP}/ext/"
+        else
+            rm -rf "${BUILD_TMP}/ext"
+            mkdir -p "${BUILD_TMP}/ext"
+            cp -R "${SCRIPT_DIR}/ext/." "${BUILD_TMP}/ext/"
+        fi
+        BUILD_ROOT="${BUILD_TMP}"
+        ok "Staged space-free build tree"
+        ;;
+esac
+
+BUILD_SO="${BUILD_ROOT}/ext/modules/${EXTENSION_NAME}.so"
+cd "${BUILD_ROOT}/ext"
 if ! phpize >>"$LOG_FILE" 2>&1; then
     show_failure_logs
     die "phpize failed. See ${LOG_FILE}."

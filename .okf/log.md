@@ -1,6 +1,7 @@
 # Directory Update Log
 
 ## 2026-08-09
+* **Installer**: `install-macos.sh` stages `phpize`/`configure`/`make` into a space-free temp tree when `SCRIPT_DIR` contains whitespace (Homebrew phpize hard-fails on paths like `metal copy/ext`). Trap: `traps/phpize-whitespace-path.md`.
 * **Version lock 0.7.2**: Corrected mistaken `0.7.3` bump. Package target is **`0.7.2`** everywhere (`composer.json`, `config.json`, `PHP_METAL_VERSION`, `ide/0.7.2/`). Removed `ide/0.7.3/`. Input + presentTexture ship in this cut.
 * **Docs 0.7.2 catch-up**: OKF Window/C ABI/overview + ScrapyardIO seeders document `Window::getDevice` / `Window::presentTexture` (blit offscreen RGBA8 → CAMetalLayer). Stale `ide/0.7.1` path pointers → current stubs (`ide/0.7.2/`).
 * **0.7.2 Input**: Added `Metal\MTL\Input` + `src/metal-input.{h,m}` (keyboard/mouse via CoreGraphics/NSEvent; gamepads via GameController). `mtl_app_poll` clears scroll and observes wheel events. Linked `-framework GameController -framework CoreGraphics`. Stubs `ide/0.7.2/`. Unblocks `microscrap/metal` helpers and later `metal-gfx` Human Input (`hi-metal-gfx`).
