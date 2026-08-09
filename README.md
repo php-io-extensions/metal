@@ -9,8 +9,9 @@
 > PHP extension for Apple Metal + AppKit — built with [Zephir](https://zephir-lang.com/), installable via [PHP PIE](https://github.com/php/pie).
 
 `metal` is a **standalone macOS-only** binding: open an `NSWindow`, install a macOS
-menu bar, draw through a `CAMetalLayer` with Metal, and create offscreen
-`MTLTexture` targets (0.7.1+) for headless engines/UIs. It has no knowledge of
+menu bar, draw through a `CAMetalLayer` with Metal, create offscreen
+`MTLTexture` targets (0.7.1+) for headless engines/UIs, and blit those textures
+into a live window (`Window::presentTexture`, 0.7.2+). It has no knowledge of
 other windowing libraries.
 
 PHP API is namespaced under `Metal\MTL\…` as static classes. Opaque native

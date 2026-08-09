@@ -25,6 +25,7 @@
 
 zend_class_entry *metal_mtl_app_ce;
 zend_class_entry *metal_mtl_device_ce;
+zend_class_entry *metal_mtl_input_ce;
 zend_class_entry *metal_mtl_menu_ce;
 zend_class_entry *metal_mtl_texture_ce;
 zend_class_entry *metal_mtl_window_ce;
@@ -41,6 +42,7 @@ static PHP_MINIT_FUNCTION(metal)
 	zephir_module_init();
 	ZEPHIR_INIT(Metal_MTL_App);
 	ZEPHIR_INIT(Metal_MTL_Device);
+	ZEPHIR_INIT(Metal_MTL_Input);
 	ZEPHIR_INIT(Metal_MTL_Menu);
 	ZEPHIR_INIT(Metal_MTL_Texture);
 	ZEPHIR_INIT(Metal_MTL_Window);

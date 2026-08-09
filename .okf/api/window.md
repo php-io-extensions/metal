@@ -28,9 +28,11 @@ sources:
 | `show(int $window)` / `hide(int $window)` | `void` | |
 | `shouldClose(int $window)` | `bool` | Closed flag or app quit |
 | `getWidth` / `getHeight` | `int` | Content bounds |
-| `attachDevice(int $window, int $device)` | `bool` | Required before `clear` |
+| `attachDevice(int $window, int $device)` | `bool` | Required before `clear` / `presentTexture` |
+| `getDevice(int $window)` | `int` | **0.7.2+** Borrowed `MTLDevice` from the window, or `0` |
 | `getLayer(int $window)` | `int` | Opaque CAMetalLayer pointer |
 | `clear(int $window, int $r, int $g, int $b, int $a = 255)` | `bool` | RGBA **0..255**; acquire drawable, clear, present |
+| `presentTexture(int $window, int $texture)` | `bool` | **0.7.2+** Blit offscreen RGBA8 texture → drawable and present |
 
 # Examples
 

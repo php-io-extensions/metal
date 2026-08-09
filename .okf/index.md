@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # php-io-extensions/metal
 
-macOS-only PHP extension: Zephir static classes → thin C ABI → Objective-C (AppKit + Metal + QuartzCore + Foundation). Open an `NSWindow`, install a macOS menu bar (with Quit), clear/present via `CAMetalLayer`, and create offscreen `MTLTexture` targets for headless engines/UIs (0.7.1+).
+macOS-only PHP extension: Zephir static classes → thin C ABI → Objective-C (AppKit + Metal + QuartzCore + Foundation + GameController). Open an `NSWindow`, install a macOS menu bar (with Quit), clear/present via `CAMetalLayer`, create offscreen `MTLTexture` targets for headless engines/UIs (0.7.1+), blit textures into a live window (`Window::presentTexture`, 0.7.2+), and query keyboard/mouse/gamepad via `Metal\\MTL\\Input` (0.7.2+).
 
 **Prefer** concepts with `status: stable` when present; content is currently `draft` pending Angel’s human verification of the OKF docs (implementation facts are grounded in shipped sources).
 
@@ -26,6 +26,7 @@ macOS-only PHP extension: Zephir static classes → thin C ABI → Objective-C (
 * [Metal\\MTL\\Menu](api/menu.md) - Default menu bar, custom items, action poll
 * [Metal\\MTL\\Device](api/device.md) - MTLDevice / command queue handles
 * [Metal\\MTL\\Texture](api/texture.md) - Offscreen RGBA8 textures (0.7.1+)
+* [Metal\\MTL\\Input](api/input.md) - Keyboard / mouse / gamepad (0.7.2+)
 
 # Build & packaging
 

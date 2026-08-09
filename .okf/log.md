@@ -1,6 +1,10 @@
 # Directory Update Log
 
 ## 2026-08-09
+* **Version lock 0.7.2**: Corrected mistaken `0.7.3` bump. Package target is **`0.7.2`** everywhere (`composer.json`, `config.json`, `PHP_METAL_VERSION`, `ide/0.7.2/`). Removed `ide/0.7.3/`. Input + presentTexture ship in this cut.
+* **Docs 0.7.2 catch-up**: OKF Window/C ABI/overview + ScrapyardIO seeders document `Window::getDevice` / `Window::presentTexture` (blit offscreen RGBA8 → CAMetalLayer). Stale `ide/0.7.1` path pointers → current stubs (`ide/0.7.2/`).
+* **0.7.2 Input**: Added `Metal\MTL\Input` + `src/metal-input.{h,m}` (keyboard/mouse via CoreGraphics/NSEvent; gamepads via GameController). `mtl_app_poll` clears scroll and observes wheel events. Linked `-framework GameController -framework CoreGraphics`. Stubs `ide/0.7.2/`. Unblocks `microscrap/metal` helpers and later `metal-gfx` Human Input (`hi-metal-gfx`).
+* **0.7.2 presentTexture**: `mtl_window_get_device` / `mtl_window_present_texture`; layer pixel format RGBA8Unorm + `framebufferOnly = NO` for blit. Stubs `ide/0.7.2/`. Unblocks windowed metal-gfx (`attachedTo` + handler present).
 * **Docs 0.7.1**: Orientation/overview + API index + C ABI + handle ownership refreshed for `Metal\MTL\Texture`. ScrapyardIO seeders updated to document offscreen textures / headless engines. User-facing copy: **macOS**, not Darwin.
 
 ## 2026-08-08

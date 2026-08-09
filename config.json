@@ -3,16 +3,17 @@
     "name": "metal",
     "description": "PHP-Controllable Darwin Metal + AppKit Extension",
     "author": "Project Saturn Studios, LLC",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "extra-sources": [
         "src/metal-app.m",
         "src/metal-window.m",
         "src/metal-menu.m",
         "src/metal-device.m",
-        "src/metal-texture.m"
+        "src/metal-texture.m",
+        "src/metal-input.m"
     ],
     "extra-cflags": "-fobjc-arc -Wno-deprecated-declarations",
-    "extra-libs": "-framework Metal -framework AppKit -framework QuartzCore -framework Foundation",
+    "extra-libs": "-framework Metal -framework AppKit -framework QuartzCore -framework Foundation -framework GameController -framework CoreGraphics",
     "stubs": {
         "path": "ide/%version%/%namespace%/",
         "stubs-run-after-generate": false

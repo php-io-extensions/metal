@@ -237,3 +237,41 @@ PHP_METHOD(Metal_MTL_Window, clear)
 	RETURN_BOOL(result);
 }
 
+/**
+ * @return int Borrowed MTLDevice handle attached to the window, or 0
+ */
+PHP_METHOD(Metal_MTL_Window, getDevice)
+{
+	zval *window_param = NULL;
+	zend_long window, handle = 0;
+
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(window)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &window_param);
+	
+            handle = (zend_long) mtl_window_get_device((uintptr_t) window);
+        
+	RETURN_LONG(handle);
+}
+
+/**
+ * Blit an offscreen RGBA8 texture to the window drawable and present.
+ */
+PHP_METHOD(Metal_MTL_Window, presentTexture)
+{
+	zend_bool result = 0;
+	zval *window_param = NULL, *texture_param = NULL;
+	zend_long window, texture;
+
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(window)
+		Z_PARAM_LONG(texture)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &window_param, &texture_param);
+	
+            result = mtl_window_present_texture((uintptr_t) window, (uintptr_t) texture) == 1;
+        
+	RETURN_BOOL(result);
+}
+

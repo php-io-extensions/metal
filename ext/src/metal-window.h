@@ -43,6 +43,25 @@ uintptr_t mtl_window_get_layer(uintptr_t window);
  */
 int mtl_window_clear(uintptr_t window, float r, float g, float b, float a);
 
+/**
+ * Opaque MTLDevice currently attached to the window (0 if none).
+ * Borrowed — do not release; owned by the window until destroy / re-attach.
+ */
+uintptr_t mtl_window_get_device(uintptr_t window);
+
+/**
+ * Blit an RGBA8Unorm offscreen texture to the window's CAMetalLayer drawable and present.
+ * Requires attach_device first. Sets drawableSize to the texture dimensions.
+ * Returns 1 on success.
+ */
+int mtl_window_present_texture(uintptr_t window, uintptr_t texture);
+
+/**
+ * Convert AppKit screen coordinates (origin bottom-left) to content-view local coords.
+ * Returns 1 on success. Used by mtl_input_mouse_position.
+ */
+int mtl_window_screen_to_content(uintptr_t window, double screen_x, double screen_y, double *out_x, double *out_y);
+
 #ifdef __cplusplus
 }
 #endif

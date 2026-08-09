@@ -21,18 +21,21 @@ sources:
     title: proof_window.php
   - id: texture
     resource: /metal/mtl/texture.zep
-    title: Texture API (0.7.1)
+    title: Texture API (0.7.1+)
+  - id: window
+    resource: /metal/mtl/window.zep
+    title: Window presentTexture (0.7.2+)
 ---
 
 # Summary
 
-`php-io-extensions/metal` is a **standalone macOS-only** PHP extension (`type: php-ext`) that lets PHP open a native macOS window, install a standard menu bar (including Quit), draw/clear through Metal via a `CAMetalLayer`, and create **offscreen `MTLTexture`** targets for headless engines/UIs.[^composer][^readme][^texture]
+`php-io-extensions/metal` is a **standalone macOS-only** PHP extension (`type: php-ext`) that lets PHP open a native macOS window, install a standard menu bar (including Quit), draw/clear through Metal via a `CAMetalLayer`, create **offscreen `MTLTexture`** targets for headless engines/UIs, **blit textures into a live window** (`Window::presentTexture`, 0.7.2+), and query **keyboard / mouse / gamepad** via `Metal\\MTL\\Input` (0.7.2+).[^composer][^readme][^texture][^window]
 
 | Fact | Value |
 |------|--------|
 | Package | `php-io-extensions/metal` |
 | Extension name | `metal` |
-| Version | `0.7.1` |
+| Version | `0.7.2` |
 | PHP | `>= 8.2` |
 | OS | **macOS** only (PIE `os-families: ["darwin"]`) |
 | Architectures | macOS arm64 and x86_64 |
@@ -46,6 +49,8 @@ sources:
 3. Install App \| File \| Edit \| Window \| Help with Quit / Cmd+Q (`Menu::installDefault`).
 4. Attach `MTLDevice` and clear/present RGBA via Metal (`Device` + `Window::clear` with ints 0..255).
 5. **(0.7.1+)** Create offscreen RGBA8 textures (`Texture::create`) — clear / writePixel / readPixels without a window — for metal-gfx, game engines, and UIs.
+6. **(0.7.2+)** Borrow the window device (`Window::getDevice`) and present an offscreen texture into the live `CAMetalLayer` (`Window::presentTexture`).
+7. **(0.7.2+)** Query keyboard / mouse / gamepad (`Input`).
 
 Demo: `examples/proof_window.php` (optional `METAL_DEMO_MAX_FRAMES` smoke).[^demo]
 
@@ -57,11 +62,12 @@ Demo: `examples/proof_window.php` (optional `METAL_DEMO_MAX_FRAMES` smoke).[^dem
 
 # Public namespace
 
-Zephir classes live under `Metal\MTL\` (`metal/mtl/*.zep`). IDE stubs: `ide/0.7.1/Metal/MTL/`.
+Zephir classes live under `Metal\MTL\` (`metal/mtl/*.zep`). IDE stubs: `ide/0.7.2/Metal/MTL/`.
 
 See [Standalone macOS scope](/orientation/standalone-darwin.md) and [Layered stack](/architecture/stack.md).
 
 [^composer]: PIE package manifest
 [^readme]: README
 [^demo]: proof_window.php
-[^texture]: Texture API (0.7.1)
+[^texture]: Texture API (0.7.1+)
+[^window]: Window presentTexture (0.7.2+)

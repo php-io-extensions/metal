@@ -116,4 +116,28 @@ class Window
         }%
         return result;
     }
+
+    /**
+     * @return int Borrowed MTLDevice handle attached to the window, or 0
+     */
+    public static function getDevice(int window) -> int
+    {
+        int handle;
+        %{
+            handle = (zend_long) mtl_window_get_device((uintptr_t) window);
+        }%
+        return handle;
+    }
+
+    /**
+     * Blit an offscreen RGBA8 texture to the window drawable and present.
+     */
+    public static function presentTexture(int window, int texture) -> bool
+    {
+        bool result;
+        %{
+            result = mtl_window_present_texture((uintptr_t) window, (uintptr_t) texture) == 1;
+        }%
+        return result;
+    }
 }

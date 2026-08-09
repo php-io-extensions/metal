@@ -22,6 +22,9 @@ sources:
   - id: texture-h
     resource: /src/metal-texture.h
     title: metal-texture.h
+  - id: input-h
+    resource: /src/metal-input.h
+    title: metal-input.h
   - id: window-zep
     resource: /metal/mtl/window.zep
     title: window.zep
@@ -54,8 +57,10 @@ sources:
 | `mtl_window_should_close` | Close or app quit |
 | `mtl_window_get_width` / `get_height` | Content size |
 | `mtl_window_attach_device` | Bind MTLDevice to CAMetalLayer |
+| `mtl_window_get_device` | **0.7.2+** Borrowed MTLDevice on the window, or `0` |
 | `mtl_window_get_layer` | Opaque CAMetalLayer pointer |
 | `mtl_window_clear` | RGBA **floats 0..1**; PHP `Window::clear` takes ints 0..255 and scales[^window-zep] |
+| `mtl_window_present_texture` | **0.7.2+** Blit `MTLTexture` → CAMetalLayer drawable and present |
 
 ## Menu (`metal-menu.h`)[^menu-h]
 
@@ -85,6 +90,21 @@ sources:
 | `mtl_texture_write_pixel` / `read_pixel` | CPU pixel access |
 | `mtl_texture_read_rgba8` | Full tightly packed RGBA8888 into caller buffer |
 
+## Input (`metal-input.h`) — 0.7.2+[^input-h]
+
+| Function | Notes |
+|----------|--------|
+| `mtl_input_init` | Idempotent; starts GameController discovery (from `mtl_app_init`) |
+| `mtl_input_begin_frame` | Clears scroll deltas (from `mtl_app_poll`) |
+| `mtl_input_handle_event` | Observes scroll wheel NSEvents during poll |
+| `mtl_input_key_down` | CoreGraphics key state; macOS virtual key codes |
+| `mtl_input_mouse_button_down` | `NSEvent.pressedMouseButtons` |
+| `mtl_input_mouse_position` | Screen or window content-view coords (Y up) |
+| `mtl_input_mouse_scroll_delta` | Accumulated since last begin_frame |
+| `mtl_input_gamepad_*` | `GCController` count/name/button/axis |
+
+Also: `mtl_window_screen_to_content` on Window ABI supports mouse local coords.
+
 PHP mapping: [API index](/api/index.md). Ownership: [Handle ownership](/conventions/handle-ownership.md).
 
 [^app-h]: metal-app.h
@@ -92,4 +112,5 @@ PHP mapping: [API index](/api/index.md). Ownership: [Handle ownership](/conventi
 [^menu-h]: metal-menu.h
 [^device-h]: metal-device.h
 [^texture-h]: metal-texture.h
+[^input-h]: metal-input.h
 [^window-zep]: window.zep

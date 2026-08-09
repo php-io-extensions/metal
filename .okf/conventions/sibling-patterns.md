@@ -20,9 +20,9 @@ sources:
 |---------|------|-------------------|
 | Thin Zephir + C helpers | posi | `metal/mtl/*.zep` call `mtl_*` in `src/*.h` |
 | PIE `type: php-ext`, `build-path: ext` | sdl3 / glfw / posi | Same layout in `composer.json` |
-| Static namespaced classes | sdl3 / glfw | `Metal\MTL\{App,Window,Menu,Device}` |
+| Static namespaced classes | sdl3 / glfw | `Metal\MTL\{App,Window,Menu,Device,Texture,Input}` |
 | Opaque `int` handles | sdl3 / glfw | Devices, windows, queues, layers |
-| Version `0.7.1`, PHP ≥ 8.2 | siblings | Aligned release target |
+| Version `0.7.2`, PHP ≥ 8.2 | siblings | Aligned release target |
 | IDE stubs path | sdl3 | `config.json` stubs → `ide/%version%/%namespace%/` |
 
 # Not borrowed

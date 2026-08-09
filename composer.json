@@ -1,9 +1,9 @@
 {
     "name": "php-io-extensions/metal",
     "type": "php-ext",
-    "description": "PHP-Controllable macOS Metal + AppKit window, menu, texture, and drawing extension",
+    "description": "PHP-Controllable macOS Metal + AppKit window, menu, texture, input, and drawing extension",
     "license": "MIT",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "authors": [
         {
             "name": "Project Saturn Studios, LLC",

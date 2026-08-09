@@ -14,6 +14,8 @@ PHP_METHOD(Metal_MTL_Window, getHeight);
 PHP_METHOD(Metal_MTL_Window, attachDevice);
 PHP_METHOD(Metal_MTL_Window, getLayer);
 PHP_METHOD(Metal_MTL_Window, clear);
+PHP_METHOD(Metal_MTL_Window, getDevice);
+PHP_METHOD(Metal_MTL_Window, presentTexture);
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_window_create, 0, 3, IS_LONG, 0)
 	ZEND_ARG_TYPE_INFO(0, title, IS_STRING, 0)
@@ -71,6 +73,15 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_window_clear, 0, 4, _I
 	ZEND_ARG_TYPE_INFO(0, a, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_window_getdevice, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, window, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_window_presenttexture, 0, 2, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO(0, window, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, texture, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(metal_mtl_window_method_entry) {
 	PHP_ME(Metal_MTL_Window, create, arginfo_metal_mtl_window_create, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Metal_MTL_Window, destroy, arginfo_metal_mtl_window_destroy, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
@@ -83,5 +94,7 @@ ZEPHIR_INIT_FUNCS(metal_mtl_window_method_entry) {
 	PHP_ME(Metal_MTL_Window, attachDevice, arginfo_metal_mtl_window_attachdevice, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Metal_MTL_Window, getLayer, arginfo_metal_mtl_window_getlayer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Metal_MTL_Window, clear, arginfo_metal_mtl_window_clear, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_Window, getDevice, arginfo_metal_mtl_window_getdevice, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_Window, presentTexture, arginfo_metal_mtl_window_presenttexture, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_FE_END
 };

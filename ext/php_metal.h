@@ -11,7 +11,7 @@
 #include "kernel/globals.h"
 
 #define PHP_METAL_NAME        "metal"
-#define PHP_METAL_VERSION     "0.7.1"
+#define PHP_METAL_VERSION     "0.7.2"
 #define PHP_METAL_EXTNAME     "metal"
 #define PHP_METAL_AUTHOR      "Project Saturn Studios, LLC"
 #define PHP_METAL_ZEPVERSION  "0.19.0-$Id$"

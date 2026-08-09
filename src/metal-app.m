@@ -1,5 +1,6 @@
 #import <AppKit/AppKit.h>
 #import "metal-app.h"
+#import "metal-input.h"
 
 static BOOL mtl_app_ready = NO;
 static BOOL mtl_app_quit = NO;
@@ -40,6 +41,7 @@ int mtl_app_init(void)
         [NSApp finishLaunching];
         mtl_app_ready = YES;
         mtl_app_quit = NO;
+        mtl_input_init();
     }
 
     return 1;
@@ -52,11 +54,13 @@ int mtl_app_poll(void)
     }
 
     @autoreleasepool {
+        mtl_input_begin_frame();
         NSEvent *event;
         while ((event = [NSApp nextEventMatchingMask:NSEventMaskAny
                                            untilDate:[NSDate distantPast]
                                               inMode:NSDefaultRunLoopMode
                                              dequeue:YES])) {
+            mtl_input_handle_event((__bridge void *)event);
             [NSApp sendEvent:event];
         }
         [NSApp updateWindows];

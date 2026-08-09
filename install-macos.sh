@@ -69,7 +69,7 @@ show_failure_logs() {
 ensure_metal_macos() {
     step "🖼️  Verifying Metal / AppKit frameworks..."
 
-    local frameworks=(Metal AppKit QuartzCore Foundation)
+    local frameworks=(Metal AppKit QuartzCore Foundation GameController CoreGraphics)
     local fw
     for fw in "${frameworks[@]}"; do
         if [ -d "/System/Library/Frameworks/${fw}.framework" ]; then

@@ -16,6 +16,7 @@ FIXES = {
     "Metal\\MT\\Menu": "Metal\\MTL\\Menu",
     "Metal\\MT\\Window": "Metal\\MTL\\Window",
     "Metal\\MT\\Texture": "Metal\\MTL\\Texture",
+    "Metal\\MT\\Input": "Metal\\MTL\\Input",
 }
 
 
@@ -27,7 +28,7 @@ def fix_file(path: Path) -> int:
         # Also init entries that embed the truncated name.
         text = text.replace(bad, good)
     # Common 0.19 truncation pattern: Metal_MT_App → Metal_MTL_App in symbols if present
-    text = re.sub(r"\bMetal_MT_(App|Device|Menu|Window|Texture)\b", r"Metal_MTL_\1", text)
+    text = re.sub(r"\bMetal_MT_(App|Device|Menu|Window|Texture|Input)\b", r"Metal_MTL_\1", text)
     if text != original:
         path.write_text(text, encoding="utf-8")
         return 1

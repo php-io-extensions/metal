@@ -21,9 +21,10 @@
     self = [super initWithFrame:frameRect];
     if (self) {
         CAMetalLayer *metalLayer = [CAMetalLayer layer];
-        metalLayer.pixelFormat = MTLPixelFormatBGRA8Unorm;
+        /* Match offscreen MTLTexture RGBA8Unorm so present_texture can blit. */
+        metalLayer.pixelFormat = MTLPixelFormatRGBA8Unorm;
         metalLayer.contentsScale = NSScreen.mainScreen.backingScaleFactor ?: 1.0;
-        metalLayer.framebufferOnly = YES;
+        metalLayer.framebufferOnly = NO;
         self.layer = metalLayer;
         self.wantsLayer = YES;
         self.metalLayer = metalLayer;
@@ -305,6 +306,95 @@ int mtl_window_clear(uintptr_t window, float r, float g, float b, float a)
         [enc endEncoding];
         [cmd presentDrawable:drawable];
         [cmd commit];
+        return 1;
+    }
+}
+
+uintptr_t mtl_window_get_device(uintptr_t window)
+{
+    mtl_window_box *box = mtl_window_box_from(window);
+    if (!box || !box->device) {
+        return 0;
+    }
+    return (uintptr_t)box->device;
+}
+
+int mtl_window_present_texture(uintptr_t window, uintptr_t texture)
+{
+    mtl_window_box *box = mtl_window_box_from(window);
+    if (!box || !box->view || !box->queue || !texture) {
+        return 0;
+    }
+
+    @autoreleasepool {
+        MTLPhpView *view = (__bridge MTLPhpView *)box->view;
+        id<MTLCommandQueue> queue = (__bridge id<MTLCommandQueue>)box->queue;
+        id<MTLTexture> src = (__bridge id<MTLTexture>)(void *)texture;
+        CAMetalLayer *layer = view.metalLayer;
+        if (!view || !queue || !src || !layer) {
+            return 0;
+        }
+
+        layer.pixelFormat = MTLPixelFormatRGBA8Unorm;
+        layer.drawableSize = CGSizeMake((CGFloat)src.width, (CGFloat)src.height);
+
+        id<CAMetalDrawable> drawable = [layer nextDrawable];
+        if (!drawable || !drawable.texture) {
+            return 0;
+        }
+
+        NSUInteger w = MIN(src.width, drawable.texture.width);
+        NSUInteger h = MIN(src.height, drawable.texture.height);
+        if (w == 0 || h == 0) {
+            return 0;
+        }
+
+        id<MTLCommandBuffer> cmd = [queue commandBuffer];
+        if (!cmd) {
+            return 0;
+        }
+
+        id<MTLBlitCommandEncoder> blit = [cmd blitCommandEncoder];
+        if (!blit) {
+            return 0;
+        }
+
+        [blit copyFromTexture:src
+                  sourceSlice:0
+                  sourceLevel:0
+                 sourceOrigin:MTLOriginMake(0, 0, 0)
+                   sourceSize:MTLSizeMake(w, h, 1)
+                    toTexture:drawable.texture
+             destinationSlice:0
+             destinationLevel:0
+            destinationOrigin:MTLOriginMake(0, 0, 0)];
+        [blit endEncoding];
+        [cmd presentDrawable:drawable];
+        [cmd commit];
+        return 1;
+    }
+}
+
+int mtl_window_screen_to_content(uintptr_t window, double screen_x, double screen_y, double *out_x, double *out_y)
+{
+    if (!out_x || !out_y) {
+        return 0;
+    }
+
+    mtl_window_box *box = mtl_window_box_from(window);
+    if (!box || !box->window || !box->view) {
+        return 0;
+    }
+
+    @autoreleasepool {
+        NSWindow *win = (__bridge NSWindow *)box->window;
+        NSView *view = (__bridge NSView *)box->view;
+        NSPoint screenPt = NSMakePoint((CGFloat)screen_x, (CGFloat)screen_y);
+        NSRect screenRect = NSMakeRect(screenPt.x, screenPt.y, 0, 0);
+        NSRect windowRect = [win convertRectFromScreen:screenRect];
+        NSPoint local = [view convertPoint:windowRect.origin fromView:nil];
+        *out_x = (double)local.x;
+        *out_y = (double)local.y;
         return 1;
     }
 }
