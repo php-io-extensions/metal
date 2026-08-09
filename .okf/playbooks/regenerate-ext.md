@@ -43,7 +43,7 @@ php -n -d extension="$(pwd)/modules/metal.so" --ri metal
 METAL_DEMO_MAX_FRAMES=90 php -n -d extension="$(pwd)/modules/metal.so" ../examples/proof_window.php
 ```
 
-4. Commit regenerable artifacts that belong in git (`ext/` sources, `config.m4`, `Makefile.frag`, `ide/0.7.0/` stubs) — not phpize junk.[^gitignore]
+4. Commit regenerable artifacts that belong in git (`ext/` sources, `config.m4`, `Makefile.frag`, `ide/0.7.1/` stubs) — not phpize junk.[^gitignore]
 5. Update `.okf` + `log.md` if the public surface changed.
 
 # Notes

@@ -4,14 +4,14 @@ okf_version: "0.2"
 
 # php-io-extensions/metal
 
-Darwin-only PHP extension: Zephir static classes → thin C ABI → Objective-C (AppKit + Metal + QuartzCore + Foundation). Open an `NSWindow`, install a macOS menu bar (with Quit), and clear/present via `CAMetalLayer`.
+macOS-only PHP extension: Zephir static classes → thin C ABI → Objective-C (AppKit + Metal + QuartzCore + Foundation). Open an `NSWindow`, install a macOS menu bar (with Quit), clear/present via `CAMetalLayer`, and create offscreen `MTLTexture` targets for headless engines/UIs (0.7.1+).
 
 **Prefer** concepts with `status: stable` when present; content is currently `draft` pending Angel’s human verification of the OKF docs (implementation facts are grounded in shipped sources).
 
 # Orientation
 
 * [Package overview](orientation/overview.md) - What metal is, version targets, and what it deliberately is not
-* [Standalone Darwin scope](orientation/standalone-darwin.md) - macOS-only PIE constraints and zero coupling to SDL3/GLFW
+* [Standalone macOS scope](orientation/standalone-darwin.md) - macOS-only PIE constraints and zero coupling to SDL3/GLFW
 
 # Architecture
 
@@ -25,6 +25,7 @@ Darwin-only PHP extension: Zephir static classes → thin C ABI → Objective-C 
 * [Metal\\MTL\\Window](api/window.md) - NSWindow + CAMetalLayer; clear uses RGBA ints 0..255
 * [Metal\\MTL\\Menu](api/menu.md) - Default menu bar, custom items, action poll
 * [Metal\\MTL\\Device](api/device.md) - MTLDevice / command queue handles
+* [Metal\\MTL\\Texture](api/texture.md) - Offscreen RGBA8 textures (0.7.1+)
 
 # Build & packaging
 

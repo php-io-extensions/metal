@@ -7,6 +7,7 @@
 #include "metal/mtl/app.zep.h"
 #include "metal/mtl/device.zep.h"
 #include "metal/mtl/menu.zep.h"
+#include "metal/mtl/texture.zep.h"
 #include "metal/mtl/window.zep.h"
 
 #endif

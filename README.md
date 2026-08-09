@@ -3,13 +3,14 @@
 [![PHP](https://img.shields.io/badge/php-%E2%89%A5%208.2-777bb4?logo=php&logoColor=white)](https://www.php.net)
 [![Metal](https://img.shields.io/badge/Metal-macOS%20only-black)](https://developer.apple.com/metal/)
 [![Built with Zephir](https://img.shields.io/badge/built%20with-Zephir-ff6a00)](https://zephir-lang.com/)
-[![Platform](https://img.shields.io/badge/platform-macOS%20(Darwin)-lightgrey)](#requirements)
+[![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)](#requirements)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](#license)
 
 > PHP extension for Apple Metal + AppKit — built with [Zephir](https://zephir-lang.com/), installable via [PHP PIE](https://github.com/php/pie).
 
-`metal` is a **standalone Darwin-only** binding: open an `NSWindow`, install a macOS
-menu bar, and draw through a `CAMetalLayer` with Metal. It has no knowledge of
+`metal` is a **standalone macOS-only** binding: open an `NSWindow`, install a macOS
+menu bar, draw through a `CAMetalLayer` with Metal, and create offscreen
+`MTLTexture` targets (0.7.1+) for headless engines/UIs. It has no knowledge of
 other windowing libraries.
 
 PHP API is namespaced under `Metal\MTL\…` as static classes. Opaque native
@@ -22,7 +23,7 @@ handles are `int` values.
 | Component            | Minimum version | Notes                                      |
 | -------------------- | --------------- | ------------------------------------------ |
 | PHP                  | 8.2             | ZTS and NTS                                |
-| OS                   | macOS (Darwin)  | arm64 + x86_64                             |
+| OS                   | macOS           | arm64 + x86_64 (PIE `os-families: darwin`) |
 | Frameworks           | system          | Metal, AppKit, QuartzCore, Foundation      |
 | Compiler             | Apple Clang     | Objective-C ARC                            |
 | `php-dev` / `phpize` | matches PHP     | Required for non-PIE builds                |

@@ -25,6 +25,7 @@ sources:
 | Window | `Window::create` | `Window::destroy` (caller owns)[^window-h] |
 | Device | `Device::createSystemDefault` | `Device::release` |
 | Command queue | `Device::newCommandQueue` | `Device::releaseCommandQueue` |
+| Texture (0.7.1+) | `Texture::create` | `Texture::release` |
 | Layer | `Window::getLayer` | Do **not** free — owned by the view |
 
 # Semantics
@@ -36,8 +37,9 @@ sources:
 # Checklist
 
 1. Create window → attach device → loop → destroy window → release device.
-2. Do not share window handles across process forks.
-3. Prefer one app init per process; `App::init` is idempotent.
+2. Offscreen: create device → create texture → use → release texture → release device (no window required).
+3. Do not share window/texture handles across process forks.
+4. Prefer one app init per process; `App::init` is idempotent.
 
 [^window-h]: metal-window.h
 [^device-m]: metal-device.m

@@ -17,7 +17,7 @@ if test "$PHP_METAL" = "yes"; then
 
 	AC_DEFINE(HAVE_METAL, 1, [Whether you have Metal])
 	dnl ObjC .m sources are wired via Makefile.frag — phpize mishandles .m rules.
-	metal_sources="metal.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c metal/mtl/app.zep.c metal/mtl/device.zep.c metal/mtl/menu.zep.c metal/mtl/window.zep.c"
+	metal_sources="metal.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c metal/mtl/app.zep.c metal/mtl/device.zep.c metal/mtl/menu.zep.c metal/mtl/window.zep.c metal/mtl/texture.zep.c"
 	PHP_NEW_EXTENSION(metal, $metal_sources, $ext_shared,, )
 	PHP_ADD_BUILD_DIR([$ext_builddir/kernel/])
 	for dir in "metal/mtl" "src"; do

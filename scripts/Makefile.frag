@@ -13,4 +13,7 @@ $(builddir)/src/metal-menu.lo: $(srcdir)/src/metal-menu.m
 $(builddir)/src/metal-device.lo: $(srcdir)/src/metal-device.m
 	$(LIBTOOL) --tag=CC --mode=compile $(CC) -I. -I$(srcdir) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(MTL_OBJC_CFLAGS) -DZEND_COMPILE_DL_EXT=1 -c $(srcdir)/src/metal-device.m -o $@
 
-shared_objects_metal += src/metal-app.lo src/metal-window.lo src/metal-menu.lo src/metal-device.lo
+$(builddir)/src/metal-texture.lo: $(srcdir)/src/metal-texture.m
+	$(LIBTOOL) --tag=CC --mode=compile $(CC) -I. -I$(srcdir) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(MTL_OBJC_CFLAGS) -DZEND_COMPILE_DL_EXT=1 -c $(srcdir)/src/metal-texture.m -o $@
+
+shared_objects_metal += src/metal-app.lo src/metal-window.lo src/metal-menu.lo src/metal-device.lo src/metal-texture.lo

@@ -19,6 +19,9 @@ sources:
   - id: device-h
     resource: /src/metal-device.h
     title: metal-device.h
+  - id: texture-h
+    resource: /src/metal-texture.h
+    title: metal-texture.h
   - id: window-zep
     resource: /metal/mtl/window.zep
     title: window.zep
@@ -71,10 +74,22 @@ sources:
 | `mtl_device_new_command_queue` / `mtl_command_queue_release` | Queue handles |
 | `mtl_device_get_name` | UTF-8 name into caller buffer |
 
+## Texture (`metal-texture.h`) — 0.7.1+[^texture-h]
+
+| Function | Notes |
+|----------|--------|
+| `mtl_texture_create_rgba8` | Offscreen RGBA8Unorm; Shared/Managed storage |
+| `mtl_texture_release` | CFRelease |
+| `mtl_texture_get_width` / `get_height` | Dimensions |
+| `mtl_texture_clear` | GPU clear; RGBA **floats 0..1** |
+| `mtl_texture_write_pixel` / `read_pixel` | CPU pixel access |
+| `mtl_texture_read_rgba8` | Full tightly packed RGBA8888 into caller buffer |
+
 PHP mapping: [API index](/api/index.md). Ownership: [Handle ownership](/conventions/handle-ownership.md).
 
 [^app-h]: metal-app.h
 [^window-h]: metal-window.h
 [^menu-h]: metal-menu.h
 [^device-h]: metal-device.h
+[^texture-h]: metal-texture.h
 [^window-zep]: window.zep

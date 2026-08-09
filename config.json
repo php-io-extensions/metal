@@ -3,12 +3,13 @@
     "name": "metal",
     "description": "PHP-Controllable Darwin Metal + AppKit Extension",
     "author": "Project Saturn Studios, LLC",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "extra-sources": [
         "src/metal-app.m",
         "src/metal-window.m",
         "src/metal-menu.m",
-        "src/metal-device.m"
+        "src/metal-device.m",
+        "src/metal-texture.m"
     ],
     "extra-cflags": "-fobjc-arc -Wno-deprecated-declarations",
     "extra-libs": "-framework Metal -framework AppKit -framework QuartzCore -framework Foundation",
