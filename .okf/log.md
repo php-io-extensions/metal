@@ -1,5 +1,8 @@
 # Directory Update Log
 
+## 2026-08-12
+* **0.7.4 fillRect**: `mtl_texture_fill_rect` + `Texture::fillRect` — one CPU `replaceRegion` for solid rects (not per-pixel `writePixel`). Stubs `ide/0.7.4/`. Unblocks metal-gfx `setSegment` / windowed gameplay FPS.
+
 ## 2026-08-09
 * **Input NSBeep**: `MTLPhpView` accepts first responder + swallows `keyDown`/`keyUp`; window `makeFirstResponder:view`. Trap: `traps/nsbeep-unhandled-keys.md`. Rebuild via `/tmp` copy of `ext/` only (ship-ready `ext/` left clean).
 * **Installer**: `install-macos.sh` stages `phpize`/`configure`/`make` into a space-free temp tree when `SCRIPT_DIR` contains whitespace (Homebrew phpize hard-fails on paths like `metal copy/ext`). Trap: `traps/phpize-whitespace-path.md`.

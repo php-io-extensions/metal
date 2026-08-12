@@ -19,6 +19,7 @@ Opaque offscreen render-target texture (no NSWindow). Added in **0.7.1** so down
 | `getWidth` / `getHeight` | |
 | `clear(texture, queue, r,g,b,a=255)` | GPU clear; ints 0..255 |
 | `writePixel` / `readPixel` | CPU path for framebuffer-style access |
+| `fillRect(texture, x, y, w, h, r,g,b,a=255)` | **0.7.4+** one `replaceRegion` solid rect (not per-pixel) |
 | `readPixels(texture, queue)` | Full RGBA8888 byte string |
 
 # Related

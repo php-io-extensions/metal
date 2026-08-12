@@ -89,6 +89,29 @@ class Texture
 	}
 
 	/**
+	 * CPU fill an axis-aligned rect with one solid RGBA8 color (0..255).
+	 * One replaceRegion for the whole rect — use this instead of writePixel loops.
+	 */
+	public static function fillRect(int texture, int x, int y, int width, int height, int r, int g, int b, int a = 255) -> bool
+	{
+		int ok;
+		%{
+			ok = mtl_texture_fill_rect(
+				(uintptr_t) texture,
+				(int) x,
+				(int) y,
+				(int) width,
+				(int) height,
+				(unsigned char) (r < 0 ? 0 : (r > 255 ? 255 : r)),
+				(unsigned char) (g < 0 ? 0 : (g > 255 ? 255 : g)),
+				(unsigned char) (b < 0 ? 0 : (b > 255 ? 255 : b)),
+				(unsigned char) (a < 0 ? 0 : (a > 255 ? 255 : a))
+			);
+		}%
+		return ok ? true : false;
+	}
+
+	/**
 	 * CPU read one RGBA8 pixel as [r, g, b, a] ints 0..255, or empty array on failure.
 	 */
 	public static function readPixel(int texture, int queue, int x, int y) -> array

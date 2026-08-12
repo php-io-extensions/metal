@@ -88,6 +88,7 @@ sources:
 | `mtl_texture_get_width` / `get_height` | Dimensions |
 | `mtl_texture_clear` | GPU clear; RGBA **floats 0..1** |
 | `mtl_texture_write_pixel` / `read_pixel` | CPU pixel access |
+| `mtl_texture_fill_rect` | **0.7.4+** one `replaceRegion` solid rect |
 | `mtl_texture_read_rgba8` | Full tightly packed RGBA8888 into caller buffer |
 
 ## Input (`metal-input.h`) — 0.7.2+[^input-h]

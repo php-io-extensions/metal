@@ -194,6 +194,60 @@ PHP_METHOD(Metal_MTL_Texture, writePixel)
 }
 
 /**
+ * CPU fill an axis-aligned rect with one solid RGBA8 color (0..255).
+ * One replaceRegion for the whole rect — use this instead of writePixel loops.
+ */
+PHP_METHOD(Metal_MTL_Texture, fillRect)
+{
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *texture_param = NULL, *x_param = NULL, *y_param = NULL, *width_param = NULL, *height_param = NULL, *r_param = NULL, *g_param = NULL, *b_param = NULL, *a_param = NULL, _0;
+	zend_long texture, x, y, width, height, r, g, b, a, ok = 0;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(8, 9)
+		Z_PARAM_LONG(texture)
+		Z_PARAM_LONG(x)
+		Z_PARAM_LONG(y)
+		Z_PARAM_LONG(width)
+		Z_PARAM_LONG(height)
+		Z_PARAM_LONG(r)
+		Z_PARAM_LONG(g)
+		Z_PARAM_LONG(b)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(a)
+	ZEND_PARSE_PARAMETERS_END();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
+	zephir_fetch_params(1, 8, 1, &texture_param, &x_param, &y_param, &width_param, &height_param, &r_param, &g_param, &b_param, &a_param);
+	if (!a_param) {
+		a = 255;
+	} else {
+		}
+	
+			ok = mtl_texture_fill_rect(
+				(uintptr_t) texture,
+				(int) x,
+				(int) y,
+				(int) width,
+				(int) height,
+				(unsigned char) (r < 0 ? 0 : (r > 255 ? 255 : r)),
+				(unsigned char) (g < 0 ? 0 : (g > 255 ? 255 : g)),
+				(unsigned char) (b < 0 ? 0 : (b > 255 ? 255 : b)),
+				(unsigned char) (a < 0 ? 0 : (a > 255 ? 255 : a))
+			);
+		
+	ZEPHIR_INIT_VAR(&_0);
+	if (ok) {
+		ZEPHIR_INIT_NVAR(&_0);
+		ZVAL_BOOL(&_0, 1);
+	} else {
+		ZEPHIR_INIT_NVAR(&_0);
+		ZVAL_BOOL(&_0, 0);
+	}
+	RETURN_CCTOR(&_0);
+}
+
+/**
  * CPU read one RGBA8 pixel as [r, g, b, a] ints 0..255, or empty array on failure.
  */
 PHP_METHOD(Metal_MTL_Texture, readPixel)

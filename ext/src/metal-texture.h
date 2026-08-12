@@ -40,6 +40,22 @@ int mtl_texture_write_pixel(
 );
 
 /**
+ * CPU fill an axis-aligned rect with one solid RGBA8 color (0..255).
+ * One replaceRegion for the whole rect (not per-pixel). Returns 1 on success.
+ */
+int mtl_texture_fill_rect(
+	uintptr_t texture,
+	int x,
+	int y,
+	int width,
+	int height,
+	unsigned char r,
+	unsigned char g,
+	unsigned char b,
+	unsigned char a
+);
+
+/**
  * CPU read one RGBA8 pixel (0..255). Returns 1 on success.
  */
 int mtl_texture_read_pixel(

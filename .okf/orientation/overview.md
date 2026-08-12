@@ -35,7 +35,7 @@ sources:
 |------|--------|
 | Package | `php-io-extensions/metal` |
 | Extension name | `metal` |
-| Version | `0.7.3` |
+| Version | `0.7.4` |
 | PHP | `>= 8.2` |
 | OS | **macOS** only (PIE `os-families: ["darwin"]`) |
 | Architectures | macOS arm64 and x86_64 |

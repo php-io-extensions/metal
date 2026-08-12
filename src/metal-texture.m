@@ -1,6 +1,7 @@
 #import <Metal/Metal.h>
 #import <Foundation/Foundation.h>
 #import "metal-texture.h"
+#include <stdlib.h>
 
 static inline id mtl_tex_bridge_id(uintptr_t handle)
 {
@@ -137,6 +138,66 @@ int mtl_texture_write_pixel(
 		unsigned char pixel[4] = { r, g, b, a };
 		MTLRegion region = MTLRegionMake2D((NSUInteger)x, (NSUInteger)y, 1, 1);
 		[tex replaceRegion:region mipmapLevel:0 withBytes:pixel bytesPerRow:4];
+		return 1;
+	}
+}
+
+int mtl_texture_fill_rect(
+	uintptr_t texture,
+	int x,
+	int y,
+	int width,
+	int height,
+	unsigned char r,
+	unsigned char g,
+	unsigned char b,
+	unsigned char a
+) {
+	if (!texture || width <= 0 || height <= 0) {
+		return 0;
+	}
+
+	@autoreleasepool {
+		id<MTLTexture> tex = mtl_tex_bridge_id(texture);
+		if (!tex || tex.storageMode == MTLStorageModePrivate) {
+			return 0;
+		}
+
+		int tex_w = (int)tex.width;
+		int tex_h = (int)tex.height;
+		int x0 = x < 0 ? 0 : x;
+		int y0 = y < 0 ? 0 : y;
+		int x1 = x + width;
+		int y1 = y + height;
+		if (x1 > tex_w) {
+			x1 = tex_w;
+		}
+		if (y1 > tex_h) {
+			y1 = tex_h;
+		}
+		int cw = x1 - x0;
+		int ch = y1 - y0;
+		if (cw <= 0 || ch <= 0) {
+			return 0;
+		}
+
+		size_t bytes_per_row = (size_t)cw * 4u;
+		size_t total = bytes_per_row * (size_t)ch;
+		unsigned char *buf = (unsigned char *)malloc(total);
+		if (!buf) {
+			return 0;
+		}
+
+		for (size_t i = 0; i < total; i += 4u) {
+			buf[i] = r;
+			buf[i + 1] = g;
+			buf[i + 2] = b;
+			buf[i + 3] = a;
+		}
+
+		MTLRegion region = MTLRegionMake2D((NSUInteger)x0, (NSUInteger)y0, (NSUInteger)cw, (NSUInteger)ch);
+		[tex replaceRegion:region mipmapLevel:0 withBytes:buf bytesPerRow:bytes_per_row];
+		free(buf);
 		return 1;
 	}
 }
