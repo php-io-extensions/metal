@@ -1,6 +1,7 @@
 # Directory Update Log
 
 ## 2026-08-12
+* **0.7.5 Input scalars**: Package → `0.7.5` (`composer.json`, `config.json`, `PHP_METAL_VERSION`, `ide/0.7.5/`). `Input::mouseX` / `mouseY` / `mouseScrollY` avoid per-frame hashtables; `Menu::pollAction` returns empty string with `RETURN_EMPTY_STRING()`. Generated `ext/*.zep.c` is regenerated on the last rebuild — not left dirty for commit.
 * **0.7.4 fillRect**: `mtl_texture_fill_rect` + `Texture::fillRect` — one CPU `replaceRegion` for solid rects (not per-pixel `writePixel`). Stubs `ide/0.7.4/`. Unblocks metal-gfx `setSegment` / windowed gameplay FPS.
 
 ## 2026-08-09

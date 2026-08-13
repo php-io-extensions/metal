@@ -9,4 +9,4 @@ All public classes live under `Metal\MTL` and expose **static** methods. Opaque 
 * [Metal\\MTL\\Menu](menu.md) - Default menu bar, custom items, action poll
 * [Metal\\MTL\\Device](device.md) - MTLDevice / command queue handles
 * [Metal\\MTL\\Texture](texture.md) - Offscreen RGBA8Unorm textures (0.7.1+) for headless engines/UIs
-* [Metal\\MTL\\Input](input.md) - Keyboard / mouse / gamepad (0.7.2+; AppKit + GameController)
+* [Metal\\MTL\\Input](input.md) - Keyboard / mouse / gamepad (0.7.2+; scalar `mouseX`/`mouseY`/`mouseScrollY` 0.7.5+)

@@ -26,7 +26,7 @@ macOS-only PHP extension: Zephir static classes → thin C ABI → Objective-C (
 * [Metal\\MTL\\Menu](api/menu.md) - Default menu bar, custom items, action poll
 * [Metal\\MTL\\Device](api/device.md) - MTLDevice / command queue handles
 * [Metal\\MTL\\Texture](api/texture.md) - Offscreen RGBA8 textures (0.7.1+)
-* [Metal\\MTL\\Input](api/input.md) - Keyboard / mouse / gamepad (0.7.2+)
+* [Metal\\MTL\\Input](api/input.md) - Keyboard / mouse / gamepad (0.7.2+; scalar mouse 0.7.5+)
 
 # Build & packaging
 

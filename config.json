@@ -3,7 +3,7 @@
     "name": "metal",
     "description": "PHP-Controllable Darwin Metal + AppKit Extension",
     "author": "Project Saturn Studios, LLC",
-    "version": "0.7.4",
+    "version": "0.7.5",
     "extra-sources": [
         "src/metal-app.m",
         "src/metal-window.m",

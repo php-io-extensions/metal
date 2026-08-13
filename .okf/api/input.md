@@ -5,7 +5,7 @@ description: Keyboard, mouse, and gamepad queries (AppKit + GameController)
 resource: /metal/mtl/input.zep
 tags: [metal, api, input]
 status: draft
-generated: { by: cursor-agent/grok-4.5, at: 2026-08-09T06:55:00Z }
+generated: { by: cursor-agent/grok-4.6, at: 2026-08-12T22:35:00Z }
 sources:
   - id: input-zep
     resource: /metal/mtl/input.zep
@@ -23,6 +23,9 @@ sources:
 | `mouseButtonDown(int $button)` | `bool` | `mtl_input_mouse_button_down` — 0 left, 1 right, 2 middle |
 | `mousePosition(int $window = 0)` | `array` | `mtl_input_mouse_position` — `[x, y]`; `0` = screen |
 | `mouseScrollDelta()` | `array` | `mtl_input_mouse_scroll_delta` — `[dx, dy]` since last `App::poll` |
+| `mouseX(int $window = 0)` | `float` | **0.7.5+** scalar X (no hashtable) |
+| `mouseY(int $window = 0)` | `float` | **0.7.5+** scalar Y (AppKit, up is positive) |
+| `mouseScrollY()` | `float` | **0.7.5+** scalar scroll Y since last `App::poll` |
 | `gamepadCount()` | `int` | `mtl_input_gamepad_count` |
 | `gamepadName(int $index)` | `string` | `mtl_input_gamepad_name` |
 | `gamepadButtonDown(int $index, int $button)` | `bool` | `mtl_input_gamepad_button_down` |

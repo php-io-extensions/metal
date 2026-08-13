@@ -5,7 +5,7 @@ description: What metal is, version targets, and what it deliberately is not
 resource: /composer.json
 tags: [metal, orientation, php-ext, macos]
 status: draft
-generated: { by: cursor-agent/grok-4.5, at: "2026-08-09T03:05:00Z" }
+generated: { by: cursor-agent/grok-4.6, at: "2026-08-12T22:35:00Z" }
 sources:
   - id: composer
     resource: /composer.json
@@ -35,7 +35,7 @@ sources:
 |------|--------|
 | Package | `php-io-extensions/metal` |
 | Extension name | `metal` |
-| Version | `0.7.4` |
+| Version | `0.7.5` |
 | PHP | `>= 8.2` |
 | OS | **macOS** only (PIE `os-families: ["darwin"]`) |
 | Architectures | macOS arm64 and x86_64 |
@@ -62,7 +62,7 @@ Demo: `examples/proof_window.php` (optional `METAL_DEMO_MAX_FRAMES` smoke).[^dem
 
 # Public namespace
 
-Zephir classes live under `Metal\MTL\` (`metal/mtl/*.zep`). IDE stubs: `ide/0.7.2/Metal/MTL/`.
+Zephir classes live under `Metal\MTL\` (`metal/mtl/*.zep`). IDE stubs: `ide/0.7.5/Metal/MTL/`.
 
 See [Standalone macOS scope](/orientation/standalone-darwin.md) and [Layered stack](/architecture/stack.md).
 
