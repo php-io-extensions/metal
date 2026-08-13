@@ -44,16 +44,14 @@ class Menu
      */
     public static function pollAction() -> string
     {
-        string action;
         %{
             char buf[256];
             buf[0] = '\0';
             if (mtl_menu_poll_action(buf, (int) sizeof(buf))) {
-                ZVAL_STRING(&action, buf);
-            } else {
-                ZVAL_STRING(&action, "");
+                RETURN_STRING(buf);
             }
+            RETURN_EMPTY_STRING();
         }%
-        return action;
+        return "";
     }
 }

@@ -46,11 +46,8 @@ class Input
         %{
             double x = 0.0, y = 0.0;
             if (mtl_input_mouse_position((uintptr_t) window, &x, &y)) {
-                array_init(&out);
                 add_next_index_double(&out, x);
                 add_next_index_double(&out, y);
-            } else {
-                array_init(&out);
             }
         }%
         return out;
@@ -65,11 +62,50 @@ class Input
         %{
             double dx = 0.0, dy = 0.0;
             mtl_input_mouse_scroll_delta(&dx, &dy);
-            array_init(&out);
             add_next_index_double(&out, dx);
             add_next_index_double(&out, dy);
         }%
         return out;
+    }
+
+    /**
+     * Content-view / screen mouse X. window=0 → screen coords.
+     * Prefer this over mousePosition() on the poll hot path (no hashtable).
+     */
+    public static function mouseX(int window = 0) -> double
+    {
+        double x = 0.0;
+        %{
+            double y = 0.0;
+            mtl_input_mouse_position((uintptr_t) window, &x, &y);
+        }%
+        return x;
+    }
+
+    /**
+     * Content-view / screen mouse Y (AppKit, up is positive).
+     */
+    public static function mouseY(int window = 0) -> double
+    {
+        double y = 0.0;
+        %{
+            double x = 0.0;
+            mtl_input_mouse_position((uintptr_t) window, &x, &y);
+        }%
+        return y;
+    }
+
+    /**
+     * Scroll Y since the last App::poll() begin. No hashtable.
+     */
+    public static function mouseScrollY() -> double
+    {
+        double dy = 0.0;
+        %{
+            double dx = 0.0;
+            mtl_input_mouse_scroll_delta(&dx, &dy);
+        }%
+        return dy;
     }
 
     public static function gamepadCount() -> int
@@ -132,12 +168,9 @@ class Input
         %{
             char buf[256];
             buf[0] = '\0';
-            if (!mtl_input_gamepad_name((int) index, buf, (int) sizeof(buf))) {
-                array_init(&out);
-            } else {
+            if (mtl_input_gamepad_name((int) index, buf, (int) sizeof(buf))) {
                 zval buttons, axes;
                 int i;
-                array_init(&out);
                 add_assoc_string(&out, "name", buf);
                 array_init(&buttons);
                 for (i = 0; i < 15; i++) {
