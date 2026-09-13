@@ -1,0 +1,46 @@
+
+extern zend_class_entry *metal_mtl_mtltexturedescriptor_mtltexturedescriptor_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor);
+
+PHP_METHOD(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, texture2DDescriptorWithPixelFormatWidthHeightMipmapped);
+PHP_METHOD(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, usage);
+PHP_METHOD(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, setUsage);
+PHP_METHOD(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, storageMode);
+PHP_METHOD(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, setStorageMode);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_texture2ddescriptorwithpixelformatwidthheightmipmapped, 0, 4, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, pixelFormat, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, width, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, height, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, mipmapped, _IS_BOOL, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_usage, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_setusage, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, usage, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_storagemode, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_setstoragemode, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, storageMode, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtltexturedescriptor_mtltexturedescriptor_method_entry) {
+	PHP_ME(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, texture2DDescriptorWithPixelFormatWidthHeightMipmapped, arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_texture2ddescriptorwithpixelformatwidthheightmipmapped, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, usage, arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_usage, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, setUsage, arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_setusage, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, storageMode, arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_storagemode, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLTextureDescriptor_MTLTextureDescriptor, setStorageMode, arginfo_metal_mtl_mtltexturedescriptor_mtltexturedescriptor_setstoragemode, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

@@ -1,0 +1,54 @@
+{
+    "namespace": "metal",
+    "name": "metal",
+    "extension-name": "metal",
+    "description": "Metal bound 1:1 into PHP",
+    "author": "Project Saturn Studios, LLC",
+    "version": "0.8.0",
+    "extra-sources": [
+        "src/mtl-bridge.m",
+        "src/mtl-device.m",
+        "src/mtl-commandqueue.m",
+        "src/mtl-texture.m",
+        "src/mtl-renderpass.m",
+        "src/mtl-commandbuffer.m",
+        "src/mtl-commandencoder.m",
+        "src/mtl-buffer.m",
+        "src/mtl-library.m",
+        "src/mtl-renderpipeline.m",
+        "src/mtl-vertexdescriptor.m",
+        "src/mtl-depthstencil.m",
+        "src/mtl-sampler.m",
+        "src/mtl-rendercommandencoder.m",
+        "src/mtl-computepipeline.m",
+        "src/mtl-computecommandencoder.m",
+        "src/mtl-blitcommandencoder.m",
+        "src/ca-metallayer.m"
+    ],
+    "optimizer-dirs": [
+        "optimizers"
+    ],
+    "extra-cflags": "-fobjc-arc -Wno-deprecated-declarations",
+    "extra-libs": "-framework Foundation -framework Metal -framework QuartzCore",
+    "stubs": {
+        "path": "ide/%version%/%namespace%/",
+        "stubs-run-after-generate": false
+    },
+    "warnings": {
+        "unused-variable": true,
+        "unused-variable-external": true,
+        "possible-wrong-parameter": true,
+        "possible-wrong-parameter-undefined": true,
+        "nonexistent-function": true,
+        "nonexistent-class": true
+    },
+    "optimizations": {
+        "call-gatherer-pass": true,
+        "check-invalid-reads": true,
+        "constant-folding": true,
+        "local-context-pass": true,
+        "static-constant-class-folding": true,
+        "static-type-inference": true,
+        "static-type-inference-second-pass": true
+    }
+}

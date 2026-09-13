@@ -1,0 +1,84 @@
+
+extern zend_class_entry *metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor);
+
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, init);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, minFilter);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setMinFilter);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, magFilter);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setMagFilter);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, sAddressMode);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setSAddressMode);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, tAddressMode);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setTAddressMode);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, label);
+PHP_METHOD(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setLabel);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_init, 0, 0, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_minfilter, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setminfilter, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, minFilter, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_magfilter, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setmagfilter, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, magFilter, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_saddressmode, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setsaddressmode, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, sAddressMode, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_taddressmode, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_settaddressmode, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, tAddressMode, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_label, 0, 0, 1)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setlabel, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_INFO(0, label)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_method_entry) {
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, init, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_init, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, minFilter, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_minfilter, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setMinFilter, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setminfilter, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, magFilter, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_magfilter, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setMagFilter, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setmagfilter, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, sAddressMode, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_saddressmode, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setSAddressMode, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setsaddressmode, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, tAddressMode, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_taddressmode, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setTAddressMode, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_settaddressmode, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, label, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_label, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLSamplerDescriptor_MTLSamplerDescriptor, setLabel, arginfo_metal_mtl_mtlsamplerdescriptor_mtlsamplerdescriptor_setlabel, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

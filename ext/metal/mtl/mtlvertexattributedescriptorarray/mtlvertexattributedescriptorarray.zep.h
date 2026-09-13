@@ -1,0 +1,25 @@
+
+extern zend_class_entry *metal_mtl_mtlvertexattributedescriptorarray_mtlvertexattributedescriptorarray_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLVertexAttributeDescriptorArray_MTLVertexAttributeDescriptorArray);
+
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptorArray_MTLVertexAttributeDescriptorArray, objectAtIndexedSubscript);
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptorArray_MTLVertexAttributeDescriptorArray, setObjectAtIndexedSubscript);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptorarray_mtlvertexattributedescriptorarray_objectatindexedsubscript, 0, 2, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, index, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptorarray_mtlvertexattributedescriptorarray_setobjectatindexedsubscript, 0, 3, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, attributeDesc, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, index, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtlvertexattributedescriptorarray_mtlvertexattributedescriptorarray_method_entry) {
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptorArray_MTLVertexAttributeDescriptorArray, objectAtIndexedSubscript, arginfo_metal_mtl_mtlvertexattributedescriptorarray_mtlvertexattributedescriptorarray_objectatindexedsubscript, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptorArray_MTLVertexAttributeDescriptorArray, setObjectAtIndexedSubscript, arginfo_metal_mtl_mtlvertexattributedescriptorarray_mtlvertexattributedescriptorarray_setobjectatindexedsubscript, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

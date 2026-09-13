@@ -1,0 +1,27 @@
+
+extern zend_class_entry *metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLComputePipelineState_MTLComputePipelineState);
+
+PHP_METHOD(Metal_MTL_MTLComputePipelineState_MTLComputePipelineState, label);
+PHP_METHOD(Metal_MTL_MTLComputePipelineState_MTLComputePipelineState, maxTotalThreadsPerThreadgroup);
+PHP_METHOD(Metal_MTL_MTLComputePipelineState_MTLComputePipelineState, threadExecutionWidth);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_label, 0, 0, 1)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_maxtotalthreadsperthreadgroup, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_threadexecutionwidth, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_method_entry) {
+	PHP_ME(Metal_MTL_MTLComputePipelineState_MTLComputePipelineState, label, arginfo_metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_label, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLComputePipelineState_MTLComputePipelineState, maxTotalThreadsPerThreadgroup, arginfo_metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_maxtotalthreadsperthreadgroup, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLComputePipelineState_MTLComputePipelineState, threadExecutionWidth, arginfo_metal_mtl_mtlcomputepipelinestate_mtlcomputepipelinestate_threadexecutionwidth, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

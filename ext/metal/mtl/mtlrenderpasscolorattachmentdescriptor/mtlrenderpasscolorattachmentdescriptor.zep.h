@@ -1,0 +1,26 @@
+
+extern zend_class_entry *metal_mtl_mtlrenderpasscolorattachmentdescriptor_mtlrenderpasscolorattachmentdescriptor_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLRenderPassColorAttachmentDescriptor_MTLRenderPassColorAttachmentDescriptor);
+
+PHP_METHOD(Metal_MTL_MTLRenderPassColorAttachmentDescriptor_MTLRenderPassColorAttachmentDescriptor, clearColor);
+PHP_METHOD(Metal_MTL_MTLRenderPassColorAttachmentDescriptor_MTLRenderPassColorAttachmentDescriptor, setClearColor);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpasscolorattachmentdescriptor_mtlrenderpasscolorattachmentdescriptor_clearcolor, 0, 1, IS_ARRAY, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpasscolorattachmentdescriptor_mtlrenderpasscolorattachmentdescriptor_setclearcolor, 0, 5, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, red, IS_DOUBLE, 0)
+	ZEND_ARG_TYPE_INFO(0, green, IS_DOUBLE, 0)
+	ZEND_ARG_TYPE_INFO(0, blue, IS_DOUBLE, 0)
+	ZEND_ARG_TYPE_INFO(0, alpha, IS_DOUBLE, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtlrenderpasscolorattachmentdescriptor_mtlrenderpasscolorattachmentdescriptor_method_entry) {
+	PHP_ME(Metal_MTL_MTLRenderPassColorAttachmentDescriptor_MTLRenderPassColorAttachmentDescriptor, clearColor, arginfo_metal_mtl_mtlrenderpasscolorattachmentdescriptor_mtlrenderpasscolorattachmentdescriptor_clearcolor, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLRenderPassColorAttachmentDescriptor_MTLRenderPassColorAttachmentDescriptor, setClearColor, arginfo_metal_mtl_mtlrenderpasscolorattachmentdescriptor_mtlrenderpasscolorattachmentdescriptor_setclearcolor, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

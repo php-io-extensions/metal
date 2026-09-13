@@ -1,0 +1,62 @@
+
+extern zend_class_entry *metal_mtl_mtlcommandbuffer_mtlcommandbuffer_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer);
+
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, renderCommandEncoderWithDescriptor);
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, computeCommandEncoder);
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, blitCommandEncoder);
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, presentDrawable);
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, commit);
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, waitUntilCompleted);
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, status);
+PHP_METHOD(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, error);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_rendercommandencoderwithdescriptor, 0, 2, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, descriptor, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_computecommandencoder, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_blitcommandencoder, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_presentdrawable, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, drawable, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_commit, 0, 1, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_waituntilcompleted, 0, 1, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_status, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_error, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtlcommandbuffer_mtlcommandbuffer_method_entry) {
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, renderCommandEncoderWithDescriptor, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_rendercommandencoderwithdescriptor, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, computeCommandEncoder, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_computecommandencoder, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, blitCommandEncoder, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_blitcommandencoder, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, presentDrawable, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_presentdrawable, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, commit, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_commit, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, waitUntilCompleted, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_waituntilcompleted, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, status, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_status, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLCommandBuffer_MTLCommandBuffer, error, arginfo_metal_mtl_mtlcommandbuffer_mtlcommandbuffer_error, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

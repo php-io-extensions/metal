@@ -1,0 +1,56 @@
+
+extern zend_class_entry *metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor);
+
+PHP_METHOD(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, init);
+PHP_METHOD(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, depthCompareFunction);
+PHP_METHOD(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, setDepthCompareFunction);
+PHP_METHOD(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, depthWriteEnabled);
+PHP_METHOD(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, setDepthWriteEnabled);
+PHP_METHOD(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, label);
+PHP_METHOD(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, setLabel);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_init, 0, 0, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_depthcomparefunction, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_setdepthcomparefunction, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, depthCompareFunction, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_depthwriteenabled, 0, 1, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_setdepthwriteenabled, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, depthWriteEnabled, _IS_BOOL, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_label, 0, 0, 1)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_setlabel, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_INFO(0, label)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_method_entry) {
+	PHP_ME(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, init, arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_init, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, depthCompareFunction, arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_depthcomparefunction, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, setDepthCompareFunction, arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_setdepthcomparefunction, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, depthWriteEnabled, arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_depthwriteenabled, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, setDepthWriteEnabled, arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_setdepthwriteenabled, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, label, arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_label, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLDepthStencilDescriptor_MTLDepthStencilDescriptor, setLabel, arginfo_metal_mtl_mtldepthstencildescriptor_mtldepthstencildescriptor_setlabel, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

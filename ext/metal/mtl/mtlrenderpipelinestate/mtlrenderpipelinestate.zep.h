@@ -1,0 +1,15 @@
+
+extern zend_class_entry *metal_mtl_mtlrenderpipelinestate_mtlrenderpipelinestate_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLRenderPipelineState_MTLRenderPipelineState);
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineState_MTLRenderPipelineState, label);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_metal_mtl_mtlrenderpipelinestate_mtlrenderpipelinestate_label, 0, 0, 1)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtlrenderpipelinestate_mtlrenderpipelinestate_method_entry) {
+	PHP_ME(Metal_MTL_MTLRenderPipelineState_MTLRenderPipelineState, label, arginfo_metal_mtl_mtlrenderpipelinestate_mtlrenderpipelinestate_label, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

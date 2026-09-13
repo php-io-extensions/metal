@@ -1,0 +1,51 @@
+
+extern zend_class_entry *metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_ce;
+
+ZEPHIR_INIT_CLASS(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor);
+
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, format);
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, setFormat);
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, offset);
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, setOffset);
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, bufferIndex);
+PHP_METHOD(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, setBufferIndex);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_format, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_setformat, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, format, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_offset, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_setoffset, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, offset, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_bufferindex, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_setbufferindex, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, bufferIndex, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_method_entry) {
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, format, arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_format, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, setFormat, arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_setformat, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, offset, arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_offset, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, setOffset, arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_setoffset, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, bufferIndex, arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_bufferindex, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLVertexAttributeDescriptor_MTLVertexAttributeDescriptor, setBufferIndex, arginfo_metal_mtl_mtlvertexattributedescriptor_mtlvertexattributedescriptor_setbufferindex, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};

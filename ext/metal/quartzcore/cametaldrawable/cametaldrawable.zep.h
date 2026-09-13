@@ -1,0 +1,21 @@
+
+extern zend_class_entry *metal_quartzcore_cametaldrawable_cametaldrawable_ce;
+
+ZEPHIR_INIT_CLASS(Metal_QuartzCore_CAMetalDrawable_CAMetalDrawable);
+
+PHP_METHOD(Metal_QuartzCore_CAMetalDrawable_CAMetalDrawable, texture);
+PHP_METHOD(Metal_QuartzCore_CAMetalDrawable_CAMetalDrawable, layer);
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_quartzcore_cametaldrawable_cametaldrawable_texture, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_quartzcore_cametaldrawable_cametaldrawable_layer, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(metal_quartzcore_cametaldrawable_cametaldrawable_method_entry) {
+	PHP_ME(Metal_QuartzCore_CAMetalDrawable_CAMetalDrawable, texture, arginfo_metal_quartzcore_cametaldrawable_cametaldrawable_texture, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_QuartzCore_CAMetalDrawable_CAMetalDrawable, layer, arginfo_metal_quartzcore_cametaldrawable_cametaldrawable_layer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_FE_END
+};
