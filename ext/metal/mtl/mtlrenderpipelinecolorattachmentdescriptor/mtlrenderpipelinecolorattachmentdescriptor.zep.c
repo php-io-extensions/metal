@@ -89,3 +89,220 @@ PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelin
 	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_blending_enabled(&_0, &_1);
 }
 
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, sourceRGBBlendFactor)
+{
+	zval *handle_param = NULL, _0;
+	zend_long handle;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(handle)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &handle_param);
+	ZVAL_LONG(&_0, handle);
+	RETURN_LONG(mtl_mtlrenderpipelinecolorattachmentdescriptor_source_rgb_blend_factor(&_0));
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, setSourceRGBBlendFactor)
+{
+	zval *handle_param = NULL, *sourceRGBBlendFactor_param = NULL, _0, _1;
+	zend_long handle, sourceRGBBlendFactor;
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(handle)
+		Z_PARAM_LONG(sourceRGBBlendFactor)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &handle_param, &sourceRGBBlendFactor_param);
+	ZVAL_LONG(&_0, handle);
+	ZVAL_LONG(&_1, sourceRGBBlendFactor);
+	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_source_rgb_blend_factor(&_0, &_1);
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, destinationRGBBlendFactor)
+{
+	zval *handle_param = NULL, _0;
+	zend_long handle;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(handle)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &handle_param);
+	ZVAL_LONG(&_0, handle);
+	RETURN_LONG(mtl_mtlrenderpipelinecolorattachmentdescriptor_destination_rgb_blend_factor(&_0));
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, setDestinationRGBBlendFactor)
+{
+	zval *handle_param = NULL, *destinationRGBBlendFactor_param = NULL, _0, _1;
+	zend_long handle, destinationRGBBlendFactor;
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(handle)
+		Z_PARAM_LONG(destinationRGBBlendFactor)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &handle_param, &destinationRGBBlendFactor_param);
+	ZVAL_LONG(&_0, handle);
+	ZVAL_LONG(&_1, destinationRGBBlendFactor);
+	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_destination_rgb_blend_factor(&_0, &_1);
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, rgbBlendOperation)
+{
+	zval *handle_param = NULL, _0;
+	zend_long handle;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(handle)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &handle_param);
+	ZVAL_LONG(&_0, handle);
+	RETURN_LONG(mtl_mtlrenderpipelinecolorattachmentdescriptor_rgb_blend_operation(&_0));
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, setRgbBlendOperation)
+{
+	zval *handle_param = NULL, *rgbBlendOperation_param = NULL, _0, _1;
+	zend_long handle, rgbBlendOperation;
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(handle)
+		Z_PARAM_LONG(rgbBlendOperation)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &handle_param, &rgbBlendOperation_param);
+	ZVAL_LONG(&_0, handle);
+	ZVAL_LONG(&_1, rgbBlendOperation);
+	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_rgb_blend_operation(&_0, &_1);
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, sourceAlphaBlendFactor)
+{
+	zval *handle_param = NULL, _0;
+	zend_long handle;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(handle)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &handle_param);
+	ZVAL_LONG(&_0, handle);
+	RETURN_LONG(mtl_mtlrenderpipelinecolorattachmentdescriptor_source_alpha_blend_factor(&_0));
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, setSourceAlphaBlendFactor)
+{
+	zval *handle_param = NULL, *sourceAlphaBlendFactor_param = NULL, _0, _1;
+	zend_long handle, sourceAlphaBlendFactor;
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(handle)
+		Z_PARAM_LONG(sourceAlphaBlendFactor)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &handle_param, &sourceAlphaBlendFactor_param);
+	ZVAL_LONG(&_0, handle);
+	ZVAL_LONG(&_1, sourceAlphaBlendFactor);
+	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_source_alpha_blend_factor(&_0, &_1);
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, destinationAlphaBlendFactor)
+{
+	zval *handle_param = NULL, _0;
+	zend_long handle;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(handle)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &handle_param);
+	ZVAL_LONG(&_0, handle);
+	RETURN_LONG(mtl_mtlrenderpipelinecolorattachmentdescriptor_destination_alpha_blend_factor(&_0));
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, setDestinationAlphaBlendFactor)
+{
+	zval *handle_param = NULL, *destinationAlphaBlendFactor_param = NULL, _0, _1;
+	zend_long handle, destinationAlphaBlendFactor;
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(handle)
+		Z_PARAM_LONG(destinationAlphaBlendFactor)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &handle_param, &destinationAlphaBlendFactor_param);
+	ZVAL_LONG(&_0, handle);
+	ZVAL_LONG(&_1, destinationAlphaBlendFactor);
+	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_destination_alpha_blend_factor(&_0, &_1);
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, alphaBlendOperation)
+{
+	zval *handle_param = NULL, _0;
+	zend_long handle;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(handle)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &handle_param);
+	ZVAL_LONG(&_0, handle);
+	RETURN_LONG(mtl_mtlrenderpipelinecolorattachmentdescriptor_alpha_blend_operation(&_0));
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, setAlphaBlendOperation)
+{
+	zval *handle_param = NULL, *alphaBlendOperation_param = NULL, _0, _1;
+	zend_long handle, alphaBlendOperation;
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(handle)
+		Z_PARAM_LONG(alphaBlendOperation)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &handle_param, &alphaBlendOperation_param);
+	ZVAL_LONG(&_0, handle);
+	ZVAL_LONG(&_1, alphaBlendOperation);
+	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_alpha_blend_operation(&_0, &_1);
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, writeMask)
+{
+	zval *handle_param = NULL, _0;
+	zend_long handle;
+
+	ZVAL_UNDEF(&_0);
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(handle)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(1, 0, &handle_param);
+	ZVAL_LONG(&_0, handle);
+	RETURN_LONG(mtl_mtlrenderpipelinecolorattachmentdescriptor_write_mask(&_0));
+}
+
+PHP_METHOD(Metal_MTL_MTLRenderPipelineColorAttachmentDescriptor_MTLRenderPipelineColorAttachmentDescriptor, setWriteMask)
+{
+	zval *handle_param = NULL, *writeMask_param = NULL, _0, _1;
+	zend_long handle, writeMask;
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(handle)
+		Z_PARAM_LONG(writeMask)
+	ZEND_PARSE_PARAMETERS_END();
+	zephir_fetch_params_without_memory_grow(2, 0, &handle_param, &writeMask_param);
+	ZVAL_LONG(&_0, handle);
+	ZVAL_LONG(&_1, writeMask);
+	mtl_mtlrenderpipelinecolorattachmentdescriptor_set_write_mask(&_0, &_1);
+}
+

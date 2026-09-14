@@ -1,5 +1,48 @@
 # Change log
 
+## 2026-09-14 — Wave C (0.8.1): depth/stencil attachments, blend factors
+
++26 bindings (164 → 190), all in the existing `src/mtl-renderpass.{h,m}`
+and `src/mtl-renderpipeline.{h,m}` pairs; `config.json` `extra-sources`
+unchanged. Version 0.8.1 (`config.json`, `composer.json`). Two new types.
+
+- `MTLRenderPassDescriptor` +4: `depthAttachment`, `setDepthAttachment`,
+  `stencilAttachment`, `setStencilAttachment`
+- `MTLRenderPassDepthAttachmentDescriptor` (new, factory
+  `MTLRenderPassDescriptor::depthAttachment`): `clearDepth` (double),
+  `setClearDepth`
+- `MTLRenderPassStencilAttachmentDescriptor` (new, factory
+  `MTLRenderPassDescriptor::stencilAttachment`): `clearStencil`,
+  `setClearStencil`
+- `MTLRenderPipelineDescriptor` +4: `depthAttachmentPixelFormat`,
+  `setDepthAttachmentPixelFormat`, `stencilAttachmentPixelFormat`,
+  `setStencilAttachmentPixelFormat`
+- `MTLRenderPipelineColorAttachmentDescriptor` +14: `sourceRGBBlendFactor`,
+  `destinationRGBBlendFactor`, `rgbBlendOperation`,
+  `sourceAlphaBlendFactor`, `destinationAlphaBlendFactor`,
+  `alphaBlendOperation`, `writeMask` + a setter each — now 18/18, audits
+  `OK`
+
+Not bound: `depthResolveFilter`, `stencilResolveFilter` (MSAA policy).
+Depth/stencil texture/load/store use the inherited
+`MTLRenderPassAttachmentDescriptor` calls. Audit `audited=34 skipped=1
+failures=0`. Proof: `examples/proof_wave_c.php` → `PROOF_WAVE_C_OK`
+(round-trips only; the blended draw is proven in jovian/metal).
+
+**Still open after Wave C** (supersedes the Wave B list; the depth/stencil
+attachment family on it is now bound):
+
+- `MTLCompileOptions` unbound; `options = 0` (nil) is the only
+  from-source compile path.
+- `MTLBuffer::didModifyRange:` — CPU-side half of managed storage.
+- `depthResolveFilter` / `stencilResolveFilter` — MSAA policy, unbound.
+- Deferred by the spec: heaps, argument buffers, fences/events, indirect
+  command buffers, raytracing, counters/capture, MetalFX.
+
+Closed since Wave B: `examples/proof_view.php`'s `Bridge::adopt` gate —
+ext-appkit 0.8.0 ships `Bridge::adopt`; the proof runs the seam and prints
+`PROOF_VIEW_OK` (exit 0).
+
 ## 2026-09-12 — Wave B closed (compute pipelines, compute + blit encoders)
 
 Wave B of the spec's §6 wave plan is bound, which closes the 0.8.0 spec

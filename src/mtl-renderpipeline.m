@@ -187,3 +187,192 @@ void mtl_mtlrenderpipelinestate_label(zval *return_value, zval *handle)
         mtl_ret_string(return_value, l);
     }
 }
+
+/* ---- wave C: depth / stencil pixel formats ---- */
+
+zend_long mtl_mtlrenderpipelinedescriptor_depth_attachment_pixel_format(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineDescriptor *d = MTL_ARG_AS(MTLRenderPipelineDescriptor, handle);
+        r = d != nil ? (zend_long) [d depthAttachmentPixelFormat] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinedescriptor_set_depth_attachment_pixel_format(zval *handle, zval *depthAttachmentPixelFormat)
+{
+    @autoreleasepool {
+        MTLRenderPipelineDescriptor *d = MTL_ARG_AS(MTLRenderPipelineDescriptor, handle);
+        if (d == nil) return;
+        [d setDepthAttachmentPixelFormat:(MTLPixelFormat) mtl_arg_long(depthAttachmentPixelFormat)];
+    }
+}
+
+zend_long mtl_mtlrenderpipelinedescriptor_stencil_attachment_pixel_format(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineDescriptor *d = MTL_ARG_AS(MTLRenderPipelineDescriptor, handle);
+        r = d != nil ? (zend_long) [d stencilAttachmentPixelFormat] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinedescriptor_set_stencil_attachment_pixel_format(zval *handle, zval *stencilAttachmentPixelFormat)
+{
+    @autoreleasepool {
+        MTLRenderPipelineDescriptor *d = MTL_ARG_AS(MTLRenderPipelineDescriptor, handle);
+        if (d == nil) return;
+        [d setStencilAttachmentPixelFormat:(MTLPixelFormat) mtl_arg_long(stencilAttachmentPixelFormat)];
+    }
+}
+
+/* ---- wave C: blend state ---- */
+
+zend_long mtl_mtlrenderpipelinecolorattachmentdescriptor_source_rgb_blend_factor(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        r = a != nil ? (zend_long) [a sourceRGBBlendFactor] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinecolorattachmentdescriptor_set_source_rgb_blend_factor(zval *handle, zval *sourceRGBBlendFactor)
+{
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        if (a == nil) return;
+        [a setSourceRGBBlendFactor:(MTLBlendFactor) mtl_arg_long(sourceRGBBlendFactor)];
+    }
+}
+
+zend_long mtl_mtlrenderpipelinecolorattachmentdescriptor_destination_rgb_blend_factor(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        r = a != nil ? (zend_long) [a destinationRGBBlendFactor] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinecolorattachmentdescriptor_set_destination_rgb_blend_factor(zval *handle, zval *destinationRGBBlendFactor)
+{
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        if (a == nil) return;
+        [a setDestinationRGBBlendFactor:(MTLBlendFactor) mtl_arg_long(destinationRGBBlendFactor)];
+    }
+}
+
+zend_long mtl_mtlrenderpipelinecolorattachmentdescriptor_rgb_blend_operation(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        r = a != nil ? (zend_long) [a rgbBlendOperation] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinecolorattachmentdescriptor_set_rgb_blend_operation(zval *handle, zval *rgbBlendOperation)
+{
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        if (a == nil) return;
+        [a setRgbBlendOperation:(MTLBlendOperation) mtl_arg_long(rgbBlendOperation)];
+    }
+}
+
+zend_long mtl_mtlrenderpipelinecolorattachmentdescriptor_source_alpha_blend_factor(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        r = a != nil ? (zend_long) [a sourceAlphaBlendFactor] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinecolorattachmentdescriptor_set_source_alpha_blend_factor(zval *handle, zval *sourceAlphaBlendFactor)
+{
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        if (a == nil) return;
+        [a setSourceAlphaBlendFactor:(MTLBlendFactor) mtl_arg_long(sourceAlphaBlendFactor)];
+    }
+}
+
+zend_long mtl_mtlrenderpipelinecolorattachmentdescriptor_destination_alpha_blend_factor(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        r = a != nil ? (zend_long) [a destinationAlphaBlendFactor] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinecolorattachmentdescriptor_set_destination_alpha_blend_factor(zval *handle, zval *destinationAlphaBlendFactor)
+{
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        if (a == nil) return;
+        [a setDestinationAlphaBlendFactor:(MTLBlendFactor) mtl_arg_long(destinationAlphaBlendFactor)];
+    }
+}
+
+zend_long mtl_mtlrenderpipelinecolorattachmentdescriptor_alpha_blend_operation(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        r = a != nil ? (zend_long) [a alphaBlendOperation] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinecolorattachmentdescriptor_set_alpha_blend_operation(zval *handle, zval *alphaBlendOperation)
+{
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        if (a == nil) return;
+        [a setAlphaBlendOperation:(MTLBlendOperation) mtl_arg_long(alphaBlendOperation)];
+    }
+}
+
+zend_long mtl_mtlrenderpipelinecolorattachmentdescriptor_write_mask(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        r = a != nil ? (zend_long) [a writeMask] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpipelinecolorattachmentdescriptor_set_write_mask(zval *handle, zval *writeMask)
+{
+    @autoreleasepool {
+        MTLRenderPipelineColorAttachmentDescriptor *a =
+            MTL_ARG_AS(MTLRenderPipelineColorAttachmentDescriptor, handle);
+        if (a == nil) return;
+        [a setWriteMask:(MTLColorWriteMask) mtl_arg_long(writeMask)];
+    }
+}

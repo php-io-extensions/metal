@@ -68,4 +68,24 @@ class MTLRenderPipelineDescriptor
     {
         mtlrenderpipelinedescriptor_set_label(handle, label);
     }
+
+    public static function depthAttachmentPixelFormat(int handle) -> int
+    {
+        return mtlrenderpipelinedescriptor_depth_attachment_pixel_format(handle);
+    }
+
+    public static function setDepthAttachmentPixelFormat(int handle, int depthAttachmentPixelFormat) -> void
+    {
+        mtlrenderpipelinedescriptor_set_depth_attachment_pixel_format(handle, depthAttachmentPixelFormat);
+    }
+
+    public static function stencilAttachmentPixelFormat(int handle) -> int
+    {
+        return mtlrenderpipelinedescriptor_stencil_attachment_pixel_format(handle);
+    }
+
+    public static function setStencilAttachmentPixelFormat(int handle, int stencilAttachmentPixelFormat) -> void
+    {
+        mtlrenderpipelinedescriptor_set_stencil_attachment_pixel_format(handle, stencilAttachmentPixelFormat);
+    }
 }

@@ -28,4 +28,74 @@ class MTLRenderPipelineColorAttachmentDescriptor
     {
         mtlrenderpipelinecolorattachmentdescriptor_set_blending_enabled(handle, blendingEnabled);
     }
+
+    public static function sourceRGBBlendFactor(int handle) -> int
+    {
+        return mtlrenderpipelinecolorattachmentdescriptor_source_rgb_blend_factor(handle);
+    }
+
+    public static function setSourceRGBBlendFactor(int handle, int sourceRGBBlendFactor) -> void
+    {
+        mtlrenderpipelinecolorattachmentdescriptor_set_source_rgb_blend_factor(handle, sourceRGBBlendFactor);
+    }
+
+    public static function destinationRGBBlendFactor(int handle) -> int
+    {
+        return mtlrenderpipelinecolorattachmentdescriptor_destination_rgb_blend_factor(handle);
+    }
+
+    public static function setDestinationRGBBlendFactor(int handle, int destinationRGBBlendFactor) -> void
+    {
+        mtlrenderpipelinecolorattachmentdescriptor_set_destination_rgb_blend_factor(handle, destinationRGBBlendFactor);
+    }
+
+    public static function rgbBlendOperation(int handle) -> int
+    {
+        return mtlrenderpipelinecolorattachmentdescriptor_rgb_blend_operation(handle);
+    }
+
+    public static function setRgbBlendOperation(int handle, int rgbBlendOperation) -> void
+    {
+        mtlrenderpipelinecolorattachmentdescriptor_set_rgb_blend_operation(handle, rgbBlendOperation);
+    }
+
+    public static function sourceAlphaBlendFactor(int handle) -> int
+    {
+        return mtlrenderpipelinecolorattachmentdescriptor_source_alpha_blend_factor(handle);
+    }
+
+    public static function setSourceAlphaBlendFactor(int handle, int sourceAlphaBlendFactor) -> void
+    {
+        mtlrenderpipelinecolorattachmentdescriptor_set_source_alpha_blend_factor(handle, sourceAlphaBlendFactor);
+    }
+
+    public static function destinationAlphaBlendFactor(int handle) -> int
+    {
+        return mtlrenderpipelinecolorattachmentdescriptor_destination_alpha_blend_factor(handle);
+    }
+
+    public static function setDestinationAlphaBlendFactor(int handle, int destinationAlphaBlendFactor) -> void
+    {
+        mtlrenderpipelinecolorattachmentdescriptor_set_destination_alpha_blend_factor(handle, destinationAlphaBlendFactor);
+    }
+
+    public static function alphaBlendOperation(int handle) -> int
+    {
+        return mtlrenderpipelinecolorattachmentdescriptor_alpha_blend_operation(handle);
+    }
+
+    public static function setAlphaBlendOperation(int handle, int alphaBlendOperation) -> void
+    {
+        mtlrenderpipelinecolorattachmentdescriptor_set_alpha_blend_operation(handle, alphaBlendOperation);
+    }
+
+    public static function writeMask(int handle) -> int
+    {
+        return mtlrenderpipelinecolorattachmentdescriptor_write_mask(handle);
+    }
+
+    public static function setWriteMask(int handle, int writeMask) -> void
+    {
+        mtlrenderpipelinecolorattachmentdescriptor_set_write_mask(handle, writeMask);
+    }
 }

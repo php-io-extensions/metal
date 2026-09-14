@@ -113,3 +113,81 @@ void mtl_mtlrenderpasscolorattachmentdescriptorarray_set_object_at_indexed_subsc
    atIndexedSubscript:(NSUInteger) mtl_arg_long(attachmentIndex)];
     }
 }
+
+/* ---- wave C: depth / stencil attachments ---- */
+
+zend_long mtl_mtlrenderpassdescriptor_depth_attachment(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPassDescriptor *rp = MTL_ARG_AS(MTLRenderPassDescriptor, handle);
+        r = rp != nil ? mtl_handle_for([rp depthAttachment]) : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpassdescriptor_set_depth_attachment(zval *handle, zval *depthAttachment)
+{
+    @autoreleasepool {
+        MTLRenderPassDescriptor *rp = MTL_ARG_AS(MTLRenderPassDescriptor, handle);
+        if (rp == nil) return;
+        [rp setDepthAttachment:MTL_ARG_AS(MTLRenderPassDepthAttachmentDescriptor, depthAttachment)];
+    }
+}
+
+zend_long mtl_mtlrenderpassdescriptor_stencil_attachment(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPassDescriptor *rp = MTL_ARG_AS(MTLRenderPassDescriptor, handle);
+        r = rp != nil ? mtl_handle_for([rp stencilAttachment]) : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpassdescriptor_set_stencil_attachment(zval *handle, zval *stencilAttachment)
+{
+    @autoreleasepool {
+        MTLRenderPassDescriptor *rp = MTL_ARG_AS(MTLRenderPassDescriptor, handle);
+        if (rp == nil) return;
+        [rp setStencilAttachment:MTL_ARG_AS(MTLRenderPassStencilAttachmentDescriptor, stencilAttachment)];
+    }
+}
+
+double mtl_mtlrenderpassdepthattachmentdescriptor_clear_depth(zval *handle)
+{
+    double r = 0.0;
+    @autoreleasepool {
+        MTLRenderPassDepthAttachmentDescriptor *d = MTL_ARG_AS(MTLRenderPassDepthAttachmentDescriptor, handle);
+        r = d != nil ? [d clearDepth] : 0.0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpassdepthattachmentdescriptor_set_clear_depth(zval *handle, zval *clearDepth)
+{
+    @autoreleasepool {
+        MTLRenderPassDepthAttachmentDescriptor *d = MTL_ARG_AS(MTLRenderPassDepthAttachmentDescriptor, handle);
+        if (d == nil) return;
+        [d setClearDepth:mtl_arg_double(clearDepth)];
+    }
+}
+
+zend_long mtl_mtlrenderpassstencilattachmentdescriptor_clear_stencil(zval *handle)
+{
+    zend_long r = 0;
+    @autoreleasepool {
+        MTLRenderPassStencilAttachmentDescriptor *s = MTL_ARG_AS(MTLRenderPassStencilAttachmentDescriptor, handle);
+        r = s != nil ? (zend_long) [s clearStencil] : 0;
+    }
+    return r;
+}
+
+void mtl_mtlrenderpassstencilattachmentdescriptor_set_clear_stencil(zval *handle, zval *clearStencil)
+{
+    @autoreleasepool {
+        MTLRenderPassStencilAttachmentDescriptor *s = MTL_ARG_AS(MTLRenderPassStencilAttachmentDescriptor, handle);
+        if (s == nil) return;
+        [s setClearStencil:(uint32_t) mtl_arg_long(clearStencil)];
+    }
+}

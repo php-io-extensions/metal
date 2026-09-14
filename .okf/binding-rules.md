@@ -6,7 +6,7 @@ description: >-
   amendments this spec introduces: protocol audit, C-function bindings,
   the NSError** pattern, and the cross-extension pointer seam.
 tags: [binding, zephir, metal]
-status: stable
+status: draft
 generated:
   by: claude-sonnet-5
   at: 2026-09-12T00:00:00Z
@@ -190,12 +190,13 @@ under the assumption the other side "already did it".
 `ext-metal` never links AppKit and never accepts appkit registry handles —
 pointer bits only (see [traps/no-appkit-coupling.md](/traps/no-appkit-coupling.md)).
 
-## Worked example (slice zero + Wave A + Wave B)
+## Worked example (slice zero + Wave A + Wave B + Wave C)
 
-Real counts from `php scripts/audit-headers.php` (Wave B close, on the
+Real counts from `php scripts/audit-headers.php` (Wave C close, on the
 Metal.framework/QuartzCore.framework SDK headers audited by this repo);
-rows added by Wave A are marked ✦, by Wave B ✧ (a ✧ on an existing row
-means that row's `bound` count moved this wave):
+rows added by Wave A are marked ✦, by Wave B ✧, rows added by Wave C are
+marked ✪ (a ✧/✪ on an existing row means that row's `bound` count moved
+that wave):
 
 | Type | header | bound | reserved | construct | Verdict |
 |---|---:|---:|---:|---:|---|
@@ -216,10 +217,12 @@ means that row's `bound` count moved this wave):
 | `MTL\MTLRenderPassAttachmentDescriptor` | 22 | 6 | 0 | 0 | PARTIAL |
 | `MTL\MTLRenderPassColorAttachmentDescriptor` | 2 | 2 | 0 | 0 | OK |
 | `MTL\MTLRenderPassColorAttachmentDescriptorArray` | 2 | 2 | 0 | 0 | OK |
-| `MTL\MTLRenderPassDescriptor` | 29 | 2 | 0 | 0 | PARTIAL |
-| ✦ `MTL\MTLRenderPipelineColorAttachmentDescriptor` | 18 | 4 | 0 | 0 | PARTIAL |
+| ✪ `MTL\MTLRenderPassDepthAttachmentDescriptor` | 4 | 2 | 0 | 0 | PARTIAL |
+| ✪ `MTL\MTLRenderPassDescriptor` | 29 | 6 | 0 | 0 | PARTIAL |
+| ✪ `MTL\MTLRenderPassStencilAttachmentDescriptor` | 4 | 2 | 0 | 0 | PARTIAL |
+| ✪ `MTL\MTLRenderPipelineColorAttachmentDescriptor` | 18 | 18 | 0 | 0 | OK |
 | ✦ `MTL\MTLRenderPipelineColorAttachmentDescriptorArray` | 2 | 2 | 0 | 0 | OK |
-| ✦ `MTL\MTLRenderPipelineDescriptor` | 66 | 11 | 0 | 1 | PARTIAL |
+| ✪ `MTL\MTLRenderPipelineDescriptor` | 66 | 15 | 0 | 1 | PARTIAL |
 | ✦ `MTL\MTLRenderPipelineState` | 18 | 1 | 0 | 0 | PARTIAL |
 | ✦ `MTL\MTLSamplerDescriptor` | 30 | 10 | 0 | 1 | PARTIAL |
 | ✦ `MTL\MTLSamplerState` | 3 | 1 | 0 | 0 | PARTIAL |
@@ -233,7 +236,7 @@ means that row's `bound` count moved this wave):
 | `QuartzCore\CAMetalDrawable` | 2 | 2 | 0 | 0 | OK |
 | `QuartzCore\CAMetalLayer` | 26 | 9 | 0 | 1 | PARTIAL |
 
-`audited=32 skipped=1 failures=0` → `AUDIT_OK`. `MTLCommandQueue=11` and
+`audited=34 skipped=1 failures=0` → `AUDIT_OK`. `MTLCommandQueue=11` and
 `MTLDevice=120` are the real SDK counts recovered by the Task 2 forward-decl
 fix (a prior audit revision under-counted `MTLCommandQueue.h` as `header=0`
 because `@protocol X;` forward declarations were mistaken for block
@@ -288,6 +291,16 @@ the Wave A companion-header fix; and `MTLDevice`'s new
 `newComputePipelineStateWithFunctionError` is the third user of Amendment
 3 (only the plain overload binds — `options:reflection:` writes through an
 out-parameter and the `completionHandler:` forms are blocks).
+
+**Wave C rows.** `MTLRenderPipelineColorAttachmentDescriptor` reaches
+18/18 — every property bound — and audits `OK` while still `@audit
+partial` in source (the semantics note above). The depth/stencil
+attachment descriptors bind `clearDepth`/`clearStencil` only; the resolve
+filters (MSAA policy) are the unbound half of each 4-member header. Their
+factory markers name `MTLRenderPassDescriptor::depthAttachment` /
+`stencilAttachment`; inherited `texture`/`loadAction`/`storeAction` come
+from `MTLRenderPassAttachmentDescriptor` (rule 10 — `MTL_ARG_AS` accepts
+the subclasses). `clearDepth` is the first `-> double` return in the ext.
 
 See [bridge.md](/bridge.md) for the Bridge call signatures and
 [toolchain.md](/toolchain.md) for the pipeline that produces these numbers.

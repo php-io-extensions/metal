@@ -53,6 +53,21 @@ shell also needs `HERD_PHP_84_INI_SCAN_DIR` exported first).
 | `MTL\MTLComputeCommandEncoder` | `setComputePipelineState`, `setBufferOffsetAtIndex`, `setTextureAtIndex`, `dispatchThreadgroupsThreadsPerThreadgroup`, `dispatchThreadsThreadsPerThreadgroup` (non-uniform) |
 | `MTL\MTLBlitCommandEncoder` | `copyFromBufferSourceOffsetToBufferDestinationOffsetSize`, `fillBufferRangeValue`, the buffer↔texture copy pair, `generateMipmapsForTexture`, `synchronizeResource` |
 
+### Wave C — depth attachments and blending
+
+| Type | Wave C surface |
+|---|---|
+| `MTL\MTLRenderPassDescriptor` (+4) | `depthAttachment`/`setDepthAttachment`, `stencilAttachment`/`setStencilAttachment` |
+| `MTL\MTLRenderPassDepthAttachmentDescriptor` | `clearDepth`/`setClearDepth` (double) |
+| `MTL\MTLRenderPassStencilAttachmentDescriptor` | `clearStencil`/`setClearStencil` |
+| `MTL\MTLRenderPipelineDescriptor` (+4) | `depthAttachmentPixelFormat`/`setDepthAttachmentPixelFormat`, `stencilAttachmentPixelFormat`/`setStencilAttachmentPixelFormat` |
+| `MTL\MTLRenderPipelineColorAttachmentDescriptor` (+14) | `sourceRGBBlendFactor`, `destinationRGBBlendFactor`, `rgbBlendOperation`, `sourceAlphaBlendFactor`, `destinationAlphaBlendFactor`, `alphaBlendOperation`, `writeMask` — getter + setter each |
+
+Depth/stencil attachment `texture`/`loadAction`/`storeAction` go through
+the inherited `MTLRenderPassAttachmentDescriptor` calls. Resolve filters
+(`depthResolveFilter`, `stencilResolveFilter`) are MSAA policy and stay
+unbound. The pipeline colour attachment is now fully bound (18/18).
+
 Both new encoders adopt `MTLCommandEncoder`, so their handles pass
 `endEncoding` and `label`/`setLabel` unchanged — protocol inheritance
 satisfies the conformance guard. `setBytes:length:atIndex:` is
@@ -99,6 +114,7 @@ currency this extension shares with sibling extensions such as ext-appkit
 php examples/proof_headless.php   # PROOF_HEADLESS_OK — offscreen clear+readback, no appkit
 php examples/proof_triangle.php   # PROOF_TRIANGLE_OK — MSL compiled at runtime, one triangle drawn and byte-checked
 php examples/proof_compute.php    # PROOF_COMPUTE_OK — MSL kernel dispatched over 64 uints, then blit fill/copy, all byte-checked
+php examples/proof_wave_c.php     # PROOF_WAVE_C_OK — depth/stencil attachments + clear values, pipeline depth/stencil formats and blend state round-trip
 php examples/proof_view.php       # ext-appkit window + view; SKIP (exit 2) until ext-appkit ships Bridge::adopt
 ```
 

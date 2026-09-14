@@ -14,4 +14,24 @@ class MTLRenderPassDescriptor
     {
         return mtlrenderpassdescriptor_color_attachments(handle);
     }
+
+    public static function depthAttachment(int handle) -> int
+    {
+        return mtlrenderpassdescriptor_depth_attachment(handle);
+    }
+
+    public static function setDepthAttachment(int handle, int depthAttachment) -> void
+    {
+        mtlrenderpassdescriptor_set_depth_attachment(handle, depthAttachment);
+    }
+
+    public static function stencilAttachment(int handle) -> int
+    {
+        return mtlrenderpassdescriptor_stencil_attachment(handle);
+    }
+
+    public static function setStencilAttachment(int handle, int stencilAttachment) -> void
+    {
+        mtlrenderpassdescriptor_set_stencil_attachment(handle, stencilAttachment);
+    }
 }

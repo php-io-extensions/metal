@@ -5,6 +5,10 @@ ZEPHIR_INIT_CLASS(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor);
 
 PHP_METHOD(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, renderPassDescriptor);
 PHP_METHOD(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, colorAttachments);
+PHP_METHOD(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, depthAttachment);
+PHP_METHOD(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, setDepthAttachment);
+PHP_METHOD(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, stencilAttachment);
+PHP_METHOD(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, setStencilAttachment);
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_renderpassdescriptor, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
@@ -13,8 +17,32 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpassdescripto
 	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_depthattachment, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_setdepthattachment, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, depthAttachment, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_stencilattachment, 0, 1, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_setstencilattachment, 0, 2, IS_VOID, 0)
+
+	ZEND_ARG_TYPE_INFO(0, handle, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, stencilAttachment, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_method_entry) {
 	PHP_ME(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, renderPassDescriptor, arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_renderpassdescriptor, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, colorAttachments, arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_colorattachments, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, depthAttachment, arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_depthattachment, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, setDepthAttachment, arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_setdepthattachment, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, stencilAttachment, arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_stencilattachment, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Metal_MTL_MTLRenderPassDescriptor_MTLRenderPassDescriptor, setStencilAttachment, arginfo_metal_mtl_mtlrenderpassdescriptor_mtlrenderpassdescriptor_setstencilattachment, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_FE_END
 };

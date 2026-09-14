@@ -16,9 +16,9 @@ Read this index first, then open only the concepts the task needs.
   pipeline and its guards (identical to appkit's, metal names).
 - [traps/index.md](/traps/index.md) — no-appkit-coupling,
   protocol-audit, blocks-reserved, layer-pointer-seam.
-- [log.md](/log.md) — change log; slice-zero, Wave A and Wave B close
-  entries (the 0.8.0 spec waves are complete; the Wave B entry lists what
-  is still open).
+- [log.md](/log.md) — change log; slice-zero, Wave A, Wave B and Wave C
+  close entries (the 0.8.0 spec waves are complete; the Wave C entry lists
+  what is still open).
 
 ## Scope
 
@@ -37,4 +37,6 @@ depth-stencil and sampler descriptor families, and
 compute and blit — `MTLComputePipelineState`,
 `MTLComputeCommandEncoder` (uniform and non-uniform dispatch) and
 `MTLBlitCommandEncoder` (copy, fill, buffer↔texture, mipmaps, managed
-sync) — exited by `examples/proof_compute.php`.
+sync) — exited by `examples/proof_compute.php`. Wave C (0.8.1) binds
+depth/stencil attachments and the full blend state — exited by
+`examples/proof_wave_c.php`.
