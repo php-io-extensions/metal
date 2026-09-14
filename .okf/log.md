@@ -1,10 +1,12 @@
 # Change log
 
-## 2026-09-14 — Wave C (0.8.1): depth/stencil attachments, blend factors
+## 2026-09-14 — Wave C (0.8.0): depth/stencil attachments, blend factors
 
 +26 bindings (164 → 190), all in the existing `src/mtl-renderpass.{h,m}`
 and `src/mtl-renderpipeline.{h,m}` pairs; `config.json` `extra-sources`
-unchanged. Version 0.8.1 (`config.json`, `composer.json`). Two new types.
+unchanged. Version 0.8.0 (`config.json`, `composer.json`) — no stable
+0.8.0 was ever published before Wave C, so it lands inside 0.8.0 rather
+than 0.8.1. Two new types.
 
 - `MTLRenderPassDescriptor` +4: `depthAttachment`, `setDepthAttachment`,
   `stencilAttachment`, `setStencilAttachment`
