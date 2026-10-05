@@ -1,0 +1,595 @@
+/* This is a generated file, edit the .stub.php file instead.
+ * Stub hash: 2a7972c27a780dc3b35bca0ae30e1346ca79eb1f */
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_class_MTLCommandQueue___construct, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLCommandQueue_commandBuffer, 0, 0, MTLCommandBuffer, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandQueue_pointer, 0, 0, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandQueue_fromPointer, 0, 1, IS_STATIC, 0)
+	ZEND_ARG_TYPE_INFO(0, pointer, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLCommandBuffer___construct arginfo_class_MTLCommandQueue___construct
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLCommandBuffer_renderCommandEncoderWithDescriptor, 0, 1, MTLRenderCommandEncoder, 1)
+	ZEND_ARG_OBJ_INFO(0, descriptor, MTLRenderPassDescriptor, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLCommandBuffer_blitCommandEncoder, 0, 0, MTLBlitCommandEncoder, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_presentDrawable, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, drawable, CAMetalDrawable, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_commit, 0, 0, IS_VOID, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLCommandBuffer_waitUntilCompleted arginfo_class_MTLCommandBuffer_commit
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLCommandBuffer_status, 0, 0, MTLCommandBufferStatus, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_error, 0, 0, IS_STRING, 1)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLCommandBuffer_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLCommandBuffer_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+#define arginfo_class_MTLRenderPassDescriptor___construct arginfo_class_MTLCommandQueue___construct
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassDescriptor_renderPassDescriptor, 0, 0, MTLRenderPassDescriptor, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassDescriptor_colorAttachments, 0, 0, MTLRenderPassColorAttachmentDescriptorArray, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassDescriptor_depthAttachment, 0, 0, MTLRenderPassDepthAttachmentDescriptor, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassDescriptor_stencilAttachment, 0, 0, MTLRenderPassStencilAttachmentDescriptor, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderPassDescriptor_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLRenderPassDescriptor_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptorArray___construct arginfo_class_MTLCommandQueue___construct
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptorArray_objectAtIndexedSubscript, 0, 1, MTLRenderPassColorAttachmentDescriptor, 0)
+	ZEND_ARG_TYPE_INFO(0, index, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptorArray_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptorArray_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptor___construct arginfo_class_MTLCommandQueue___construct
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_texture, 0, 0, MTLTexture, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_setTexture, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, texture, MTLTexture, 1)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptor_resolveTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_texture
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptor_setResolveTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_setTexture
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_loadAction, 0, 0, MTLLoadAction, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_setLoadAction, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, loadAction, MTLLoadAction, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_storeAction, 0, 0, MTLStoreAction, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_setStoreAction, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, storeAction, MTLStoreAction, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_clearColor, 0, 0, MTLClearColor, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPassColorAttachmentDescriptor_setClearColor, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, clearColor, MTLClearColor, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptor_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLRenderPassColorAttachmentDescriptor_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor___construct arginfo_class_MTLCommandQueue___construct
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_texture arginfo_class_MTLRenderPassColorAttachmentDescriptor_texture
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_setTexture
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_resolveTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_texture
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setResolveTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_setTexture
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_loadAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_loadAction
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setLoadAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_setLoadAction
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_storeAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_storeAction
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setStoreAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_setStoreAction
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPassDepthAttachmentDescriptor_clearDepth, 0, 0, IS_DOUBLE, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setClearDepth, 0, 1, IS_VOID, 0)
+	ZEND_ARG_TYPE_INFO(0, clearDepth, IS_DOUBLE, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLRenderPassDepthAttachmentDescriptor_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor___construct arginfo_class_MTLCommandQueue___construct
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_texture arginfo_class_MTLRenderPassColorAttachmentDescriptor_texture
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_setTexture
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_resolveTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_texture
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setResolveTexture arginfo_class_MTLRenderPassColorAttachmentDescriptor_setTexture
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_loadAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_loadAction
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setLoadAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_setLoadAction
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_storeAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_storeAction
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setStoreAction arginfo_class_MTLRenderPassColorAttachmentDescriptor_setStoreAction
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_clearStencil arginfo_class_MTLCommandQueue_pointer
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setClearStencil, 0, 1, IS_VOID, 0)
+	ZEND_ARG_TYPE_INFO(0, clearStencil, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLRenderPassStencilAttachmentDescriptor_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+#define arginfo_class_MTLRenderCommandEncoder___construct arginfo_class_MTLCommandQueue___construct
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setRenderPipelineState, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, state, MTLRenderPipelineState, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setDepthStencilState, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, state, MTLDepthStencilState, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setStencilReferenceValue, 0, 1, IS_VOID, 0)
+	ZEND_ARG_TYPE_INFO(0, value, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setCullMode, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, cullMode, MTLCullMode, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setFrontFacingWinding, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, winding, MTLWinding, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setVertexBufferOffsetAtIndex, 0, 3, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, buffer, MTLBuffer, 1)
+	ZEND_ARG_TYPE_INFO(0, offset, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, index, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setVertexBytesLengthAtIndex, 0, 3, IS_VOID, 0)
+	ZEND_ARG_TYPE_INFO(0, bytes, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, length, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, index, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderCommandEncoder_setFragmentBytesLengthAtIndex arginfo_class_MTLRenderCommandEncoder_setVertexBytesLengthAtIndex
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setFragmentTextureAtIndex, 0, 2, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, texture, MTLTexture, 1)
+	ZEND_ARG_TYPE_INFO(0, index, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setFragmentSamplerStateAtIndex, 0, 2, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, sampler, MTLSamplerState, 1)
+	ZEND_ARG_TYPE_INFO(0, index, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setViewport, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, viewport, MTLViewport, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_setScissorRect, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, rect, MTLScissorRect, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_drawPrimitivesVertexStartVertexCount, 0, 3, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, primitiveType, MTLPrimitiveType, 0)
+	ZEND_ARG_TYPE_INFO(0, vertexStart, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, vertexCount, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset, 0, 5, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, primitiveType, MTLPrimitiveType, 0)
+	ZEND_ARG_TYPE_INFO(0, indexCount, IS_LONG, 0)
+	ZEND_ARG_OBJ_INFO(0, indexType, MTLIndexType, 0)
+	ZEND_ARG_OBJ_INFO(0, indexBuffer, MTLBuffer, 0)
+	ZEND_ARG_TYPE_INFO(0, indexBufferOffset, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLRenderCommandEncoder_endEncoding arginfo_class_MTLCommandBuffer_commit
+
+#define arginfo_class_MTLRenderCommandEncoder_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLRenderCommandEncoder_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+#define arginfo_class_MTLBlitCommandEncoder___construct arginfo_class_MTLCommandQueue___construct
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLBlitCommandEncoder_copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin, 0, 9, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceTexture, MTLTexture, 0)
+	ZEND_ARG_TYPE_INFO(0, sourceSlice, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, sourceLevel, IS_LONG, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceOrigin, MTLOrigin, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceSize, MTLSize, 0)
+	ZEND_ARG_OBJ_INFO(0, destinationTexture, MTLTexture, 0)
+	ZEND_ARG_TYPE_INFO(0, destinationSlice, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, destinationLevel, IS_LONG, 0)
+	ZEND_ARG_OBJ_INFO(0, destinationOrigin, MTLOrigin, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLBlitCommandEncoder_copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToBufferDestinationOffsetDestinationBytesPerRowDestinationBytesPerImage, 0, 9, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceTexture, MTLTexture, 0)
+	ZEND_ARG_TYPE_INFO(0, sourceSlice, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, sourceLevel, IS_LONG, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceOrigin, MTLOrigin, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceSize, MTLSize, 0)
+	ZEND_ARG_OBJ_INFO(0, destinationBuffer, MTLBuffer, 0)
+	ZEND_ARG_TYPE_INFO(0, destinationOffset, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, destinationBytesPerRow, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, destinationBytesPerImage, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLBlitCommandEncoder_copyFromBufferSourceOffsetSourceBytesPerRowSourceBytesPerImageSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin, 0, 9, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceBuffer, MTLBuffer, 0)
+	ZEND_ARG_TYPE_INFO(0, sourceOffset, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, sourceBytesPerRow, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, sourceBytesPerImage, IS_LONG, 0)
+	ZEND_ARG_OBJ_INFO(0, sourceSize, MTLSize, 0)
+	ZEND_ARG_OBJ_INFO(0, destinationTexture, MTLTexture, 0)
+	ZEND_ARG_TYPE_INFO(0, destinationSlice, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, destinationLevel, IS_LONG, 0)
+	ZEND_ARG_OBJ_INFO(0, destinationOrigin, MTLOrigin, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLBlitCommandEncoder_synchronizeResource, 0, 1, IS_VOID, 0)
+	ZEND_ARG_OBJ_TYPE_MASK(0, resource, MTLTexture|MTLBuffer, 0, NULL)
+ZEND_END_ARG_INFO()
+
+#define arginfo_class_MTLBlitCommandEncoder_endEncoding arginfo_class_MTLCommandBuffer_commit
+
+#define arginfo_class_MTLBlitCommandEncoder_pointer arginfo_class_MTLCommandQueue_pointer
+
+#define arginfo_class_MTLBlitCommandEncoder_fromPointer arginfo_class_MTLCommandQueue_fromPointer
+
+ZEND_METHOD(MTLCommandQueue, __construct);
+ZEND_METHOD(MTLCommandQueue, commandBuffer);
+ZEND_METHOD(MTLCommandQueue, pointer);
+ZEND_METHOD(MTLCommandQueue, fromPointer);
+ZEND_METHOD(MTLCommandBuffer, __construct);
+ZEND_METHOD(MTLCommandBuffer, renderCommandEncoderWithDescriptor);
+ZEND_METHOD(MTLCommandBuffer, blitCommandEncoder);
+ZEND_METHOD(MTLCommandBuffer, presentDrawable);
+ZEND_METHOD(MTLCommandBuffer, commit);
+ZEND_METHOD(MTLCommandBuffer, waitUntilCompleted);
+ZEND_METHOD(MTLCommandBuffer, status);
+ZEND_METHOD(MTLCommandBuffer, error);
+ZEND_METHOD(MTLCommandBuffer, pointer);
+ZEND_METHOD(MTLCommandBuffer, fromPointer);
+ZEND_METHOD(MTLRenderPassDescriptor, __construct);
+ZEND_METHOD(MTLRenderPassDescriptor, renderPassDescriptor);
+ZEND_METHOD(MTLRenderPassDescriptor, colorAttachments);
+ZEND_METHOD(MTLRenderPassDescriptor, depthAttachment);
+ZEND_METHOD(MTLRenderPassDescriptor, stencilAttachment);
+ZEND_METHOD(MTLRenderPassDescriptor, pointer);
+ZEND_METHOD(MTLRenderPassDescriptor, fromPointer);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptorArray, __construct);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptorArray, objectAtIndexedSubscript);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptorArray, pointer);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptorArray, fromPointer);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, __construct);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, texture);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, setTexture);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, resolveTexture);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, setResolveTexture);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, loadAction);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, setLoadAction);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, storeAction);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, setStoreAction);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, clearColor);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, setClearColor);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, pointer);
+ZEND_METHOD(MTLRenderPassColorAttachmentDescriptor, fromPointer);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, __construct);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, texture);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, setTexture);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, resolveTexture);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, setResolveTexture);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, loadAction);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, setLoadAction);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, storeAction);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, setStoreAction);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, clearDepth);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, setClearDepth);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, pointer);
+ZEND_METHOD(MTLRenderPassDepthAttachmentDescriptor, fromPointer);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, __construct);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, texture);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, setTexture);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, resolveTexture);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, setResolveTexture);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, loadAction);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, setLoadAction);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, storeAction);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, setStoreAction);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, clearStencil);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, setClearStencil);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, pointer);
+ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, fromPointer);
+ZEND_METHOD(MTLRenderCommandEncoder, __construct);
+ZEND_METHOD(MTLRenderCommandEncoder, setRenderPipelineState);
+ZEND_METHOD(MTLRenderCommandEncoder, setDepthStencilState);
+ZEND_METHOD(MTLRenderCommandEncoder, setStencilReferenceValue);
+ZEND_METHOD(MTLRenderCommandEncoder, setCullMode);
+ZEND_METHOD(MTLRenderCommandEncoder, setFrontFacingWinding);
+ZEND_METHOD(MTLRenderCommandEncoder, setVertexBufferOffsetAtIndex);
+ZEND_METHOD(MTLRenderCommandEncoder, setVertexBytesLengthAtIndex);
+ZEND_METHOD(MTLRenderCommandEncoder, setFragmentBytesLengthAtIndex);
+ZEND_METHOD(MTLRenderCommandEncoder, setFragmentTextureAtIndex);
+ZEND_METHOD(MTLRenderCommandEncoder, setFragmentSamplerStateAtIndex);
+ZEND_METHOD(MTLRenderCommandEncoder, setViewport);
+ZEND_METHOD(MTLRenderCommandEncoder, setScissorRect);
+ZEND_METHOD(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCount);
+ZEND_METHOD(MTLRenderCommandEncoder, drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset);
+ZEND_METHOD(MTLRenderCommandEncoder, endEncoding);
+ZEND_METHOD(MTLRenderCommandEncoder, pointer);
+ZEND_METHOD(MTLRenderCommandEncoder, fromPointer);
+ZEND_METHOD(MTLBlitCommandEncoder, __construct);
+ZEND_METHOD(MTLBlitCommandEncoder, copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin);
+ZEND_METHOD(MTLBlitCommandEncoder, copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToBufferDestinationOffsetDestinationBytesPerRowDestinationBytesPerImage);
+ZEND_METHOD(MTLBlitCommandEncoder, copyFromBufferSourceOffsetSourceBytesPerRowSourceBytesPerImageSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin);
+ZEND_METHOD(MTLBlitCommandEncoder, synchronizeResource);
+ZEND_METHOD(MTLBlitCommandEncoder, endEncoding);
+ZEND_METHOD(MTLBlitCommandEncoder, pointer);
+ZEND_METHOD(MTLBlitCommandEncoder, fromPointer);
+
+static const zend_function_entry class_MTLCommandQueue_methods[] = {
+	ZEND_ME(MTLCommandQueue, __construct, arginfo_class_MTLCommandQueue___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLCommandQueue, commandBuffer, arginfo_class_MTLCommandQueue_commandBuffer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandQueue, pointer, arginfo_class_MTLCommandQueue_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandQueue, fromPointer, arginfo_class_MTLCommandQueue_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLCommandBuffer_methods[] = {
+	ZEND_ME(MTLCommandBuffer, __construct, arginfo_class_MTLCommandBuffer___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLCommandBuffer, renderCommandEncoderWithDescriptor, arginfo_class_MTLCommandBuffer_renderCommandEncoderWithDescriptor, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, blitCommandEncoder, arginfo_class_MTLCommandBuffer_blitCommandEncoder, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, presentDrawable, arginfo_class_MTLCommandBuffer_presentDrawable, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, commit, arginfo_class_MTLCommandBuffer_commit, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, waitUntilCompleted, arginfo_class_MTLCommandBuffer_waitUntilCompleted, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, status, arginfo_class_MTLCommandBuffer_status, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, error, arginfo_class_MTLCommandBuffer_error, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, pointer, arginfo_class_MTLCommandBuffer_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, fromPointer, arginfo_class_MTLCommandBuffer_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLRenderPassDescriptor_methods[] = {
+	ZEND_ME(MTLRenderPassDescriptor, __construct, arginfo_class_MTLRenderPassDescriptor___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLRenderPassDescriptor, renderPassDescriptor, arginfo_class_MTLRenderPassDescriptor_renderPassDescriptor, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_ME(MTLRenderPassDescriptor, colorAttachments, arginfo_class_MTLRenderPassDescriptor_colorAttachments, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDescriptor, depthAttachment, arginfo_class_MTLRenderPassDescriptor_depthAttachment, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDescriptor, stencilAttachment, arginfo_class_MTLRenderPassDescriptor_stencilAttachment, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDescriptor, pointer, arginfo_class_MTLRenderPassDescriptor_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDescriptor, fromPointer, arginfo_class_MTLRenderPassDescriptor_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLRenderPassColorAttachmentDescriptorArray_methods[] = {
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptorArray, __construct, arginfo_class_MTLRenderPassColorAttachmentDescriptorArray___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptorArray, objectAtIndexedSubscript, arginfo_class_MTLRenderPassColorAttachmentDescriptorArray_objectAtIndexedSubscript, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptorArray, pointer, arginfo_class_MTLRenderPassColorAttachmentDescriptorArray_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptorArray, fromPointer, arginfo_class_MTLRenderPassColorAttachmentDescriptorArray_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLRenderPassColorAttachmentDescriptor_methods[] = {
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, __construct, arginfo_class_MTLRenderPassColorAttachmentDescriptor___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, texture, arginfo_class_MTLRenderPassColorAttachmentDescriptor_texture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, setTexture, arginfo_class_MTLRenderPassColorAttachmentDescriptor_setTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, resolveTexture, arginfo_class_MTLRenderPassColorAttachmentDescriptor_resolveTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, setResolveTexture, arginfo_class_MTLRenderPassColorAttachmentDescriptor_setResolveTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, loadAction, arginfo_class_MTLRenderPassColorAttachmentDescriptor_loadAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, setLoadAction, arginfo_class_MTLRenderPassColorAttachmentDescriptor_setLoadAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, storeAction, arginfo_class_MTLRenderPassColorAttachmentDescriptor_storeAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, setStoreAction, arginfo_class_MTLRenderPassColorAttachmentDescriptor_setStoreAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, clearColor, arginfo_class_MTLRenderPassColorAttachmentDescriptor_clearColor, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, setClearColor, arginfo_class_MTLRenderPassColorAttachmentDescriptor_setClearColor, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, pointer, arginfo_class_MTLRenderPassColorAttachmentDescriptor_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassColorAttachmentDescriptor, fromPointer, arginfo_class_MTLRenderPassColorAttachmentDescriptor_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLRenderPassDepthAttachmentDescriptor_methods[] = {
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, __construct, arginfo_class_MTLRenderPassDepthAttachmentDescriptor___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, texture, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_texture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, setTexture, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, resolveTexture, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_resolveTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, setResolveTexture, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setResolveTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, loadAction, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_loadAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, setLoadAction, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setLoadAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, storeAction, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_storeAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, setStoreAction, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setStoreAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, clearDepth, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_clearDepth, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, setClearDepth, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_setClearDepth, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, pointer, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassDepthAttachmentDescriptor, fromPointer, arginfo_class_MTLRenderPassDepthAttachmentDescriptor_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLRenderPassStencilAttachmentDescriptor_methods[] = {
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, __construct, arginfo_class_MTLRenderPassStencilAttachmentDescriptor___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, texture, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_texture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, setTexture, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, resolveTexture, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_resolveTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, setResolveTexture, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setResolveTexture, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, loadAction, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_loadAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, setLoadAction, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setLoadAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, storeAction, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_storeAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, setStoreAction, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setStoreAction, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, clearStencil, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_clearStencil, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, setClearStencil, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_setClearStencil, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, pointer, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPassStencilAttachmentDescriptor, fromPointer, arginfo_class_MTLRenderPassStencilAttachmentDescriptor_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLRenderCommandEncoder_methods[] = {
+	ZEND_ME(MTLRenderCommandEncoder, __construct, arginfo_class_MTLRenderCommandEncoder___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLRenderCommandEncoder, setRenderPipelineState, arginfo_class_MTLRenderCommandEncoder_setRenderPipelineState, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setDepthStencilState, arginfo_class_MTLRenderCommandEncoder_setDepthStencilState, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setStencilReferenceValue, arginfo_class_MTLRenderCommandEncoder_setStencilReferenceValue, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setCullMode, arginfo_class_MTLRenderCommandEncoder_setCullMode, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setFrontFacingWinding, arginfo_class_MTLRenderCommandEncoder_setFrontFacingWinding, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setVertexBufferOffsetAtIndex, arginfo_class_MTLRenderCommandEncoder_setVertexBufferOffsetAtIndex, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setVertexBytesLengthAtIndex, arginfo_class_MTLRenderCommandEncoder_setVertexBytesLengthAtIndex, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setFragmentBytesLengthAtIndex, arginfo_class_MTLRenderCommandEncoder_setFragmentBytesLengthAtIndex, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setFragmentTextureAtIndex, arginfo_class_MTLRenderCommandEncoder_setFragmentTextureAtIndex, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setFragmentSamplerStateAtIndex, arginfo_class_MTLRenderCommandEncoder_setFragmentSamplerStateAtIndex, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setViewport, arginfo_class_MTLRenderCommandEncoder_setViewport, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, setScissorRect, arginfo_class_MTLRenderCommandEncoder_setScissorRect, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCount, arginfo_class_MTLRenderCommandEncoder_drawPrimitivesVertexStartVertexCount, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset, arginfo_class_MTLRenderCommandEncoder_drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, endEncoding, arginfo_class_MTLRenderCommandEncoder_endEncoding, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, pointer, arginfo_class_MTLRenderCommandEncoder_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, fromPointer, arginfo_class_MTLRenderCommandEncoder_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static const zend_function_entry class_MTLBlitCommandEncoder_methods[] = {
+	ZEND_ME(MTLBlitCommandEncoder, __construct, arginfo_class_MTLBlitCommandEncoder___construct, ZEND_ACC_PRIVATE)
+	ZEND_ME(MTLBlitCommandEncoder, copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin, arginfo_class_MTLBlitCommandEncoder_copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLBlitCommandEncoder, copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToBufferDestinationOffsetDestinationBytesPerRowDestinationBytesPerImage, arginfo_class_MTLBlitCommandEncoder_copyFromTextureSourceSliceSourceLevelSourceOriginSourceSizeToBufferDestinationOffsetDestinationBytesPerRowDestinationBytesPerImage, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLBlitCommandEncoder, copyFromBufferSourceOffsetSourceBytesPerRowSourceBytesPerImageSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin, arginfo_class_MTLBlitCommandEncoder_copyFromBufferSourceOffsetSourceBytesPerRowSourceBytesPerImageSourceSizeToTextureDestinationSliceDestinationLevelDestinationOrigin, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLBlitCommandEncoder, synchronizeResource, arginfo_class_MTLBlitCommandEncoder_synchronizeResource, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLBlitCommandEncoder, endEncoding, arginfo_class_MTLBlitCommandEncoder_endEncoding, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLBlitCommandEncoder, pointer, arginfo_class_MTLBlitCommandEncoder_pointer, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLBlitCommandEncoder, fromPointer, arginfo_class_MTLBlitCommandEncoder_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	ZEND_FE_END
+};
+
+static zend_class_entry *register_class_MTLCommandQueue(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLCommandQueue", class_MTLCommandQueue_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLCommandBuffer(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLCommandBuffer", class_MTLCommandBuffer_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLRenderPassDescriptor(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLRenderPassDescriptor", class_MTLRenderPassDescriptor_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLRenderPassColorAttachmentDescriptorArray(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLRenderPassColorAttachmentDescriptorArray", class_MTLRenderPassColorAttachmentDescriptorArray_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLRenderPassColorAttachmentDescriptor(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLRenderPassColorAttachmentDescriptor", class_MTLRenderPassColorAttachmentDescriptor_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLRenderPassDepthAttachmentDescriptor(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLRenderPassDepthAttachmentDescriptor", class_MTLRenderPassDepthAttachmentDescriptor_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLRenderPassStencilAttachmentDescriptor(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLRenderPassStencilAttachmentDescriptor", class_MTLRenderPassStencilAttachmentDescriptor_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLRenderCommandEncoder(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLRenderCommandEncoder", class_MTLRenderCommandEncoder_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
+
+static zend_class_entry *register_class_MTLBlitCommandEncoder(void)
+{
+	zend_class_entry ce, *class_entry;
+
+	INIT_CLASS_ENTRY(ce, "MTLBlitCommandEncoder", class_MTLBlitCommandEncoder_methods);
+	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL|ZEND_ACC_NOT_SERIALIZABLE);
+
+	return class_entry;
+}
