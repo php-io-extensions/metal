@@ -102,6 +102,7 @@ extern zend_class_entry *metal_ce_MTLBlitCommandEncoder;
 extern zend_class_entry *metal_ce_CGSize;
 extern zend_class_entry *metal_ce_CAMetalLayer;
 extern zend_class_entry *metal_ce_CAMetalDrawable;
+extern zend_class_entry *metal_ce_CAEDRMetadata;
 
 /* Boxes obj as ce (the binding's declared type), or the PHP object already holding obj. nil → null. */
 void metal_box(zval *rv, id obj, zend_class_entry *ce);

@@ -50,6 +50,29 @@ final class CAMetalLayer
 
     public function nextDrawable(): ?CAMetalDrawable {}
 
+    /** When false, nextDrawable answers null at once instead of waiting up to a second for a free drawable. */
+    public function allowsNextDrawableTimeout(): bool {}
+
+    public function setAllowsNextDrawableTimeout(bool $allowsNextDrawableTimeout): void {}
+
+    public function presentsWithTransaction(): bool {}
+
+    public function setPresentsWithTransaction(bool $presentsWithTransaction): void {}
+
+    public function wantsExtendedDynamicRangeContent(): bool {}
+
+    public function setWantsExtendedDynamicRangeContent(bool $wantsExtendedDynamicRangeContent): void {}
+
+    /** The CGColorSpaceRef's address, or null. */
+    public function colorspace(): ?int {}
+
+    /** $colorspace is a CGColorSpaceRef's address (ext-appkit's CGColorSpace::pointer()), trusted; null clears it. */
+    public function setColorspace(?int $colorspace): void {}
+
+    public function EDRMetadata(): ?CAEDRMetadata {}
+
+    public function setEDRMetadata(?CAEDRMetadata $EDRMetadata): void {}
+
     public function pointer(): int {}
 
     /** The address is trusted to hold an object; it must be a CAMetalLayer. */
@@ -67,8 +90,31 @@ final class CAMetalDrawable
 
     public function present(): void {}
 
+    /** MTLDrawable's presentedTime: when the drawable reached the screen, in seconds on the host clock; 0 before it has. */
+    public function presentedTime(): float {}
+
+    public function drawableID(): int {}
+
     public function pointer(): int {}
 
     /** The address is trusted to hold an object; it must conform to CAMetalDrawable. */
+    public static function fromPointer(int $pointer): static {}
+}
+
+/**
+ * @not-serializable
+ */
+final class CAEDRMetadata
+{
+    private function __construct() {}
+
+    /** Luminances in nits; $opticalOutputScale is the nits of content value 1.0. */
+    public static function HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale(float $minNits, float $maxNits, float $opticalOutputScale): CAEDRMetadata {}
+
+    public static function HLGMetadata(): CAEDRMetadata {}
+
+    public function pointer(): int {}
+
+    /** The address is trusted to hold an object; it must be a CAEDRMetadata. */
     public static function fromPointer(int $pointer): static {}
 }

@@ -160,6 +160,36 @@ ZEND_METHOD(MTLCommandBuffer, presentDrawable)
 	METAL_END
 }
 
+ZEND_METHOD(MTLCommandBuffer, presentDrawableAfterMinimumDuration)
+{
+	zend_object *drawable;
+	double duration;
+
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJ_OF_CLASS(drawable, metal_ce_CAMetalDrawable)
+		Z_PARAM_DOUBLE(duration)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		[(id<MTLCommandBuffer>) THIS_ID presentDrawable:(id<MTLDrawable>) METAL_ID(drawable) afterMinimumDuration:(CFTimeInterval) duration];
+	METAL_END
+}
+
+ZEND_METHOD(MTLCommandBuffer, presentDrawableAtTime)
+{
+	zend_object *drawable;
+	double at;
+
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJ_OF_CLASS(drawable, metal_ce_CAMetalDrawable)
+		Z_PARAM_DOUBLE(at)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		[(id<MTLCommandBuffer>) THIS_ID presentDrawable:(id<MTLDrawable>) METAL_ID(drawable) atTime:(CFTimeInterval) at];
+	METAL_END
+}
+
 ZEND_METHOD(MTLCommandBuffer, commit)
 {
 	ZEND_PARSE_PARAMETERS_NONE();

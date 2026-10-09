@@ -1,6 +1,6 @@
 # metal
 
-1:1 PHP bindings of Metal and `CAMetalLayer`, as classes named after their native counterparts. Version 0.10.0. macOS only.
+1:1 PHP bindings of Metal, `CAMetalLayer` and `CAEDRMetadata`, as classes named after their native counterparts. Version 0.10.0. macOS only.
 
 A handle is one PHP object per native object, retained while PHP holds it. `NSError` and `NSException` become `MetalException`.
 

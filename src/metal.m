@@ -71,6 +71,7 @@ zend_class_entry *metal_ce_MTLBlitCommandEncoder;
 zend_class_entry *metal_ce_CGSize;
 zend_class_entry *metal_ce_CAMetalLayer;
 zend_class_entry *metal_ce_CAMetalDrawable;
+zend_class_entry *metal_ce_CAEDRMetadata;
 
 static PHP_GINIT_FUNCTION(metal)
 {

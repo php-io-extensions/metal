@@ -44,6 +44,10 @@ void metal_register_CAMetalLayer(void)
 	metal_ce_CAMetalDrawable = register_class_CAMetalDrawable();
 	metal_object_setup(metal_ce_CAMetalDrawable);
 	metal_map_native(metal_ce_CAMetalDrawable, @protocol(CAMetalDrawable), Nil);
+
+	metal_ce_CAEDRMetadata = register_class_CAEDRMetadata();
+	metal_object_setup(metal_ce_CAEDRMetadata);
+	metal_map_native(metal_ce_CAEDRMetadata, nil, [CAEDRMetadata class]);
 }
 
 ZEND_METHOD(CGSize, __construct)
@@ -229,6 +233,126 @@ ZEND_METHOD(CAMetalLayer, setMaximumDrawableCount)
 	METAL_END
 }
 
+ZEND_METHOD(CAMetalLayer, allowsNextDrawableTimeout)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		RETURN_BOOL([THIS_LAYER allowsNextDrawableTimeout]);
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, setAllowsNextDrawableTimeout)
+{
+	bool value;
+
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(value)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		[THIS_LAYER setAllowsNextDrawableTimeout:value];
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, presentsWithTransaction)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		RETURN_BOOL([THIS_LAYER presentsWithTransaction]);
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, setPresentsWithTransaction)
+{
+	bool value;
+
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(value)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		[THIS_LAYER setPresentsWithTransaction:value];
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, wantsExtendedDynamicRangeContent)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		RETURN_BOOL([THIS_LAYER wantsExtendedDynamicRangeContent]);
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, setWantsExtendedDynamicRangeContent)
+{
+	bool value;
+
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_BOOL(value)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		[THIS_LAYER setWantsExtendedDynamicRangeContent:value];
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, colorspace)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		CGColorSpaceRef space = [THIS_LAYER colorspace];
+		if (space == NULL) {
+			RETURN_NULL();
+		}
+		RETURN_LONG((zend_long) (uintptr_t) space);
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, setColorspace)
+{
+	zend_long address;
+	bool is_null = true;
+
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG_OR_NULL(address, is_null)
+	ZEND_PARSE_PARAMETERS_END();
+
+	if (!is_null && address == 0) {
+		zend_argument_value_error(1, "must not be a null address");
+		RETURN_THROWS();
+	}
+
+	METAL_BEGIN
+		[THIS_LAYER setColorspace:is_null ? NULL : (CGColorSpaceRef) (uintptr_t) address];
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, EDRMetadata)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		metal_box(return_value, [THIS_LAYER EDRMetadata], metal_ce_CAEDRMetadata);
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalLayer, setEDRMetadata)
+{
+	zend_object *metadata = NULL;
+
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJ_OF_CLASS_OR_NULL(metadata, metal_ce_CAEDRMetadata)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		[THIS_LAYER setEDRMetadata:metadata == NULL ? nil : (CAEDRMetadata *) METAL_ID(metadata)];
+	METAL_END
+}
+
 ZEND_METHOD(CAMetalLayer, nextDrawable)
 {
 	ZEND_PARSE_PARAMETERS_NONE();
@@ -247,6 +371,51 @@ ZEND_METHOD(CAMetalDrawable, texture)
 
 	METAL_BEGIN
 		metal_box(return_value, [THIS_DRAWABLE texture], metal_ce_MTLTexture);
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalDrawable, presentedTime)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		RETURN_DOUBLE([THIS_DRAWABLE presentedTime]);
+	METAL_END
+}
+
+ZEND_METHOD(CAMetalDrawable, drawableID)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		RETURN_LONG((zend_long) [THIS_DRAWABLE drawableID]);
+	METAL_END
+}
+
+METAL_REJECT_CONSTRUCT(CAEDRMetadata)
+METAL_POINTER_METHODS(CAEDRMetadata)
+
+ZEND_METHOD(CAEDRMetadata, HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale)
+{
+	double min_nits, max_nits, scale;
+
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_DOUBLE(min_nits)
+		Z_PARAM_DOUBLE(max_nits)
+		Z_PARAM_DOUBLE(scale)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		metal_box(return_value, [CAEDRMetadata HDR10MetadataWithMinLuminance:(float) min_nits maxLuminance:(float) max_nits opticalOutputScale:(float) scale], metal_ce_CAEDRMetadata);
+	METAL_END
+}
+
+ZEND_METHOD(CAEDRMetadata, HLGMetadata)
+{
+	ZEND_PARSE_PARAMETERS_NONE();
+
+	METAL_BEGIN
+		metal_box(return_value, [CAEDRMetadata HLGMetadata], metal_ce_CAEDRMetadata);
 	METAL_END
 }
 

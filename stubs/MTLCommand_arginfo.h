@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 2a7972c27a780dc3b35bca0ae30e1346ca79eb1f */
+ * Stub hash: 3f0ef6a65d38a08ae538abb6b3fde8963f9d4fb3 */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_MTLCommandQueue___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -25,6 +25,16 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_presentDrawable, 0, 1, IS_VOID, 0)
 	ZEND_ARG_OBJ_INFO(0, drawable, CAMetalDrawable, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_presentDrawableAfterMinimumDuration, 0, 2, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, drawable, CAMetalDrawable, 0)
+	ZEND_ARG_TYPE_INFO(0, duration, IS_DOUBLE, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_presentDrawableAtTime, 0, 2, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, drawable, CAMetalDrawable, 0)
+	ZEND_ARG_TYPE_INFO(0, presentationTime, IS_DOUBLE, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_commit, 0, 0, IS_VOID, 0)
@@ -295,6 +305,8 @@ ZEND_METHOD(MTLCommandBuffer, __construct);
 ZEND_METHOD(MTLCommandBuffer, renderCommandEncoderWithDescriptor);
 ZEND_METHOD(MTLCommandBuffer, blitCommandEncoder);
 ZEND_METHOD(MTLCommandBuffer, presentDrawable);
+ZEND_METHOD(MTLCommandBuffer, presentDrawableAfterMinimumDuration);
+ZEND_METHOD(MTLCommandBuffer, presentDrawableAtTime);
 ZEND_METHOD(MTLCommandBuffer, commit);
 ZEND_METHOD(MTLCommandBuffer, waitUntilCompleted);
 ZEND_METHOD(MTLCommandBuffer, status);
@@ -391,6 +403,8 @@ static const zend_function_entry class_MTLCommandBuffer_methods[] = {
 	ZEND_ME(MTLCommandBuffer, renderCommandEncoderWithDescriptor, arginfo_class_MTLCommandBuffer_renderCommandEncoderWithDescriptor, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLCommandBuffer, blitCommandEncoder, arginfo_class_MTLCommandBuffer_blitCommandEncoder, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLCommandBuffer, presentDrawable, arginfo_class_MTLCommandBuffer_presentDrawable, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, presentDrawableAfterMinimumDuration, arginfo_class_MTLCommandBuffer_presentDrawableAfterMinimumDuration, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLCommandBuffer, presentDrawableAtTime, arginfo_class_MTLCommandBuffer_presentDrawableAtTime, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLCommandBuffer, commit, arginfo_class_MTLCommandBuffer_commit, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLCommandBuffer, waitUntilCompleted, arginfo_class_MTLCommandBuffer_waitUntilCompleted, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLCommandBuffer, status, arginfo_class_MTLCommandBuffer_status, ZEND_ACC_PUBLIC)

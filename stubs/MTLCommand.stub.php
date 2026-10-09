@@ -30,6 +30,12 @@ final class MTLCommandBuffer
 
     public function presentDrawable(CAMetalDrawable $drawable): void {}
 
+    /** Shown no sooner than $duration seconds after the drawable before it. */
+    public function presentDrawableAfterMinimumDuration(CAMetalDrawable $drawable, float $duration): void {}
+
+    /** Shown at $presentationTime, seconds on the host clock (CACurrentMediaTime). */
+    public function presentDrawableAtTime(CAMetalDrawable $drawable, float $presentationTime): void {}
+
     public function commit(): void {}
 
     public function waitUntilCompleted(): void {}

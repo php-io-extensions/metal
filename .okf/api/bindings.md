@@ -50,4 +50,6 @@ Enums: `MTLPixelFormat`, `MTLLoadAction`, `MTLStoreAction`, `MTLPrimitiveType`, 
 
 `CAMetalLayer`, `CAMetalDrawable`. `MTLCommandBuffer::presentDrawable`. `nextDrawable()` may return null when the layer is not on screen; slice 8 drives it from an AppKit view.
 
+Staged-window presentation: `CAMetalLayer` `allowsNextDrawableTimeout` (false: `nextDrawable` answers null at once), `presentsWithTransaction`, `wantsExtendedDynamicRangeContent`, `colorspace` / `setColorspace` (a CGColorSpaceRef address, e.g. ext-appkit's `CGColorSpace::pointer()`), `EDRMetadata` (+set); `CAEDRMetadata::HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutputScale()`, `HLGMetadata()`; `CAMetalDrawable` `presentedTime`, `drawableID`; `MTLCommandBuffer` `presentDrawableAfterMinimumDuration`, `presentDrawableAtTime`. Measured: `presentedTime` arrives through the application's event cycle (a bare run loop does not deliver it); a fresh layer's first drawable, and one presented after the layer idled about a second, is never shown (`presentedTime` stays 0); the next frame is.
+
 [^stubs]: PHP stubs
