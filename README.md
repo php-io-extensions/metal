@@ -2,7 +2,7 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/php-io-extensions/metal/ci.yml?style=flat-square&label=CI)](https://github.com/php-io-extensions/metal/actions/workflows/ci.yml)
 
-1:1 PHP bindings of Metal, `CAMetalLayer` and `CAEDRMetadata`, as classes named after their native counterparts. Version 0.10.0. macOS only.
+1:1 PHP bindings of Metal, `CAMetalLayer` and `CAEDRMetadata`, as classes named after their native counterparts. Version 0.11.0. macOS only.
 
 A handle is one PHP object per native object, retained while PHP holds it. `NSError` and `NSException` become `MetalException`.
 

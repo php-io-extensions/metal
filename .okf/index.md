@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # ext-metal
 
-1:1 PHP bindings of Metal and CAMetalLayer. Version 0.10.0. macOS only.
+1:1 PHP bindings of Metal and CAMetalLayer. Version 0.11.0. macOS only.
 
 # API
 

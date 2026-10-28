@@ -9,4 +9,4 @@
 7. **The stub is the declaration.** Edit `stubs/*.stub.php`, regenerate with `php84 /opt/homebrew/opt/php@8.4/lib/php/build/gen_stub.php stubs`, and commit both. Never hand-edit `*_arginfo.h`.
 8. **Build.** `./install-macos.sh` into Homebrew `php@8.4` and `php@8.4-zts`. Pest at `-d memory_limit=128M` on both. Gate a commit on the suite's exit code.
 9. **Durable facts go in `.okf`.** Update the matching concept and append `.okf/log.md`.
-10. **Version** is `PHP_METAL_VERSION` in `php_metal.h`: 0.10.0. macOS only.
+10. **Version** is `PHP_METAL_VERSION` in `php_metal.h`: 0.11.0. macOS only.
