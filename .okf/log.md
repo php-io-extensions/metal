@@ -3,6 +3,7 @@
 ## 2026-10-28
 
 * **Version**: 0.11.0 in `PHP_METAL_VERSION` (`php_metal.h`), `AGENTS.md`, README and the index; `branch-alias` `dev-main` is `0.11.x-dev`. Promoted with the Venusian 0.11 ecosystem. No API or behaviour change. Built and loaded on Homebrew PHP 8.4 NTS and ZTS: 49 passed on each.
+* **Coverage**: `scripts/support.php` writes `SUPPORT.md` and the README's API badge from clang's AST dump of the macOS SDK (15.4, the floor): every method and property accessor of Metal.framework's classes, categories and protocols (Metal's objects are protocols, so protocol methods count, unlike AppKit's), of QuartzCore's CAMetalLayer, CAMetalDrawable, CAEDRMetadata and CAMetalDisplayLink, and Metal's MTL C functions, not deprecated or unavailable on macOS. Bound when a stub declares the method the selector gives (parts joined), found up the superclass and adopted-protocol graph; a renamed getter (`isDepthWriteEnabled`) also binds under its property's name. `--check` exits 1 when the list or badge is stale. 189 / 1738 (10.9%).
 
 ## 2026-10-08
 

@@ -1,6 +1,7 @@
 # metal
 
 [![CI](https://img.shields.io/github/actions/workflow/status/php-io-extensions/metal/ci.yml?style=flat-square&label=CI)](https://github.com/php-io-extensions/metal/actions/workflows/ci.yml)
+[![Metal API](https://img.shields.io/badge/Metal_API-10.9%25_%28189%2F1738%29-blue?style=flat-square)](SUPPORT.md)
 
 1:1 PHP bindings of Metal, `CAMetalLayer` and `CAEDRMetadata`, as classes named after their native counterparts. Version 0.11.0. macOS only.
 
@@ -35,6 +36,19 @@ That builds into Homebrew `php@8.4` and `php@8.4-zts`, ad-hoc signs the `.so`, a
 - `pointer(): int` and `static fromPointer(int $pointer): static` hand an object to another extension. `fromPointer(0)` throws `MetalException`. An address that is not the called class throws too. Any other address is trusted to hold an object.
 - An `NSError**` is not a PHP argument. A nil result throws `MetalException` with the error's `localizedDescription` and `code`. The method name still ends in `Error`.
 - A `string|int` byte argument is a PHP string or an address. `0` is refused. Any other address is trusted. A string shorter than the call's byte count throws `ValueError`.
+
+## Coverage
+
+[SUPPORT.md](SUPPORT.md) lists every method and property accessor that the SDK's Metal headers
+declare on a class, category or protocol, QuartzCore's Metal classes (`CAMetalLayer`,
+`CAMetalDrawable`, `CAEDRMetadata`, `CAMetalDisplayLink`) and Metal's C functions, not deprecated or
+unavailable on macOS, each marked bound or not; the API badge is computed from it. Regenerate both
+after a binding change, and check them:
+
+```bash
+php84 scripts/support.php           # writes SUPPORT.md and the badge
+php84 scripts/support.php --check   # exits 1 when either is stale
+```
 
 ## Example
 
