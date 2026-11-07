@@ -18,7 +18,7 @@ it('clears a texture in a render pass and reads the pixel back', function (): vo
 
     expect($commands->status())->toBe(MTLCommandBufferStatus::COMPLETED)
         ->and($commands->error())->toBeNull()
-        ->and(bin2hex($texture->getBytesBytesPerRowFromRegionMipmapLevel(null, 4, new MTLRegion(new MTLOrigin(1, 1, 0), new MTLSize(1, 1, 1)), 0)))->toBe('00ff00ff');
+        ->and(bin2hex(textureBytes($texture, 4, new MTLRegion(new MTLOrigin(1, 1, 0), new MTLSize(1, 1, 1)), 0)))->toBe('00ff00ff');
 });
 
 it('refuses vertex bytes shorter than the length given', function (): void {
@@ -50,5 +50,5 @@ it('copies a texture through a buffer and back', function (): void {
     $commands->commit();
     $commands->waitUntilCompleted();
 
-    expect($copy->getBytesBytesPerRowFromRegionMipmapLevel(null, 16, $region, 0))->toBe($bytes);
+    expect(textureBytes($copy, 16, $region, 0))->toBe($bytes);
 });

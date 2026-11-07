@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: aaa96dc8df5f69c193dd6204da212ef2b9c9c2ea */
+ * Stub hash: 15e2d8cb5c8a0eb38cf6c916fe91deeb530067a3 */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_MTLDevice___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -10,7 +10,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLDevice_pointer, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLDevice_fromPointer, 0, 1, IS_STATIC, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLDevice_fromPointer, 0, 1, IS_STATIC, 1)
 	ZEND_ARG_TYPE_INFO(0, pointer, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
@@ -37,13 +37,15 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLDevice_supportsTextureS
 	ZEND_ARG_TYPE_INFO(0, sampleCount, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLDevice_newLibraryWithSourceOptionsError, 0, 2, MTLLibrary, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLDevice_newLibraryWithSourceOptionsError, 0, 2, MTLLibrary, 1)
 	ZEND_ARG_TYPE_INFO(0, source, IS_STRING, 0)
 	ZEND_ARG_OBJ_INFO(0, options, MTLCompileOptions, 1)
+	ZEND_ARG_OBJ_INFO_WITH_DEFAULT_VALUE(1, error, NSError, 1, "null")
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLDevice_newRenderPipelineStateWithDescriptorError, 0, 1, MTLRenderPipelineState, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLDevice_newRenderPipelineStateWithDescriptorError, 0, 1, MTLRenderPipelineState, 1)
 	ZEND_ARG_OBJ_INFO(0, descriptor, MTLRenderPipelineDescriptor, 0)
+	ZEND_ARG_OBJ_INFO_WITH_DEFAULT_VALUE(1, error, NSError, 1, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLDevice_newDepthStencilStateWithDescriptor, 0, 1, MTLDepthStencilState, 1)

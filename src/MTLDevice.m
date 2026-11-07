@@ -5,7 +5,6 @@ void metal_register_MTLDevice(void)
 {
 	metal_ce_MTLDevice = register_class_MTLDevice();
 	metal_object_setup(metal_ce_MTLDevice);
-	metal_map_native(metal_ce_MTLDevice, @protocol(MTLDevice), Nil);
 }
 
 METAL_REJECT_CONSTRUCT(MTLDevice)
@@ -46,10 +45,6 @@ ZEND_METHOD(MTLDevice, newBufferWithLengthOptions)
 		Z_PARAM_OBJ_OF_CLASS_OR_LONG(options_case, metal_ce_MTLResourceOptions, options_long)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(length, 1)) {
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
 		metal_box_owned(return_value,
 			[METAL_ID(Z_OBJ_P(ZEND_THIS)) newBufferWithLength:(NSUInteger) length
@@ -71,10 +66,6 @@ ZEND_METHOD(MTLDevice, newBufferWithBytesLengthOptions)
 		Z_PARAM_LONG(length)
 		Z_PARAM_OBJ_OF_CLASS_OR_LONG(options_case, metal_ce_MTLResourceOptions, options_long)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(length, 2)) {
-		RETURN_THROWS();
-	}
 
 	if (!metal_resolve_bytes(bytes, address, (size_t) length, 1, "must hold %zu bytes, %zu given", &pointer)) {
 		RETURN_THROWS();
@@ -115,10 +106,13 @@ ZEND_METHOD(MTLDevice, newLibraryWithSourceOptionsError)
 {
 	zend_string *source;
 	zend_object *options = NULL;
+	zval *error_ref = NULL;
 
-	ZEND_PARSE_PARAMETERS_START(2, 2)
+	ZEND_PARSE_PARAMETERS_START(2, 3)
 		Z_PARAM_STR(source)
 		Z_PARAM_OBJ_OF_CLASS_OR_NULL(options, metal_ce_MTLCompileOptions)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(error_ref)
 	ZEND_PARSE_PARAMETERS_END();
 
 	METAL_BEGIN
@@ -127,11 +121,7 @@ ZEND_METHOD(MTLDevice, newLibraryWithSourceOptionsError)
 			options:(options != NULL ? (MTLCompileOptions *) METAL_ID(options) : nil)
 			error:&error];
 
-		if (library == nil) {
-			metal_throw_nserror(error);
-			RETURN_THROWS();
-		}
-
+		metal_nserror_out(error_ref, error);
 		metal_box_owned(return_value, library, metal_ce_MTLLibrary);
 	METAL_END
 }
@@ -139,20 +129,19 @@ ZEND_METHOD(MTLDevice, newLibraryWithSourceOptionsError)
 ZEND_METHOD(MTLDevice, newRenderPipelineStateWithDescriptorError)
 {
 	zend_object *descriptor;
+	zval *error_ref = NULL;
 
-	ZEND_PARSE_PARAMETERS_START(1, 1)
+	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_OBJ_OF_CLASS(descriptor, metal_ce_MTLRenderPipelineDescriptor)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(error_ref)
 	ZEND_PARSE_PARAMETERS_END();
 
 	METAL_BEGIN
 		NSError *error = nil;
 		id<MTLRenderPipelineState> state = [METAL_ID(Z_OBJ_P(ZEND_THIS)) newRenderPipelineStateWithDescriptor:(MTLRenderPipelineDescriptor *) METAL_ID(descriptor) error:&error];
 
-		if (state == nil) {
-			metal_throw_nserror(error);
-			RETURN_THROWS();
-		}
-
+		metal_nserror_out(error_ref, error);
 		metal_box_owned(return_value, state, metal_ce_MTLRenderPipelineState);
 	METAL_END
 }
@@ -179,10 +168,6 @@ ZEND_METHOD(MTLDevice, supportsTextureSampleCount)
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(sample_count)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(sample_count, 1)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		RETURN_BOOL([METAL_ID(Z_OBJ_P(ZEND_THIS)) supportsTextureSampleCount:(NSUInteger) sample_count]);

@@ -3,30 +3,29 @@
 
 #define THIS_ID METAL_ID(Z_OBJ_P(ZEND_THIS))
 
-static void metal_setup_class(zend_class_entry **slot, zend_class_entry *(*register_fn)(void), Protocol *protocol, Class cls)
+static void metal_setup_class(zend_class_entry **slot, zend_class_entry *(*register_fn)(void))
 {
 	*slot = register_fn();
 	metal_object_setup(*slot);
-	metal_map_native(*slot, protocol, cls);
 }
 
 void metal_register_MTLPipeline(void)
 {
-	metal_setup_class(&metal_ce_MTLCompileOptions, register_class_MTLCompileOptions, nil, [MTLCompileOptions class]);
-	metal_setup_class(&metal_ce_MTLLibrary, register_class_MTLLibrary, @protocol(MTLLibrary), Nil);
-	metal_setup_class(&metal_ce_MTLFunction, register_class_MTLFunction, @protocol(MTLFunction), Nil);
-	metal_setup_class(&metal_ce_MTLVertexDescriptor, register_class_MTLVertexDescriptor, nil, [MTLVertexDescriptor class]);
-	metal_setup_class(&metal_ce_MTLVertexAttributeDescriptorArray, register_class_MTLVertexAttributeDescriptorArray, nil, [MTLVertexAttributeDescriptorArray class]);
-	metal_setup_class(&metal_ce_MTLVertexBufferLayoutDescriptorArray, register_class_MTLVertexBufferLayoutDescriptorArray, nil, [MTLVertexBufferLayoutDescriptorArray class]);
-	metal_setup_class(&metal_ce_MTLVertexAttributeDescriptor, register_class_MTLVertexAttributeDescriptor, nil, [MTLVertexAttributeDescriptor class]);
-	metal_setup_class(&metal_ce_MTLVertexBufferLayoutDescriptor, register_class_MTLVertexBufferLayoutDescriptor, nil, [MTLVertexBufferLayoutDescriptor class]);
-	metal_setup_class(&metal_ce_MTLRenderPipelineDescriptor, register_class_MTLRenderPipelineDescriptor, nil, [MTLRenderPipelineDescriptor class]);
-	metal_setup_class(&metal_ce_MTLRenderPipelineColorAttachmentDescriptorArray, register_class_MTLRenderPipelineColorAttachmentDescriptorArray, nil, [MTLRenderPipelineColorAttachmentDescriptorArray class]);
-	metal_setup_class(&metal_ce_MTLRenderPipelineColorAttachmentDescriptor, register_class_MTLRenderPipelineColorAttachmentDescriptor, nil, [MTLRenderPipelineColorAttachmentDescriptor class]);
-	metal_setup_class(&metal_ce_MTLRenderPipelineState, register_class_MTLRenderPipelineState, @protocol(MTLRenderPipelineState), Nil);
-	metal_setup_class(&metal_ce_MTLStencilDescriptor, register_class_MTLStencilDescriptor, nil, [MTLStencilDescriptor class]);
-	metal_setup_class(&metal_ce_MTLDepthStencilDescriptor, register_class_MTLDepthStencilDescriptor, nil, [MTLDepthStencilDescriptor class]);
-	metal_setup_class(&metal_ce_MTLDepthStencilState, register_class_MTLDepthStencilState, @protocol(MTLDepthStencilState), Nil);
+	metal_setup_class(&metal_ce_MTLCompileOptions, register_class_MTLCompileOptions);
+	metal_setup_class(&metal_ce_MTLLibrary, register_class_MTLLibrary);
+	metal_setup_class(&metal_ce_MTLFunction, register_class_MTLFunction);
+	metal_setup_class(&metal_ce_MTLVertexDescriptor, register_class_MTLVertexDescriptor);
+	metal_setup_class(&metal_ce_MTLVertexAttributeDescriptorArray, register_class_MTLVertexAttributeDescriptorArray);
+	metal_setup_class(&metal_ce_MTLVertexBufferLayoutDescriptorArray, register_class_MTLVertexBufferLayoutDescriptorArray);
+	metal_setup_class(&metal_ce_MTLVertexAttributeDescriptor, register_class_MTLVertexAttributeDescriptor);
+	metal_setup_class(&metal_ce_MTLVertexBufferLayoutDescriptor, register_class_MTLVertexBufferLayoutDescriptor);
+	metal_setup_class(&metal_ce_MTLRenderPipelineDescriptor, register_class_MTLRenderPipelineDescriptor);
+	metal_setup_class(&metal_ce_MTLRenderPipelineColorAttachmentDescriptorArray, register_class_MTLRenderPipelineColorAttachmentDescriptorArray);
+	metal_setup_class(&metal_ce_MTLRenderPipelineColorAttachmentDescriptor, register_class_MTLRenderPipelineColorAttachmentDescriptor);
+	metal_setup_class(&metal_ce_MTLRenderPipelineState, register_class_MTLRenderPipelineState);
+	metal_setup_class(&metal_ce_MTLStencilDescriptor, register_class_MTLStencilDescriptor);
+	metal_setup_class(&metal_ce_MTLDepthStencilDescriptor, register_class_MTLDepthStencilDescriptor);
+	metal_setup_class(&metal_ce_MTLDepthStencilState, register_class_MTLDepthStencilState);
 }
 
 #define METAL_NEW(cls, native) \
@@ -54,9 +53,6 @@ void metal_register_MTLPipeline(void)
 		ZEND_PARSE_PARAMETERS_START(1, 1) \
 			Z_PARAM_LONG(value) \
 		ZEND_PARSE_PARAMETERS_END(); \
-		if (!metal_nonnegative(value, 1)) { \
-			RETURN_THROWS(); \
-		} \
 		METAL_BEGIN \
 			[(type *) THIS_ID sel:(NSUInteger) value]; \
 		METAL_END \
@@ -201,10 +197,6 @@ ZEND_METHOD(MTLVertexAttributeDescriptorArray, objectAtIndexedSubscript)
 		Z_PARAM_LONG(index)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(index, 1)) {
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
 		metal_box(return_value, [(MTLVertexAttributeDescriptorArray *) THIS_ID objectAtIndexedSubscript:(NSUInteger) index], metal_ce_MTLVertexAttributeDescriptor);
 	METAL_END
@@ -220,10 +212,6 @@ ZEND_METHOD(MTLVertexBufferLayoutDescriptorArray, objectAtIndexedSubscript)
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(index)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(index, 1)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		metal_box(return_value, [(MTLVertexBufferLayoutDescriptorArray *) THIS_ID objectAtIndexedSubscript:(NSUInteger) index], metal_ce_MTLVertexBufferLayoutDescriptor);
@@ -343,10 +331,6 @@ ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptorArray, objectAtIndexedSubs
 		Z_PARAM_LONG(index)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(index, 1)) {
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
 		metal_box(return_value,
 			[(MTLRenderPipelineColorAttachmentDescriptorArray *) THIS_ID objectAtIndexedSubscript:(NSUInteger) index],
@@ -360,7 +344,7 @@ METAL_ENUM_GET(MTLRenderPipelineColorAttachmentDescriptor, pixelFormat, MTLRende
 METAL_ENUM_SET(MTLRenderPipelineColorAttachmentDescriptor, setPixelFormat, MTLRenderPipelineColorAttachmentDescriptor, setPixelFormat, metal_ce_MTLPixelFormat, MTLPixelFormat)
 METAL_ENUM_OR_INT_GET(MTLRenderPipelineColorAttachmentDescriptor, writeMask, MTLRenderPipelineColorAttachmentDescriptor, writeMask, metal_ce_MTLColorWriteMask)
 METAL_ENUM_OR_INT_SET(MTLRenderPipelineColorAttachmentDescriptor, setWriteMask, MTLRenderPipelineColorAttachmentDescriptor, setWriteMask, metal_ce_MTLColorWriteMask, MTLColorWriteMask)
-METAL_BOOL_GET(MTLRenderPipelineColorAttachmentDescriptor, blendingEnabled, MTLRenderPipelineColorAttachmentDescriptor, isBlendingEnabled)
+METAL_BOOL_GET(MTLRenderPipelineColorAttachmentDescriptor, isBlendingEnabled, MTLRenderPipelineColorAttachmentDescriptor, isBlendingEnabled)
 METAL_BOOL_SET(MTLRenderPipelineColorAttachmentDescriptor, setBlendingEnabled, MTLRenderPipelineColorAttachmentDescriptor, setBlendingEnabled)
 METAL_ENUM_GET(MTLRenderPipelineColorAttachmentDescriptor, rgbBlendOperation, MTLRenderPipelineColorAttachmentDescriptor, rgbBlendOperation, metal_ce_MTLBlendOperation)
 METAL_ENUM_SET(MTLRenderPipelineColorAttachmentDescriptor, setRgbBlendOperation, MTLRenderPipelineColorAttachmentDescriptor, setRgbBlendOperation, metal_ce_MTLBlendOperation, MTLBlendOperation)
@@ -399,7 +383,7 @@ METAL_POINTER_METHODS(MTLDepthStencilDescriptor)
 METAL_NEW(MTLDepthStencilDescriptor, MTLDepthStencilDescriptor)
 METAL_ENUM_GET(MTLDepthStencilDescriptor, depthCompareFunction, MTLDepthStencilDescriptor, depthCompareFunction, metal_ce_MTLCompareFunction)
 METAL_ENUM_SET(MTLDepthStencilDescriptor, setDepthCompareFunction, MTLDepthStencilDescriptor, setDepthCompareFunction, metal_ce_MTLCompareFunction, MTLCompareFunction)
-METAL_BOOL_GET(MTLDepthStencilDescriptor, depthWriteEnabled, MTLDepthStencilDescriptor, isDepthWriteEnabled)
+METAL_BOOL_GET(MTLDepthStencilDescriptor, isDepthWriteEnabled, MTLDepthStencilDescriptor, isDepthWriteEnabled)
 METAL_BOOL_SET(MTLDepthStencilDescriptor, setDepthWriteEnabled, MTLDepthStencilDescriptor, setDepthWriteEnabled)
 
 ZEND_METHOD(MTLDepthStencilDescriptor, frontFaceStencil)

@@ -2,17 +2,6 @@
 
 static zend_object_handlers metal_handlers;
 
-typedef struct {
-	zend_class_entry *ce;
-	Protocol *protocol;            /* non-nil: fromPointer checks conformsToProtocol: */
-	Class cls;                     /* non-Nil: fromPointer checks isKindOfClass: */
-} metal_native;
-
-/* Filled only from MINIT. One row per handle class. */
-#define METAL_NATIVE_MAX 96
-static metal_native metal_natives[METAL_NATIVE_MAX];
-static uint32_t metal_native_count = 0;
-
 static zend_object *metal_create_object(zend_class_entry *ce)
 {
 	metal_object *intern = zend_object_alloc(sizeof(metal_object), ce);
@@ -57,26 +46,6 @@ void metal_object_setup(zend_class_entry *ce)
 	ce->create_object = metal_create_object;
 	ce->default_object_handlers = &metal_handlers;
 	ce->ce_flags |= ZEND_ACC_NOT_SERIALIZABLE | ZEND_ACC_FINAL;
-}
-
-void metal_map_native(zend_class_entry *ce, Protocol *protocol, Class cls)
-{
-	if (metal_native_count >= METAL_NATIVE_MAX) {
-		zend_error_noreturn(E_ERROR, "metal: the native class map is full");
-	}
-
-	metal_natives[metal_native_count++] = (metal_native) { ce, protocol, cls };
-}
-
-static metal_native *metal_native_for(zend_class_entry *ce)
-{
-	for (uint32_t i = 0; i < metal_native_count; i++) {
-		if (metal_natives[i].ce == ce) {
-			return &metal_natives[i];
-		}
-	}
-
-	return NULL;
 }
 
 static bool metal_box_existing(zval *rv, id obj)
@@ -137,54 +106,79 @@ void metal_from_pointer(INTERNAL_FUNCTION_PARAMETERS)
 		Z_PARAM_LONG(pointer)
 	ZEND_PARSE_PARAMETERS_END();
 
-	zend_class_entry *scope = zend_get_called_scope(execute_data);
-
-	if (pointer == 0) {
-		zend_throw_exception_ex(metal_ce_MetalException, 0,
-			"%s::fromPointer(): must not be a null address", ZSTR_VAL(scope->name));
-		RETURN_THROWS();
-	}
-
-	metal_native *native = metal_native_for(scope);
-
-	if (native == NULL || (native->protocol == nil && native->cls == Nil)) {
-		zend_throw_exception_ex(metal_ce_MetalException, 0,
-			"%s::fromPointer(): has no native class", ZSTR_VAL(scope->name));
-		RETURN_THROWS();
-	}
-
-	id obj = (id) (uintptr_t) pointer;
-
+	/* The address is trusted to hold the class's native object; 0 is nil, which boxes as null. */
 	METAL_BEGIN
-		bool matches = native->protocol != nil
-			? [obj conformsToProtocol:native->protocol]
-			: [obj isKindOfClass:native->cls];
-
-		if (!matches) {
-			zend_throw_exception_ex(metal_ce_MetalException, 0,
-				"%s::fromPointer(): the object at 0x%lx is not an %s",
-				ZSTR_VAL(scope->name), (unsigned long) pointer, ZSTR_VAL(scope->name));
-			RETURN_THROWS();
-		}
-
-		metal_box(return_value, obj, scope);
+		metal_box(return_value, (id) (uintptr_t) pointer, zend_get_called_scope(execute_data));
 	METAL_END
 }
 
-void metal_throw_nserror(NSError *error)
+#ifdef METAL_PROBES
+bool metal_probe_off(const char *id)
 {
-	if (EG(exception) != NULL) {
-		return;
-	}
+	const char *off = getenv("METAL_PROBE_OFF");
 
+	return off != NULL && strcmp(off, id) == 0;
+}
+#endif
+
+static void metal_appkit_from_pointer(zval *rv, zend_class_entry *ce, uintptr_t address)
+{
+	zval arg;
+
+	ZVAL_LONG(&arg, (zend_long) address);
+	zend_call_method_with_1_params(NULL, ce, NULL, "frompointer", rv, &arg);
+}
+
+void metal_nserror_new(zval *rv, NSError *error)
+{
 	if (error == nil) {
-		zend_throw_exception(metal_ce_MetalException, "Metal call failed", 0);
+		ZVAL_NULL(rv);
 		return;
 	}
 
-	const char *message = [[error localizedDescription] UTF8String];
+	metal_appkit_from_pointer(rv, metal_ce_NSObject, (uintptr_t) error);
+}
 
-	zend_throw_exception(metal_ce_MetalException, message != NULL ? message : "Metal call failed", (zend_long) [error code]);
+void metal_nserror_out(zval *ref, NSError *error)
+{
+	if (ref == NULL) {
+		return;
+	}
+
+	zval value;
+
+	metal_nserror_new(&value, error);
+	ZEND_TRY_ASSIGN_REF_TMP(ref, &value);
+}
+
+void metal_cftype_new(zval *rv, CFTypeRef ref)
+{
+	metal_appkit_from_pointer(rv, metal_ce_CFType, (uintptr_t) ref);
+}
+
+CFTypeRef metal_cftype_from(zend_object *object)
+{
+	zval rv;
+
+	zend_call_method_with_0_params(object, object->ce, NULL, "pointer", &rv);
+
+	return (CFTypeRef) (uintptr_t) (Z_TYPE(rv) == IS_LONG ? Z_LVAL(rv) : 0);
+}
+
+void metal_nssize_new(zval *rv, CGSize size)
+{
+	object_init_ex(rv, metal_ce_NSSize);
+	zend_update_property_double(metal_ce_NSSize, Z_OBJ_P(rv), "width", sizeof("width") - 1, size.width);
+	zend_update_property_double(metal_ce_NSSize, Z_OBJ_P(rv), "height", sizeof("height") - 1, size.height);
+}
+
+CGSize metal_nssize_from(zend_object *object)
+{
+	zval width_rv, height_rv;
+	zval *width = zend_read_property(object->ce, object, "width", sizeof("width") - 1, 0, &width_rv);
+	zval *height = zend_read_property(object->ce, object, "height", sizeof("height") - 1, 0, &height_rv);
+
+	return CGSizeMake(zval_get_double(width), zval_get_double(height));
 }
 
 void metal_throw_nsexception(NSException *exception)
@@ -193,7 +187,7 @@ void metal_throw_nsexception(NSException *exception)
 		return;
 	}
 
-	zend_throw_exception_ex(metal_ce_MetalException, 0, "%s: %s",
+	zend_throw_exception_ex(metal_ce_NSException, 0, "%s: %s",
 		[[exception name] UTF8String] ?: "NSException",
 		[[exception reason] UTF8String] ?: "(no reason)");
 }
@@ -203,21 +197,11 @@ NSString *metal_nsstring(zend_string *str)
 	return [[[NSString alloc] initWithBytes:ZSTR_VAL(str) length:ZSTR_LEN(str) encoding:NSUTF8StringEncoding] autorelease];
 }
 
-bool metal_nonnegative(zend_long value, uint32_t arg_num)
-{
-	if (value < 0) {
-		zend_argument_value_error(arg_num, "must be greater than or equal to 0");
-		return false;
-	}
-
-	return true;
-}
-
 bool metal_resolve_bytes(zend_string *bytes, zend_long address, size_t need, uint32_t arg_num, const char *short_format, const void **out)
 {
 	if (bytes != NULL) {
-		if (ZSTR_LEN(bytes) < need) {
-			zend_argument_value_error(arg_num, short_format, need, ZSTR_LEN(bytes));
+		if (!METAL_PROBE_OFF("metal-bytes-length") && (ZSTR_LEN(bytes) < need)) {
+			zend_argument_value_error(arg_num, short_format, need, ZSTR_LEN(bytes)); /* binding:metal-bytes-length */
 			return false;
 		}
 
@@ -225,8 +209,8 @@ bool metal_resolve_bytes(zend_string *bytes, zend_long address, size_t need, uin
 		return true;
 	}
 
-	if (address == 0) {
-		zend_argument_value_error(arg_num, "must not be a null address");
+	if (!METAL_PROBE_OFF("metal-null-address") && (address == 0)) {
+		zend_argument_value_error(arg_num, "must not be a null address"); /* binding:metal-null-address */
 		return false;
 	}
 

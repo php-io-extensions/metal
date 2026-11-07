@@ -2,7 +2,8 @@
  * The glue every binding shares: one PHP object per native object, retained
  * while PHP holds it. Metal's concrete classes are private, so a box uses the
  * binding's declared PHP class rather than the Objective-C class chain.
- * NSException and NSError become MetalException.
+ * An NSException becomes the PHP NSException. NSError, NSSize and CGColorSpace
+ * are ext-appkit's classes, found at MINIT.
  */
 
 #ifndef METAL_RUNTIME_H
@@ -15,6 +16,7 @@
 #include "php.h"
 #include "zend_enum.h"
 #include "zend_exceptions.h"
+#include "zend_interfaces.h"
 #include "php_metal.h"
 
 #import <Foundation/Foundation.h>
@@ -41,7 +43,12 @@ static zend_always_inline metal_object *metal_object_from(zend_object *obj)
 
 #define METAL_ID(zobj) (metal_object_from(zobj)->ptr)
 
-extern zend_class_entry *metal_ce_MetalException;
+extern zend_class_entry *metal_ce_NSException;
+/* ext-appkit's classes (ZEND_MOD_REQUIRED("appkit")). */
+extern zend_class_entry *metal_ce_NSObject;
+extern zend_class_entry *metal_ce_NSSize;
+extern zend_class_entry *metal_ce_CFType;
+extern zend_class_entry *metal_ce_CGColorSpace;
 extern zend_class_entry *metal_ce_MTLDevice;
 extern zend_class_entry *metal_ce_MTLOrigin;
 extern zend_class_entry *metal_ce_MTLSize;
@@ -99,7 +106,6 @@ extern zend_class_entry *metal_ce_MTLRenderPassDepthAttachmentDescriptor;
 extern zend_class_entry *metal_ce_MTLRenderPassStencilAttachmentDescriptor;
 extern zend_class_entry *metal_ce_MTLRenderCommandEncoder;
 extern zend_class_entry *metal_ce_MTLBlitCommandEncoder;
-extern zend_class_entry *metal_ce_CGSize;
 extern zend_class_entry *metal_ce_CAMetalLayer;
 extern zend_class_entry *metal_ce_CAMetalDrawable;
 extern zend_class_entry *metal_ce_CAEDRMetadata;
@@ -109,10 +115,16 @@ void metal_box(zval *rv, id obj, zend_class_entry *ce);
 /* Boxes a +1 object (alloc/init, new…) without a second retain. */
 void metal_box_owned(zval *rv, id obj, zend_class_entry *ce);
 void metal_object_setup(zend_class_entry *ce);
-/* The protocol or class ce stands for, for fromPointer()'s check: set at registration. */
-void metal_map_native(zend_class_entry *ce, Protocol *protocol, Class cls);
-void metal_throw_nserror(NSError *error);
 void metal_throw_nsexception(NSException *exception);
+
+/* ext-appkit's objects, through their own fromPointer() / pointer(). */
+void metal_nserror_new(zval *rv, NSError *error);
+void metal_cftype_new(zval *rv, CFTypeRef ref);
+CFTypeRef metal_cftype_from(zend_object *object);
+void metal_nssize_new(zval *rv, CGSize size);
+CGSize metal_nssize_from(zend_object *object);
+/* Writes the NSError an NSError** received into the by-reference PHP parameter, when one was given. */
+void metal_nserror_out(zval *ref, NSError *error);
 /* Copies a zend enum case's backing value, or the int given for an Enum|int parameter. */
 zend_long metal_enum_or_long(zval *value);
 void metal_return_enum(zval *rv, zend_class_entry *ce, zend_long value);
@@ -135,8 +147,20 @@ static zend_always_inline zend_long metal_enum_param(zend_object *case_obj, zend
  * (two %zu: need, given). Address 0 is a ValueError. Any other address is trusted.
  */
 bool metal_resolve_bytes(zend_string *bytes, zend_long address, size_t need, uint32_t arg_num, const char *short_format, const void **out);
-bool metal_nonnegative(zend_long value, uint32_t arg_num);
 NSString *metal_nsstring(zend_string *str);
+
+/*
+ * The probe switch. A kept refusal site reads `if (!METAL_PROBE_OFF("<id>") && (<check>))`.
+ * A build configured with --enable-metal-probes lets env METAL_PROBE_OFF=<id> turn that one
+ * site off, so tests/Probes can show the crash the site prevents; any other build compiles
+ * the switch out.
+ */
+#ifdef METAL_PROBES
+bool metal_probe_off(const char *id);
+# define METAL_PROBE_OFF(id) metal_probe_off(id)
+#else
+# define METAL_PROBE_OFF(id) 0
+#endif
 
 #define METAL_BEGIN @autoreleasepool { @try {
 #define METAL_END } @catch (NSException *metal_exception) { metal_throw_nsexception(metal_exception); RETURN_THROWS(); } }

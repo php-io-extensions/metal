@@ -10,7 +10,11 @@
 
 ZEND_DECLARE_MODULE_GLOBALS(metal)
 
-zend_class_entry *metal_ce_MetalException;
+zend_class_entry *metal_ce_NSException;
+zend_class_entry *metal_ce_NSObject;
+zend_class_entry *metal_ce_NSSize;
+zend_class_entry *metal_ce_CFType;
+zend_class_entry *metal_ce_CGColorSpace;
 zend_class_entry *metal_ce_MTLDevice;
 zend_class_entry *metal_ce_MTLOrigin;
 zend_class_entry *metal_ce_MTLSize;
@@ -68,7 +72,6 @@ zend_class_entry *metal_ce_MTLRenderPassDepthAttachmentDescriptor;
 zend_class_entry *metal_ce_MTLRenderPassStencilAttachmentDescriptor;
 zend_class_entry *metal_ce_MTLRenderCommandEncoder;
 zend_class_entry *metal_ce_MTLBlitCommandEncoder;
-zend_class_entry *metal_ce_CGSize;
 zend_class_entry *metal_ce_CAMetalLayer;
 zend_class_entry *metal_ce_CAMetalDrawable;
 zend_class_entry *metal_ce_CAEDRMetadata;
@@ -91,13 +94,22 @@ PHP_MINIT_FUNCTION(metal)
 	/*
 	 * Metal's descriptor validation aborts the process on a nil vertex function.
 	 * Mode 1 reports that failure as an NSException, which METAL_BEGIN turns
-	 * into MetalException. Leave a value the process already set alone.
+	 * into the PHP NSException. Leave a value the process already set alone.
 	 */
 	if (getenv("METAL_ERROR_MODE") == NULL) {
 		setenv("METAL_ERROR_MODE", "1", 0);
 	}
 
-	metal_ce_MetalException = register_class_MetalException(zend_ce_exception);
+	/* ZEND_MOD_REQUIRED("appkit") registered these first. */
+	metal_ce_NSObject = zend_hash_str_find_ptr(CG(class_table), ZEND_STRL("nsobject"));
+	metal_ce_NSSize = zend_hash_str_find_ptr(CG(class_table), ZEND_STRL("nssize"));
+	metal_ce_CFType = zend_hash_str_find_ptr(CG(class_table), ZEND_STRL("cftype"));
+	metal_ce_CGColorSpace = zend_hash_str_find_ptr(CG(class_table), ZEND_STRL("cgcolorspace"));
+
+	metal_ce_NSException = register_class_NSException(zend_ce_exception);
+#ifdef METAL_PROBES
+	REGISTER_BOOL_CONSTANT("METAL_PROBES", true, CONST_PERSISTENT);
+#endif
 	metal_register_MTLTypes();
 	metal_register_MTLResource();
 	metal_register_MTLPipeline();
@@ -134,8 +146,15 @@ ZEND_FUNCTION(MTLCreateSystemDefaultDevice)
 	METAL_END
 }
 
+static const zend_module_dep metal_deps[] = {
+	ZEND_MOD_REQUIRED("appkit")
+	ZEND_MOD_END
+};
+
 zend_module_entry metal_module_entry = {
-	STANDARD_MODULE_HEADER,
+	STANDARD_MODULE_HEADER_EX,
+	NULL,
+	metal_deps,
 	"metal",
 	ext_functions,
 	PHP_MINIT(metal),

@@ -4,63 +4,16 @@
 #define THIS_LAYER ((CAMetalLayer *) METAL_ID(Z_OBJ_P(ZEND_THIS)))
 #define THIS_DRAWABLE ((id<CAMetalDrawable>) METAL_ID(Z_OBJ_P(ZEND_THIS)))
 
-static CGSize metal_cgsize_from(zend_object *object)
-{
-	zval width_rv, height_rv;
-	zval *width = zend_read_property(object->ce, object, "width", sizeof("width") - 1, 0, &width_rv);
-	zval *height = zend_read_property(object->ce, object, "height", sizeof("height") - 1, 0, &height_rv);
-	CGSize size = { 0, 0 };
-
-	if (Z_TYPE_P(width) == IS_DOUBLE) {
-		size.width = Z_DVAL_P(width);
-	} else if (Z_TYPE_P(width) == IS_LONG) {
-		size.width = (CGFloat) Z_LVAL_P(width);
-	}
-
-	if (Z_TYPE_P(height) == IS_DOUBLE) {
-		size.height = Z_DVAL_P(height);
-	} else if (Z_TYPE_P(height) == IS_LONG) {
-		size.height = (CGFloat) Z_LVAL_P(height);
-	}
-
-	return size;
-}
-
-static void metal_cgsize_new(zval *rv, CGSize size)
-{
-	object_init_ex(rv, metal_ce_CGSize);
-	zend_update_property_double(metal_ce_CGSize, Z_OBJ_P(rv), "width", sizeof("width") - 1, size.width);
-	zend_update_property_double(metal_ce_CGSize, Z_OBJ_P(rv), "height", sizeof("height") - 1, size.height);
-}
-
 void metal_register_CAMetalLayer(void)
 {
-	metal_ce_CGSize = register_class_CGSize();
-
 	metal_ce_CAMetalLayer = register_class_CAMetalLayer();
 	metal_object_setup(metal_ce_CAMetalLayer);
-	metal_map_native(metal_ce_CAMetalLayer, nil, [CAMetalLayer class]);
 
 	metal_ce_CAMetalDrawable = register_class_CAMetalDrawable();
 	metal_object_setup(metal_ce_CAMetalDrawable);
-	metal_map_native(metal_ce_CAMetalDrawable, @protocol(CAMetalDrawable), Nil);
 
 	metal_ce_CAEDRMetadata = register_class_CAEDRMetadata();
 	metal_object_setup(metal_ce_CAEDRMetadata);
-	metal_map_native(metal_ce_CAEDRMetadata, nil, [CAEDRMetadata class]);
-}
-
-ZEND_METHOD(CGSize, __construct)
-{
-	double width, height;
-
-	ZEND_PARSE_PARAMETERS_START(2, 2)
-		Z_PARAM_DOUBLE(width)
-		Z_PARAM_DOUBLE(height)
-	ZEND_PARSE_PARAMETERS_END();
-
-	zend_update_property_double(metal_ce_CGSize, Z_OBJ_P(ZEND_THIS), "width", sizeof("width") - 1, width);
-	zend_update_property_double(metal_ce_CGSize, Z_OBJ_P(ZEND_THIS), "height", sizeof("height") - 1, height);
 }
 
 METAL_REJECT_CONSTRUCT(CAMetalLayer)
@@ -146,7 +99,7 @@ ZEND_METHOD(CAMetalLayer, drawableSize)
 	ZEND_PARSE_PARAMETERS_NONE();
 
 	METAL_BEGIN
-		metal_cgsize_new(return_value, [THIS_LAYER drawableSize]);
+		metal_nssize_new(return_value, [THIS_LAYER drawableSize]);
 	METAL_END
 }
 
@@ -155,11 +108,11 @@ ZEND_METHOD(CAMetalLayer, setDrawableSize)
 	zend_object *size;
 
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_OBJ_OF_CLASS(size, metal_ce_CGSize)
+		Z_PARAM_OBJ_OF_CLASS(size, metal_ce_NSSize)
 	ZEND_PARSE_PARAMETERS_END();
 
 	METAL_BEGIN
-		[THIS_LAYER setDrawableSize:metal_cgsize_from(size)];
+		[THIS_LAYER setDrawableSize:metal_nssize_from(size)];
 	METAL_END
 }
 
@@ -223,10 +176,6 @@ ZEND_METHOD(CAMetalLayer, setMaximumDrawableCount)
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(count)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(count, 1)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		[THIS_LAYER setMaximumDrawableCount:(NSUInteger) count];
@@ -304,30 +253,20 @@ ZEND_METHOD(CAMetalLayer, colorspace)
 	ZEND_PARSE_PARAMETERS_NONE();
 
 	METAL_BEGIN
-		CGColorSpaceRef space = [THIS_LAYER colorspace];
-		if (space == NULL) {
-			RETURN_NULL();
-		}
-		RETURN_LONG((zend_long) (uintptr_t) space);
+		metal_cftype_new(return_value, [THIS_LAYER colorspace]);
 	METAL_END
 }
 
 ZEND_METHOD(CAMetalLayer, setColorspace)
 {
-	zend_long address;
-	bool is_null = true;
+	zend_object *space = NULL;
 
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_LONG_OR_NULL(address, is_null)
+		Z_PARAM_OBJ_OF_CLASS_OR_NULL(space, metal_ce_CGColorSpace)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!is_null && address == 0) {
-		zend_argument_value_error(1, "must not be a null address");
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
-		[THIS_LAYER setColorspace:is_null ? NULL : (CGColorSpaceRef) (uintptr_t) address];
+		[THIS_LAYER setColorspace:space != NULL ? (CGColorSpaceRef) metal_cftype_from(space) : NULL];
 	METAL_END
 }
 

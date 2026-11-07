@@ -10,23 +10,18 @@ void metal_register_MTLResource(void)
 {
 	metal_ce_MTLTextureDescriptor = register_class_MTLTextureDescriptor();
 	metal_object_setup(metal_ce_MTLTextureDescriptor);
-	metal_map_native(metal_ce_MTLTextureDescriptor, nil, [MTLTextureDescriptor class]);
 
 	metal_ce_MTLTexture = register_class_MTLTexture();
 	metal_object_setup(metal_ce_MTLTexture);
-	metal_map_native(metal_ce_MTLTexture, @protocol(MTLTexture), Nil);
 
 	metal_ce_MTLBuffer = register_class_MTLBuffer();
 	metal_object_setup(metal_ce_MTLBuffer);
-	metal_map_native(metal_ce_MTLBuffer, @protocol(MTLBuffer), Nil);
 
 	metal_ce_MTLSamplerDescriptor = register_class_MTLSamplerDescriptor();
 	metal_object_setup(metal_ce_MTLSamplerDescriptor);
-	metal_map_native(metal_ce_MTLSamplerDescriptor, nil, [MTLSamplerDescriptor class]);
 
 	metal_ce_MTLSamplerState = register_class_MTLSamplerState();
 	metal_object_setup(metal_ce_MTLSamplerState);
-	metal_map_native(metal_ce_MTLSamplerState, @protocol(MTLSamplerState), Nil);
 }
 
 static bool metal_region_span(zend_object *region, zend_long bytes_per_row, uint32_t row_arg, size_t *need)
@@ -72,10 +67,6 @@ ZEND_METHOD(MTLTextureDescriptor, texture2DDescriptorWithPixelFormatWidthHeightM
 		Z_PARAM_LONG(height)
 		Z_PARAM_BOOL(mipmapped)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(width, 2) || !metal_nonnegative(height, 3)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		metal_box(return_value,
@@ -133,9 +124,6 @@ ZEND_METHOD(MTLTextureDescriptor, new)
 		ZEND_PARSE_PARAMETERS_START(1, 1) \
 			Z_PARAM_LONG(value) \
 		ZEND_PARSE_PARAMETERS_END(); \
-		if (!metal_nonnegative(value, 1)) { \
-			RETURN_THROWS(); \
-		} \
 		METAL_BEGIN \
 			[THIS_TEXDESC sel:(NSUInteger) value]; \
 		METAL_END \
@@ -241,10 +229,6 @@ ZEND_METHOD(MTLTexture, replaceRegionMipmapLevelWithBytesBytesPerRow)
 		Z_PARAM_LONG(bytes_per_row)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(level, 2) || !metal_nonnegative(bytes_per_row, 4)) {
-		RETURN_THROWS();
-	}
-
 	if (!metal_region_span(region_obj, bytes_per_row, 4, &need)) {
 		RETURN_THROWS();
 	}
@@ -263,58 +247,27 @@ ZEND_METHOD(MTLTexture, replaceRegionMipmapLevelWithBytesBytesPerRow)
 
 ZEND_METHOD(MTLTexture, getBytesBytesPerRowFromRegionMipmapLevel)
 {
-	zend_long destination = 0, bytes_per_row, level;
-	bool destination_null;
+	zend_long destination, bytes_per_row, level;
 	zend_object *region_obj;
-	size_t need;
 
 	ZEND_PARSE_PARAMETERS_START(4, 4)
-		Z_PARAM_LONG_OR_NULL(destination, destination_null)
+		Z_PARAM_LONG(destination)
 		Z_PARAM_LONG(bytes_per_row)
 		Z_PARAM_OBJ_OF_CLASS(region_obj, metal_ce_MTLRegion)
 		Z_PARAM_LONG(level)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!destination_null && destination == 0) {
-		zend_argument_value_error(1, "must not be a null address");
+	if (!METAL_PROBE_OFF("metal-destination-null-address") && (destination == 0)) {
+		zend_argument_value_error(1, "must not be a null address"); /* binding:metal-destination-null-address */
 		RETURN_THROWS();
 	}
 
-	if (!metal_nonnegative(bytes_per_row, 2) || !metal_nonnegative(level, 4)) {
-		RETURN_THROWS();
-	}
-
-	if (!metal_region_span(region_obj, bytes_per_row, 2, &need)) {
-		RETURN_THROWS();
-	}
-
-	if (destination_null) {
-		zend_string *out = zend_string_alloc(need, 0);
-
-		@autoreleasepool {
-			@try {
-				[THIS_TEXTURE getBytes:ZSTR_VAL(out)
-					bytesPerRow:(NSUInteger) bytes_per_row
-					fromRegion:metal_region_from(region_obj)
-					mipmapLevel:(NSUInteger) level];
-				ZSTR_VAL(out)[need] = '\0';
-				RETURN_NEW_STR(out);
-			} @catch (NSException *metal_exception) {
-				zend_string_release(out);
-				metal_throw_nsexception(metal_exception);
-				RETURN_THROWS();
-			}
-		}
-
-		return;
-	}
-
+	/* The address is trusted to have room for bytesPerRow × the region's height. */
 	METAL_BEGIN
 		[THIS_TEXTURE getBytes:(void *) (uintptr_t) destination
 			bytesPerRow:(NSUInteger) bytes_per_row
 			fromRegion:metal_region_from(region_obj)
 			mipmapLevel:(NSUInteger) level];
-		RETURN_NULL();
 	METAL_END
 }
 

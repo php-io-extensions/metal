@@ -2,8 +2,8 @@
 
 /** @generate-class-entries */
 
-/** A Metal call that failed: an NSError's localizedDescription and code, or an NSException's "name: reason". */
-final class MetalException extends Exception {}
+/** An NSException Metal or Core Animation raised during a call: the message is "name: reason". */
+final class NSException extends Exception {}
 
 /** MTLCreateSystemDefaultDevice(): the Mac's GPU, null when it has none. */
 function MTLCreateSystemDefaultDevice(): ?MTLDevice {}

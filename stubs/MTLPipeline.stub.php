@@ -13,8 +13,8 @@ final class MTLCompileOptions
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLCompileOptions. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -28,8 +28,8 @@ final class MTLLibrary
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLLibrary. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -43,8 +43,8 @@ final class MTLFunction
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLFunction. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -62,8 +62,8 @@ final class MTLVertexDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLVertexDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -77,8 +77,8 @@ final class MTLVertexAttributeDescriptorArray
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLVertexAttributeDescriptorArray. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -92,8 +92,8 @@ final class MTLVertexBufferLayoutDescriptorArray
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLVertexBufferLayoutDescriptorArray. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -117,8 +117,8 @@ final class MTLVertexAttributeDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLVertexAttributeDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -138,8 +138,8 @@ final class MTLVertexBufferLayoutDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLVertexBufferLayoutDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -179,8 +179,8 @@ final class MTLRenderPipelineDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPipelineDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -194,8 +194,8 @@ final class MTLRenderPipelineColorAttachmentDescriptorArray
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPipelineColorAttachmentDescriptorArray. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -213,7 +213,7 @@ final class MTLRenderPipelineColorAttachmentDescriptor
 
     public function setWriteMask(MTLColorWriteMask|int $writeMask): void {}
 
-    public function blendingEnabled(): bool {}
+    public function isBlendingEnabled(): bool {}
 
     public function setBlendingEnabled(bool $blendingEnabled): void {}
 
@@ -243,8 +243,8 @@ final class MTLRenderPipelineColorAttachmentDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPipelineColorAttachmentDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -256,8 +256,8 @@ final class MTLRenderPipelineState
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLRenderPipelineState. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -295,8 +295,8 @@ final class MTLStencilDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLStencilDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -312,7 +312,7 @@ final class MTLDepthStencilDescriptor
 
     public function setDepthCompareFunction(MTLCompareFunction $function): void {}
 
-    public function depthWriteEnabled(): bool {}
+    public function isDepthWriteEnabled(): bool {}
 
     public function setDepthWriteEnabled(bool $depthWriteEnabled): void {}
 
@@ -326,8 +326,8 @@ final class MTLDepthStencilDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLDepthStencilDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -339,6 +339,6 @@ final class MTLDepthStencilState
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLDepthStencilState. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }

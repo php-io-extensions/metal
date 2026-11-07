@@ -13,8 +13,8 @@ final class MTLCommandQueue
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLCommandQueue. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -42,13 +42,13 @@ final class MTLCommandBuffer
 
     public function status(): MTLCommandBufferStatus {}
 
-    /** The command buffer's NSError localizedDescription, or null. */
-    public function error(): ?string {}
+    /** The command buffer's NSError (ext-appkit's), or null. */
+    public function error(): ?NSError {}
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLCommandBuffer. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -68,8 +68,8 @@ final class MTLRenderPassDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPassDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -83,8 +83,8 @@ final class MTLRenderPassColorAttachmentDescriptorArray
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPassColorAttachmentDescriptorArray. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -116,8 +116,8 @@ final class MTLRenderPassColorAttachmentDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPassColorAttachmentDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -149,8 +149,8 @@ final class MTLRenderPassDepthAttachmentDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPassDepthAttachmentDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -182,8 +182,8 @@ final class MTLRenderPassStencilAttachmentDescriptor
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be an MTLRenderPassStencilAttachmentDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -227,8 +227,8 @@ final class MTLRenderCommandEncoder
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLRenderCommandEncoder. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -250,6 +250,6 @@ final class MTLBlitCommandEncoder
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to MTLBlitCommandEncoder. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }

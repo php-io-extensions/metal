@@ -3,11 +3,22 @@ PHP_ARG_ENABLE([metal],
   [AS_HELP_STRING([--enable-metal], [Enable Metal bindings])],
   [no])
 
+PHP_ARG_ENABLE([metal-probes],
+  [whether to build the metal probe switch],
+  [AS_HELP_STRING([--enable-metal-probes],
+    [Build the METAL_PROBE_OFF switch that tests/Probes drives: env METAL_PROBE_OFF=<site id> turns that kept refusal off. Never for a release build])],
+  [no],
+  [no])
+
 if test "$PHP_METAL" != "no"; then
   case $host_os in
     darwin*) ;;
     *) AC_MSG_ERROR([metal binds Metal, which only macOS provides]) ;;
   esac
+
+  if test "$PHP_METAL_PROBES" != "no"; then
+    AC_DEFINE([METAL_PROBES], [1], [Kept refusal sites can be turned off through env METAL_PROBE_OFF])
+  fi
 
   METAL_SOURCES="src/metal.m src/runtime.m src/MTLDevice.m src/MTLTypes.m src/MTLResource.m src/MTLPipeline.m src/MTLCommand.m src/CAMetalLayer.m"
 

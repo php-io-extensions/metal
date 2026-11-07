@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 3f0ef6a65d38a08ae538abb6b3fde8963f9d4fb3 */
+ * Stub hash: 4cb838094f343deb6b43b23964fcd133f49f754d */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_MTLCommandQueue___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -10,7 +10,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandQueue_pointer, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandQueue_fromPointer, 0, 1, IS_STATIC, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandQueue_fromPointer, 0, 1, IS_STATIC, 1)
 	ZEND_ARG_TYPE_INFO(0, pointer, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
@@ -45,7 +45,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLCommandBuffer_status, 0, 0, MTLCommandBufferStatus, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCommandBuffer_error, 0, 0, IS_STRING, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_MTLCommandBuffer_error, 0, 0, NSError, 1)
 ZEND_END_ARG_INFO()
 
 #define arginfo_class_MTLCommandBuffer_pointer arginfo_class_MTLCommandQueue_pointer

@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # ext-metal
 
-1:1 PHP bindings of Metal and CAMetalLayer. Version 0.11.0. macOS only.
+1:1 PHP bindings of Metal and CAMetalLayer. Version 0.11.1. macOS only.
 
 # API
 
@@ -13,7 +13,7 @@ okf_version: "0.2"
 # Architecture
 
 * [Object model](architecture/object-model.md) — Boxing by the declared type, one identity table per thread, retain rules, `fromPointer()`.
-* [Errors](architecture/errors.md) — `MetalException` from `NSError**` and `NSException`.
+* [Errors](architecture/errors.md) — `NSError` by reference, the PHP `NSException`, the kept refusals.
 
 # Runbooks
 

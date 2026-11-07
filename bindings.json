@@ -1,0 +1,22 @@
+{
+  "symbols": {},
+  "glue": {
+    "*": {"methods": ["pointer", "fromPointer"], "forwards": "address hand-off on every handle class"},
+    "NSException": {"methods": []}
+  },
+  "helpers": {
+    "marshal": ["metal_resolve_bytes", "metal_shader_bytes", "metal_region_span", "metal_size_from", "metal_nssize_new", "metal_cftype_from", "metal_nserror_new"],
+    "translate": ["metal_throw_nsexception"]
+  },
+  "sites": {
+    "metal-null-address": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/NullAddressTest.php"},
+    "metal-destination-null-address": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/NullAddressTest.php"},
+    "metal-bytes-length": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/LengthTest.php"},
+    "metal-shader-bytes-length": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/LengthTest.php"},
+    "metal-vertex-buffer-index": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/EncoderIndexTest.php"},
+    "metal-shader-bytes-index": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/EncoderIndexTest.php"},
+    "metal-fragment-texture-index": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/EncoderIndexTest.php"},
+    "metal-fragment-sampler-index": {"kind": "refusal", "outcome": 1, "probe": "tests/Probes/EncoderIndexTest.php"}
+  },
+  "typemap": {}
+}

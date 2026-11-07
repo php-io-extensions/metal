@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: b3b28fdeee5224d72c3fdb31e19f2bf99940c34e */
+ * Stub hash: 1e0224831345bb8b019e0a7360b3f0d4560e5276 */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_MTLTextureDescriptor___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -63,7 +63,7 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_MTLTextureDescriptor_pointer arginfo_class_MTLTextureDescriptor_width
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLTextureDescriptor_fromPointer, 0, 1, IS_STATIC, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLTextureDescriptor_fromPointer, 0, 1, IS_STATIC, 1)
 	ZEND_ARG_TYPE_INFO(0, pointer, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
@@ -86,8 +86,8 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLTexture_replaceRegionMi
 	ZEND_ARG_TYPE_INFO(0, bytesPerRow, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLTexture_getBytesBytesPerRowFromRegionMipmapLevel, 0, 4, IS_STRING, 1)
-	ZEND_ARG_TYPE_INFO(0, pixelBytes, IS_LONG, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLTexture_getBytesBytesPerRowFromRegionMipmapLevel, 0, 4, IS_VOID, 0)
+	ZEND_ARG_TYPE_INFO(0, pixelBytes, IS_LONG, 0)
 	ZEND_ARG_TYPE_INFO(0, bytesPerRow, IS_LONG, 0)
 	ZEND_ARG_OBJ_INFO(0, region, MTLRegion, 0)
 	ZEND_ARG_TYPE_INFO(0, mipmapLevel, IS_LONG, 0)

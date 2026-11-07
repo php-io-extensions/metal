@@ -9,9 +9,13 @@ it('compiles MSL at runtime and finds its functions', function (): void {
         ->and($library->newFunctionWithName('missing'))->toBeNull();
 });
 
-it('throws the compiler\'s message for MSL that does not compile', function (): void {
-    device()->newLibraryWithSourceOptionsError('vertex float4 broken(', null);
-})->throws(MetalException::class, 'error');
+it('returns null and hands back the compiler\'s NSError for MSL that does not compile', function (): void {
+    $library = device()->newLibraryWithSourceOptionsError('vertex float4 broken(', null, $error);
+
+    expect($library)->toBeNull()
+        ->and($error)->toBeInstanceOf(NSError::class)
+        ->and($error->localizedDescription())->toContain('error');
+});
 
 it('builds multisampled pipelines with a stencil attachment, colour on and off', function (): void {
     expect(flatPipeline(4, MTLColorWriteMask::NONE))->toBeInstanceOf(MTLRenderPipelineState::class)
@@ -19,12 +23,12 @@ it('builds multisampled pipelines with a stencil attachment, colour on and off',
         ->and(flatPipeline(1, MTLColorWriteMask::ALL, null))->toBeInstanceOf(MTLRenderPipelineState::class);
 });
 
-it('throws for a pipeline Metal rejects', function (): void {
+it('passes on the NSException Metal raises for a descriptor without a vertex function', function (): void {
     $descriptor = MTLRenderPipelineDescriptor::new();
     $descriptor->colorAttachments()->objectAtIndexedSubscript(0)->setPixelFormat(MTLPixelFormat::RGBA8_UNORM);
 
-    device()->newRenderPipelineStateWithDescriptorError($descriptor);
-})->throws(MetalException::class);
+    device()->newRenderPipelineStateWithDescriptorError($descriptor, $error);
+})->throws(NSException::class, 'vertexFunction');
 
 it('keeps a descriptor\'s sub-object alive after the descriptor goes', function (): void {
     $descriptor = MTLRenderPipelineDescriptor::new();

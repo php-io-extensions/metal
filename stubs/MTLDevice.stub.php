@@ -14,8 +14,8 @@ final class MTLDevice
     /** The object's address, for handing it to another extension. */
     public function pointer(): int {}
 
-    /** The MTLDevice at $pointer (another extension's pointer()). The address is trusted to hold an object; it must conform to MTLDevice. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 
     public function newTextureWithDescriptor(MTLTextureDescriptor $descriptor): ?MTLTexture {}
 
@@ -28,11 +28,10 @@ final class MTLDevice
 
     public function supportsTextureSampleCount(int $sampleCount): bool {}
 
-    /** Throws MetalException with the compiler log when $source does not compile. A warning-only NSError is returned, not thrown. */
-    public function newLibraryWithSourceOptionsError(string $source, ?MTLCompileOptions $options): MTLLibrary {}
+    /** $error receives the NSError (ext-appkit's) Metal reports: the compiler log, also with a library when it only warns. */
+    public function newLibraryWithSourceOptionsError(string $source, ?MTLCompileOptions $options, ?NSError &$error = null): ?MTLLibrary {}
 
-    /** Throws MetalException when $descriptor is rejected. */
-    public function newRenderPipelineStateWithDescriptorError(MTLRenderPipelineDescriptor $descriptor): MTLRenderPipelineState {}
+    public function newRenderPipelineStateWithDescriptorError(MTLRenderPipelineDescriptor $descriptor, ?NSError &$error = null): ?MTLRenderPipelineState {}
 
     public function newDepthStencilStateWithDescriptor(MTLDepthStencilDescriptor $descriptor): ?MTLDepthStencilState {}
 

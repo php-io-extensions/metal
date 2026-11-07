@@ -69,10 +69,10 @@ it('fills a triangle by stencil-then-cover into a 4x target, resolves, and reads
     $commands->waitUntilCompleted();
 
     $whole = new MTLRegion(new MTLOrigin(0, 0, 0), new MTLSize(8, 8, 1));
-    $pixels = $copy->getBytesBytesPerRowFromRegionMipmapLevel(null, 32, $whole, 0);
+    $pixels = textureBytes($copy, 32, $whole, 0);
 
     expect($commands->status())->toBe(MTLCommandBufferStatus::COMPLETED)
-        ->and($pixels)->toBe($resolved->getBytesBytesPerRowFromRegionMipmapLevel(null, 32, $whole, 0))
+        ->and($pixels)->toBe(textureBytes($resolved, 32, $whole, 0))
         // Texture row 0 is the top. (0,0) is the triangle's top-left vertex: on this
         // M1 a 4x resolve covers 2 of 4 samples (800000ff). The pixel one row inside is solid.
         ->and(pixelAt($pixels, 1, 6))->toBe('ff0000ff')

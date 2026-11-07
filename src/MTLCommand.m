@@ -3,34 +3,34 @@
 
 #define THIS_ID METAL_ID(Z_OBJ_P(ZEND_THIS))
 
-static void metal_setup_class(zend_class_entry **slot, zend_class_entry *(*register_fn)(void), Protocol *protocol, Class cls)
+static void metal_setup_class(zend_class_entry **slot, zend_class_entry *(*register_fn)(void))
 {
 	*slot = register_fn();
 	metal_object_setup(*slot);
-	metal_map_native(*slot, protocol, cls);
 }
 
 void metal_register_MTLCommand(void)
 {
-	metal_setup_class(&metal_ce_MTLCommandQueue, register_class_MTLCommandQueue, @protocol(MTLCommandQueue), Nil);
-	metal_setup_class(&metal_ce_MTLCommandBuffer, register_class_MTLCommandBuffer, @protocol(MTLCommandBuffer), Nil);
-	metal_setup_class(&metal_ce_MTLRenderPassDescriptor, register_class_MTLRenderPassDescriptor, nil, [MTLRenderPassDescriptor class]);
-	metal_setup_class(&metal_ce_MTLRenderPassColorAttachmentDescriptorArray, register_class_MTLRenderPassColorAttachmentDescriptorArray, nil, [MTLRenderPassColorAttachmentDescriptorArray class]);
-	metal_setup_class(&metal_ce_MTLRenderPassColorAttachmentDescriptor, register_class_MTLRenderPassColorAttachmentDescriptor, nil, [MTLRenderPassColorAttachmentDescriptor class]);
-	metal_setup_class(&metal_ce_MTLRenderPassDepthAttachmentDescriptor, register_class_MTLRenderPassDepthAttachmentDescriptor, nil, [MTLRenderPassDepthAttachmentDescriptor class]);
-	metal_setup_class(&metal_ce_MTLRenderPassStencilAttachmentDescriptor, register_class_MTLRenderPassStencilAttachmentDescriptor, nil, [MTLRenderPassStencilAttachmentDescriptor class]);
-	metal_setup_class(&metal_ce_MTLRenderCommandEncoder, register_class_MTLRenderCommandEncoder, @protocol(MTLRenderCommandEncoder), Nil);
-	metal_setup_class(&metal_ce_MTLBlitCommandEncoder, register_class_MTLBlitCommandEncoder, @protocol(MTLBlitCommandEncoder), Nil);
+	metal_setup_class(&metal_ce_MTLCommandQueue, register_class_MTLCommandQueue);
+	metal_setup_class(&metal_ce_MTLCommandBuffer, register_class_MTLCommandBuffer);
+	metal_setup_class(&metal_ce_MTLRenderPassDescriptor, register_class_MTLRenderPassDescriptor);
+	metal_setup_class(&metal_ce_MTLRenderPassColorAttachmentDescriptorArray, register_class_MTLRenderPassColorAttachmentDescriptorArray);
+	metal_setup_class(&metal_ce_MTLRenderPassColorAttachmentDescriptor, register_class_MTLRenderPassColorAttachmentDescriptor);
+	metal_setup_class(&metal_ce_MTLRenderPassDepthAttachmentDescriptor, register_class_MTLRenderPassDepthAttachmentDescriptor);
+	metal_setup_class(&metal_ce_MTLRenderPassStencilAttachmentDescriptor, register_class_MTLRenderPassStencilAttachmentDescriptor);
+	metal_setup_class(&metal_ce_MTLRenderCommandEncoder, register_class_MTLRenderCommandEncoder);
+	metal_setup_class(&metal_ce_MTLBlitCommandEncoder, register_class_MTLBlitCommandEncoder);
 }
 
 static bool metal_shader_bytes(zend_string *bytes, zend_long length, zend_long index, const void **out)
 {
-	if (!metal_nonnegative(length, 2) || !metal_nonnegative(index, 3)) {
+	if (!METAL_PROBE_OFF("metal-shader-bytes-length") && ((size_t) length > ZSTR_LEN(bytes))) {
+		zend_argument_value_error(1, "must hold %zu bytes, %zu given", (size_t) length, ZSTR_LEN(bytes)); /* binding:metal-shader-bytes-length */
 		return false;
 	}
 
-	if ((size_t) length > ZSTR_LEN(bytes)) {
-		zend_argument_value_error(1, "must hold %zu bytes, %zu given", (size_t) length, ZSTR_LEN(bytes));
+	if (!METAL_PROBE_OFF("metal-shader-bytes-index") && (index < 0)) {
+		zend_argument_value_error(3, "must be greater than or equal to 0"); /* binding:metal-shader-bytes-index */
 		return false;
 	}
 
@@ -222,14 +222,7 @@ ZEND_METHOD(MTLCommandBuffer, error)
 	ZEND_PARSE_PARAMETERS_NONE();
 
 	METAL_BEGIN
-		NSError *error = [(id<MTLCommandBuffer>) THIS_ID error];
-
-		if (error == nil) {
-			RETURN_NULL();
-		}
-
-		const char *message = [[error localizedDescription] UTF8String];
-		RETURN_STRING(message != NULL ? message : "");
+		metal_nserror_new(return_value, [(id<MTLCommandBuffer>) THIS_ID error]);
 	METAL_END
 }
 
@@ -282,10 +275,6 @@ ZEND_METHOD(MTLRenderPassColorAttachmentDescriptorArray, objectAtIndexedSubscrip
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(index)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(index, 1)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		metal_box(return_value,
@@ -367,10 +356,6 @@ ZEND_METHOD(MTLRenderPassStencilAttachmentDescriptor, setClearStencil)
 		Z_PARAM_LONG(value)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(value, 1)) {
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
 		[(MTLRenderPassStencilAttachmentDescriptor *) THIS_ID setClearStencil:(uint32_t) value];
 	METAL_END
@@ -412,10 +397,6 @@ ZEND_METHOD(MTLRenderCommandEncoder, setStencilReferenceValue)
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(value)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(value, 1)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		[(id<MTLRenderCommandEncoder>) THIS_ID setStencilReferenceValue:(uint32_t) value];
@@ -459,7 +440,8 @@ ZEND_METHOD(MTLRenderCommandEncoder, setVertexBufferOffsetAtIndex)
 		Z_PARAM_LONG(index)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(offset, 2) || !metal_nonnegative(index, 3)) {
+	if (!METAL_PROBE_OFF("metal-vertex-buffer-index") && (index < 0)) {
+		zend_argument_value_error(3, "must be greater than or equal to 0"); /* binding:metal-vertex-buffer-index */
 		RETURN_THROWS();
 	}
 
@@ -522,7 +504,8 @@ ZEND_METHOD(MTLRenderCommandEncoder, setFragmentTextureAtIndex)
 		Z_PARAM_LONG(index)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(index, 2)) {
+	if (!METAL_PROBE_OFF("metal-fragment-texture-index") && (index < 0)) {
+		zend_argument_value_error(2, "must be greater than or equal to 0"); /* binding:metal-fragment-texture-index */
 		RETURN_THROWS();
 	}
 
@@ -541,7 +524,8 @@ ZEND_METHOD(MTLRenderCommandEncoder, setFragmentSamplerStateAtIndex)
 		Z_PARAM_LONG(index)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(index, 2)) {
+	if (!METAL_PROBE_OFF("metal-fragment-sampler-index") && (index < 0)) {
+		zend_argument_value_error(2, "must be greater than or equal to 0"); /* binding:metal-fragment-sampler-index */
 		RETURN_THROWS();
 	}
 
@@ -587,10 +571,6 @@ ZEND_METHOD(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCount)
 		Z_PARAM_LONG(count)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(start, 2) || !metal_nonnegative(count, 3)) {
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
 		[(id<MTLRenderCommandEncoder>) THIS_ID drawPrimitives:(MTLPrimitiveType) metal_enum_param(primitive, 0)
 			vertexStart:(NSUInteger) start
@@ -610,10 +590,6 @@ ZEND_METHOD(MTLRenderCommandEncoder, drawIndexedPrimitivesIndexCountIndexTypeInd
 		Z_PARAM_OBJ_OF_CLASS(buffer, metal_ce_MTLBuffer)
 		Z_PARAM_LONG(offset)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(count, 2) || !metal_nonnegative(offset, 5)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		[(id<MTLRenderCommandEncoder>) THIS_ID drawIndexedPrimitives:(MTLPrimitiveType) metal_enum_param(primitive, 0)
@@ -653,10 +629,6 @@ ZEND_METHOD(MTLBlitCommandEncoder, copyFromTextureSourceSliceSourceLevelSourceOr
 		Z_PARAM_OBJ_OF_CLASS(destination_origin, metal_ce_MTLOrigin)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(source_slice, 2) || !metal_nonnegative(source_level, 3) || !metal_nonnegative(destination_slice, 7) || !metal_nonnegative(destination_level, 8)) {
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
 		[(id<MTLBlitCommandEncoder>) THIS_ID copyFromTexture:(id<MTLTexture>) METAL_ID(source)
 			sourceSlice:(NSUInteger) source_slice
@@ -687,10 +659,6 @@ ZEND_METHOD(MTLBlitCommandEncoder, copyFromTextureSourceSliceSourceLevelSourceOr
 		Z_PARAM_LONG(bytes_per_image)
 	ZEND_PARSE_PARAMETERS_END();
 
-	if (!metal_nonnegative(slice, 2) || !metal_nonnegative(level, 3) || !metal_nonnegative(offset, 7) || !metal_nonnegative(bytes_per_row, 8) || !metal_nonnegative(bytes_per_image, 9)) {
-		RETURN_THROWS();
-	}
-
 	METAL_BEGIN
 		[(id<MTLBlitCommandEncoder>) THIS_ID copyFromTexture:(id<MTLTexture>) METAL_ID(source)
 			sourceSlice:(NSUInteger) slice
@@ -720,10 +688,6 @@ ZEND_METHOD(MTLBlitCommandEncoder, copyFromBufferSourceOffsetSourceBytesPerRowSo
 		Z_PARAM_LONG(level)
 		Z_PARAM_OBJ_OF_CLASS(origin, metal_ce_MTLOrigin)
 	ZEND_PARSE_PARAMETERS_END();
-
-	if (!metal_nonnegative(offset, 2) || !metal_nonnegative(bytes_per_row, 3) || !metal_nonnegative(bytes_per_image, 4) || !metal_nonnegative(slice, 7) || !metal_nonnegative(level, 8)) {
-		RETURN_THROWS();
-	}
 
 	METAL_BEGIN
 		[(id<MTLBlitCommandEncoder>) THIS_ID copyFromBuffer:(id<MTLBuffer>) METAL_ID(buffer)

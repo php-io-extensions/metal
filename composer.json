@@ -16,10 +16,12 @@
         }
     ],
     "require": {
-        "php": ">=8.4"
+        "php": ">=8.4",
+        "ext-appkit": "^0.11.0"
     },
     "require-dev": {
-        "pestphp/pest": "^4.0"
+        "pestphp/pest": "^4.0",
+        "ext-fb": "*"
     },
     "config": {
         "allow-plugins": {

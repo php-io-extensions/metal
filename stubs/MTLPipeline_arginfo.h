@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: d0c891c09f506c5f38aeaef798c4b7e6e1ef589b */
+ * Stub hash: 5c244ff87ffa14c36cf4b858d0b3f795285c74cb */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_MTLCompileOptions___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -10,7 +10,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCompileOptions_pointer, 0, 0, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCompileOptions_fromPointer, 0, 1, IS_STATIC, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLCompileOptions_fromPointer, 0, 1, IS_STATIC, 1)
 	ZEND_ARG_TYPE_INFO(0, pointer, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
@@ -182,7 +182,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPipelineColorAtta
 	ZEND_ARG_OBJ_TYPE_MASK(0, writeMask, MTLColorWriteMask, MAY_BE_LONG, NULL)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_blendingEnabled, 0, 0, _IS_BOOL, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_isBlendingEnabled, 0, 0, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_setBlendingEnabled, 0, 1, IS_VOID, 0)
@@ -281,7 +281,7 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_MTLDepthStencilDescriptor_setDepthCompareFunction arginfo_class_MTLStencilDescriptor_setStencilCompareFunction
 
-#define arginfo_class_MTLDepthStencilDescriptor_depthWriteEnabled arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_blendingEnabled
+#define arginfo_class_MTLDepthStencilDescriptor_isDepthWriteEnabled arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_isBlendingEnabled
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLDepthStencilDescriptor_setDepthWriteEnabled, 0, 1, IS_VOID, 0)
 	ZEND_ARG_TYPE_INFO(0, depthWriteEnabled, _IS_BOOL, 0)
@@ -376,7 +376,7 @@ ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, pixelFormat);
 ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, setPixelFormat);
 ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, writeMask);
 ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, setWriteMask);
-ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, blendingEnabled);
+ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, isBlendingEnabled);
 ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, setBlendingEnabled);
 ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, rgbBlendOperation);
 ZEND_METHOD(MTLRenderPipelineColorAttachmentDescriptor, setRgbBlendOperation);
@@ -415,7 +415,7 @@ ZEND_METHOD(MTLDepthStencilDescriptor, __construct);
 ZEND_METHOD(MTLDepthStencilDescriptor, new);
 ZEND_METHOD(MTLDepthStencilDescriptor, depthCompareFunction);
 ZEND_METHOD(MTLDepthStencilDescriptor, setDepthCompareFunction);
-ZEND_METHOD(MTLDepthStencilDescriptor, depthWriteEnabled);
+ZEND_METHOD(MTLDepthStencilDescriptor, isDepthWriteEnabled);
 ZEND_METHOD(MTLDepthStencilDescriptor, setDepthWriteEnabled);
 ZEND_METHOD(MTLDepthStencilDescriptor, frontFaceStencil);
 ZEND_METHOD(MTLDepthStencilDescriptor, setFrontFaceStencil);
@@ -536,7 +536,7 @@ static const zend_function_entry class_MTLRenderPipelineColorAttachmentDescripto
 	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, setPixelFormat, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_setPixelFormat, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, writeMask, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_writeMask, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, setWriteMask, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_setWriteMask, ZEND_ACC_PUBLIC)
-	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, blendingEnabled, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_blendingEnabled, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, isBlendingEnabled, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_isBlendingEnabled, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, setBlendingEnabled, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_setBlendingEnabled, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, rgbBlendOperation, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_rgbBlendOperation, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderPipelineColorAttachmentDescriptor, setRgbBlendOperation, arginfo_class_MTLRenderPipelineColorAttachmentDescriptor_setRgbBlendOperation, ZEND_ACC_PUBLIC)
@@ -587,7 +587,7 @@ static const zend_function_entry class_MTLDepthStencilDescriptor_methods[] = {
 	ZEND_ME(MTLDepthStencilDescriptor, new, arginfo_class_MTLDepthStencilDescriptor_new, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	ZEND_ME(MTLDepthStencilDescriptor, depthCompareFunction, arginfo_class_MTLDepthStencilDescriptor_depthCompareFunction, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLDepthStencilDescriptor, setDepthCompareFunction, arginfo_class_MTLDepthStencilDescriptor_setDepthCompareFunction, ZEND_ACC_PUBLIC)
-	ZEND_ME(MTLDepthStencilDescriptor, depthWriteEnabled, arginfo_class_MTLDepthStencilDescriptor_depthWriteEnabled, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLDepthStencilDescriptor, isDepthWriteEnabled, arginfo_class_MTLDepthStencilDescriptor_isDepthWriteEnabled, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLDepthStencilDescriptor, setDepthWriteEnabled, arginfo_class_MTLDepthStencilDescriptor_setDepthWriteEnabled, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLDepthStencilDescriptor, frontFaceStencil, arginfo_class_MTLDepthStencilDescriptor_frontFaceStencil, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLDepthStencilDescriptor, setFrontFaceStencil, arginfo_class_MTLDepthStencilDescriptor_setFrontFaceStencil, ZEND_ACC_PUBLIC)

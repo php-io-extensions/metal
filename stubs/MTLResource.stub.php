@@ -44,8 +44,8 @@ final class MTLTextureDescriptor
     /** The object's address, for handing it to another extension. */
     public function pointer(): int {}
 
-    /** The MTLTextureDescriptor at $pointer. The address is trusted to hold an object; it must be an MTLTextureDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -71,18 +71,14 @@ final class MTLTexture
      */
     public function replaceRegionMipmapLevelWithBytesBytesPerRow(MTLRegion $region, int $mipmapLevel, string|int $bytes, int $bytesPerRow): void {}
 
-    /**
-     * Null reads the region into a string of bytesPerRow × height bytes.
-     * An address is trusted to have room for that many bytes, and the method returns null.
-     * 0 is refused.
-     */
-    public function getBytesBytesPerRowFromRegionMipmapLevel(?int $pixelBytes, int $bytesPerRow, MTLRegion $region, int $mipmapLevel): ?string {}
+    /** $pixelBytes is an address trusted to have room for bytesPerRow × the region's height. 0 is refused. */
+    public function getBytesBytesPerRowFromRegionMipmapLevel(int $pixelBytes, int $bytesPerRow, MTLRegion $region, int $mipmapLevel): void {}
 
     /** The object's address, for handing it to another extension. */
     public function pointer(): int {}
 
-    /** The MTLTexture at $pointer. The address is trusted to hold an object; it must conform to MTLTexture. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -100,8 +96,8 @@ final class MTLBuffer
     /** The object's address, for handing it to another extension. */
     public function pointer(): int {}
 
-    /** The MTLBuffer at $pointer. The address is trusted to hold an object; it must conform to MTLBuffer. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -132,8 +128,8 @@ final class MTLSamplerDescriptor
     /** The object's address, for handing it to another extension. */
     public function pointer(): int {}
 
-    /** The MTLSamplerDescriptor at $pointer. The address is trusted to hold an object; it must be an MTLSamplerDescriptor. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -146,6 +142,6 @@ final class MTLSamplerState
     /** The object's address, for handing it to another extension. */
     public function pointer(): int {}
 
-    /** The MTLSamplerState at $pointer. The address is trusted to hold an object; it must conform to MTLSamplerState. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }

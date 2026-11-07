@@ -16,8 +16,8 @@ it('writes bytes into a texture and reads them back', function (): void {
 
     $texture->replaceRegionMipmapLevelWithBytesBytesPerRow($region, 0, $bytes, 16);
 
-    expect($texture->getBytesBytesPerRowFromRegionMipmapLevel(null, 16, $region, 0))->toBe($bytes)
-        ->and($texture->getBytesBytesPerRowFromRegionMipmapLevel(null, 4, new MTLRegion(new MTLOrigin(2, 1, 0), new MTLSize(1, 1, 1)), 0))->toBe(substr($bytes, 24, 4));
+    expect(textureBytes($texture, 16, $region, 0))->toBe($bytes)
+        ->and(textureBytes($texture, 4, new MTLRegion(new MTLOrigin(2, 1, 0), new MTLSize(1, 1, 1)), 0))->toBe(substr($bytes, 24, 4));
 });
 
 it('writes from an address and reads into one', function (): void {
@@ -29,9 +29,10 @@ it('writes from an address and reads into one', function (): void {
 
     $texture->replaceRegionMipmapLevelWithBytesBytesPerRow($region, 0, $source->pointer(), 16);
 
-    expect($texture->getBytesBytesPerRowFromRegionMipmapLevel($target->pointer(), 16, $region, 0))->toBeNull()
-        ->and($target->bytes())->toBe($source->bytes());
-})->skip(! class_exists(FbBuffer::class), 'needs ext-fb for native addresses');
+    $texture->getBytesBytesPerRowFromRegionMipmapLevel($target->pointer(), 16, $region, 0);
+
+    expect($target->bytes())->toBe($source->bytes());
+});
 
 it('refuses bytes that do not hold the region, and a null address', function (Closure $call, string $message): void {
     expect($call)->toThrow(ValueError::class, $message);

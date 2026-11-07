@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 6f93ffa854edd9d7f41853e8ed0323bcb538e56b */
+ * Stub hash: a84adb2c6d9142407bef2a50398fbafb53938324 */
 
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_MTLCreateSystemDefaultDevice, 0, 0, MTLDevice, 1)
 ZEND_END_ARG_INFO()
@@ -11,11 +11,11 @@ static const zend_function_entry ext_functions[] = {
 	ZEND_FE_END
 };
 
-static zend_class_entry *register_class_MetalException(zend_class_entry *class_entry_Exception)
+static zend_class_entry *register_class_NSException(zend_class_entry *class_entry_Exception)
 {
 	zend_class_entry ce, *class_entry;
 
-	INIT_CLASS_ENTRY(ce, "MetalException", NULL);
+	INIT_CLASS_ENTRY(ce, "NSException", NULL);
 	class_entry = zend_register_internal_class_with_flags(&ce, class_entry_Exception, ZEND_ACC_FINAL);
 
 	return class_entry;

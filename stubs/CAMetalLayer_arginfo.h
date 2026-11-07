@@ -1,10 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 111ce10035ad7a19ba6ecd1eaacd18a1e825597c */
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_class_CGSize___construct, 0, 0, 2)
-	ZEND_ARG_TYPE_INFO(0, width, IS_DOUBLE, 0)
-	ZEND_ARG_TYPE_INFO(0, height, IS_DOUBLE, 0)
-ZEND_END_ARG_INFO()
+ * Stub hash: 3515d2d551a3944e9bab39b5739f554ababbda94 */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_CAMetalLayer___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -33,11 +28,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CAMetalLayer_setFramebuffe
 	ZEND_ARG_TYPE_INFO(0, framebufferOnly, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_CAMetalLayer_drawableSize, 0, 0, CGSize, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_CAMetalLayer_drawableSize, 0, 0, NSSize, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CAMetalLayer_setDrawableSize, 0, 1, IS_VOID, 0)
-	ZEND_ARG_OBJ_INFO(0, drawableSize, CGSize, 0)
+	ZEND_ARG_OBJ_INFO(0, drawableSize, NSSize, 0)
 ZEND_END_ARG_INFO()
 
 #define arginfo_class_CAMetalLayer_displaySyncEnabled arginfo_class_CAMetalLayer_framebufferOnly
@@ -81,11 +76,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CAMetalLayer_setWantsExten
 	ZEND_ARG_TYPE_INFO(0, wantsExtendedDynamicRangeContent, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CAMetalLayer_colorspace, 0, 0, IS_LONG, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_CAMetalLayer_colorspace, 0, 0, CGColorSpace, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CAMetalLayer_setColorspace, 0, 1, IS_VOID, 0)
-	ZEND_ARG_TYPE_INFO(0, colorspace, IS_LONG, 1)
+	ZEND_ARG_OBJ_INFO(0, colorspace, CGColorSpace, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_class_CAMetalLayer_EDRMetadata, 0, 0, CAEDRMetadata, 1)
@@ -97,7 +92,7 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_CAMetalLayer_pointer arginfo_class_CAMetalLayer_maximumDrawableCount
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CAMetalLayer_fromPointer, 0, 1, IS_STATIC, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CAMetalLayer_fromPointer, 0, 1, IS_STATIC, 1)
 	ZEND_ARG_TYPE_INFO(0, pointer, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
@@ -132,7 +127,6 @@ ZEND_END_ARG_INFO()
 
 #define arginfo_class_CAEDRMetadata_fromPointer arginfo_class_CAMetalLayer_fromPointer
 
-ZEND_METHOD(CGSize, __construct);
 ZEND_METHOD(CAMetalLayer, __construct);
 ZEND_METHOD(CAMetalLayer, layer);
 ZEND_METHOD(CAMetalLayer, device);
@@ -174,11 +168,6 @@ ZEND_METHOD(CAEDRMetadata, HDR10MetadataWithMinLuminanceMaxLuminanceOpticalOutpu
 ZEND_METHOD(CAEDRMetadata, HLGMetadata);
 ZEND_METHOD(CAEDRMetadata, pointer);
 ZEND_METHOD(CAEDRMetadata, fromPointer);
-
-static const zend_function_entry class_CGSize_methods[] = {
-	ZEND_ME(CGSize, __construct, arginfo_class_CGSize___construct, ZEND_ACC_PUBLIC)
-	ZEND_FE_END
-};
 
 static const zend_function_entry class_CAMetalLayer_methods[] = {
 	ZEND_ME(CAMetalLayer, __construct, arginfo_class_CAMetalLayer___construct, ZEND_ACC_PRIVATE)
@@ -232,28 +221,6 @@ static const zend_function_entry class_CAEDRMetadata_methods[] = {
 	ZEND_ME(CAEDRMetadata, fromPointer, arginfo_class_CAEDRMetadata_fromPointer, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	ZEND_FE_END
 };
-
-static zend_class_entry *register_class_CGSize(void)
-{
-	zend_class_entry ce, *class_entry;
-
-	INIT_CLASS_ENTRY(ce, "CGSize", class_CGSize_methods);
-	class_entry = zend_register_internal_class_with_flags(&ce, NULL, ZEND_ACC_FINAL);
-
-	zval property_width_default_value;
-	ZVAL_DOUBLE(&property_width_default_value, 0.0);
-	zend_string *property_width_name = zend_string_init("width", sizeof("width") - 1, 1);
-	zend_declare_typed_property(class_entry, property_width_name, &property_width_default_value, ZEND_ACC_PUBLIC, NULL, (zend_type) ZEND_TYPE_INIT_MASK(MAY_BE_DOUBLE));
-	zend_string_release(property_width_name);
-
-	zval property_height_default_value;
-	ZVAL_DOUBLE(&property_height_default_value, 0.0);
-	zend_string *property_height_name = zend_string_init("height", sizeof("height") - 1, 1);
-	zend_declare_typed_property(class_entry, property_height_name, &property_height_default_value, ZEND_ACC_PUBLIC, NULL, (zend_type) ZEND_TYPE_INIT_MASK(MAY_BE_DOUBLE));
-	zend_string_release(property_height_name);
-
-	return class_entry;
-}
 
 static zend_class_entry *register_class_CAMetalLayer(void)
 {

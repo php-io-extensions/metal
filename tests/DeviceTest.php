@@ -17,9 +17,9 @@ it('hands a device to another extension by address and takes it back', function 
         ->and(MTLDevice::fromPointer($device->pointer()))->toBe($device);
 });
 
-it('refuses a null address and an address that is not a device', function (): void {
-    expect(fn () => MTLDevice::fromPointer(0))->toThrow(MetalException::class, 'null address')
-        ->and(fn () => MTLDevice::fromPointer(device()->newCommandQueue()->pointer()))->toThrow(MetalException::class, 'not an MTLDevice');
+it('boxes the object at an address, and null for address 0', function (): void {
+    expect(MTLDevice::fromPointer(device()->pointer()))->toBe(device())
+        ->and(MTLDevice::fromPointer(0))->toBeNull();
 });
 
 it('cannot be constructed, cloned or serialized', function (): void {

@@ -2,15 +2,6 @@
 
 /** @generate-class-entries */
 
-final class CGSize
-{
-    public float $width = 0.0;
-
-    public float $height = 0.0;
-
-    public function __construct(float $width, float $height) {}
-}
-
 /**
  * @not-serializable
  */
@@ -32,9 +23,10 @@ final class CAMetalLayer
 
     public function setFramebufferOnly(bool $framebufferOnly): void {}
 
-    public function drawableSize(): CGSize {}
+    /** A CGSize, as ext-appkit's NSSize. */
+    public function drawableSize(): NSSize {}
 
-    public function setDrawableSize(CGSize $drawableSize): void {}
+    public function setDrawableSize(NSSize $drawableSize): void {}
 
     public function displaySyncEnabled(): bool {}
 
@@ -63,11 +55,10 @@ final class CAMetalLayer
 
     public function setWantsExtendedDynamicRangeContent(bool $wantsExtendedDynamicRangeContent): void {}
 
-    /** The CGColorSpaceRef's address, or null. */
-    public function colorspace(): ?int {}
+    /** ext-appkit's CGColorSpace, or null. */
+    public function colorspace(): ?CGColorSpace {}
 
-    /** $colorspace is a CGColorSpaceRef's address (ext-appkit's CGColorSpace::pointer()), trusted; null clears it. */
-    public function setColorspace(?int $colorspace): void {}
+    public function setColorspace(?CGColorSpace $colorspace): void {}
 
     public function EDRMetadata(): ?CAEDRMetadata {}
 
@@ -75,8 +66,8 @@ final class CAMetalLayer
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be a CAMetalLayer. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -97,8 +88,8 @@ final class CAMetalDrawable
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must conform to CAMetalDrawable. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }
 
 /**
@@ -115,6 +106,6 @@ final class CAEDRMetadata
 
     public function pointer(): int {}
 
-    /** The address is trusted to hold an object; it must be a CAEDRMetadata. */
-    public static function fromPointer(int $pointer): static {}
+    /** The object at $pointer (another extension's pointer()), trusted to be this class's native object; 0 is null. */
+    public static function fromPointer(int $pointer): ?static {}
 }

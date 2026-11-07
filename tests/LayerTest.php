@@ -7,7 +7,7 @@ it('configures a layer for the device', function (): void {
     $layer->setDevice(device());
     $layer->setPixelFormat(MTLPixelFormat::BGRA8_UNORM);
     $layer->setFramebufferOnly(false);
-    $layer->setDrawableSize(new CGSize(320.0, 240.0));
+    $layer->setDrawableSize(new NSSize(320.0, 240.0));
     $layer->setDisplaySyncEnabled(false);
     $layer->setMaximumDrawableCount(2);
     $layer->setContentsScale(2.0);
@@ -41,8 +41,8 @@ it('sets the drawable timeout, transaction presents, EDR, colorspace and EDR met
         ->and($layer->wantsExtendedDynamicRangeContent())->toBeTrue()
         ->and($layer->EDRMetadata())->toBeInstanceOf(CAEDRMetadata::class)
         ->and(CAEDRMetadata::HLGMetadata())->toBeInstanceOf(CAEDRMetadata::class)
-        ->and($layer->colorspace())->toBeNull()
-        ->and(fn () => $layer->setColorspace(0))->toThrow(ValueError::class, 'must not be a null address');
+        ->and($layer->colorspace())->toBeNull();
+
 
     $layer->setEDRMetadata(null);
     expect($layer->EDRMetadata())->toBeNull();
@@ -52,9 +52,9 @@ it('takes a CGColorSpace by its address', function (): void {
     $layer = CAMetalLayer::layer();
     $space = CGColorSpace::createWithName(kCGColorSpaceSRGB);
 
-    $layer->setColorspace($space->pointer());
+    $layer->setColorspace($space);
 
-    expect($layer->colorspace())->toBe($space->pointer());
+    expect($layer->colorspace())->toBe($space);
     $layer->setColorspace(null);
     expect($layer->colorspace())->toBeNull();
 })->skip(! class_exists(CGColorSpace::class), 'needs ext-appkit for a CGColorSpace');
@@ -76,7 +76,7 @@ it('presents a drawable after a minimum duration and reports when it reached the
     $layer = CAMetalLayer::layer();
     $layer->setDevice($device);
     $layer->setPixelFormat(MTLPixelFormat::BGRA8_UNORM);
-    $layer->setDrawableSize(new CGSize(160.0, 120.0));
+    $layer->setDrawableSize(new NSSize(160.0, 120.0));
     $window->contentView()->setLayer(CALayer::fromPointer($layer->pointer()));
     // Metal presents nothing to a window that is not visible: this one floats, centred, and is waited on.
     $window->setLevel(NSFloatingWindowLevel);
