@@ -3,7 +3,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/php-io-extensions/metal/ci.yml?style=flat-square&label=CI)](https://github.com/php-io-extensions/metal/actions/workflows/ci.yml)
 [![Metal API](https://img.shields.io/badge/Metal_API-10.9%25_%28189%2F1738%29-blue?style=flat-square)](SUPPORT.md)
 
-1:1 PHP bindings of Metal, `CAMetalLayer` and `CAEDRMetadata`, as classes named after their native counterparts. Version 0.11.1. macOS only.
+1:1 PHP bindings of Metal, `CAMetalLayer` and `CAEDRMetadata`, as classes named after their native counterparts. Version 0.11.2. macOS only.
 
 A handle is one PHP object per native object, retained while PHP holds it. Requires ext-appkit: an `NSError`, a `CGSize` and a `CGColorSpaceRef` are ext-appkit's `NSError`, `NSSize` and `CGColorSpace`. An `NSException` becomes the PHP `NSException`.
 
