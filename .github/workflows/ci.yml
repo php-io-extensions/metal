@@ -27,13 +27,27 @@ jobs:
         env:
           phpts: ${{ matrix.ts == 'zts' && 'ts' || 'nts' }}
 
+      - name: Check out ext-appkit
+        uses: actions/checkout@v4
+        with:
+          repository: php-io-extensions/appkit
+          path: appkit
+
+      - name: Build ext-appkit (metal requires it at load)
+        working-directory: appkit
+        run: |
+          phpize
+          ./configure --enable-appkit
+          make -j"$(sysctl -n hw.ncpu)"
+
       - name: Build
         run: |
           phpize
           ./configure --enable-metal
           make -j"$(sysctl -n hw.ncpu)"
 
+      # php -n reads no ini, so load appkit from its build path.
       - name: Load
         run: |
-          php -n -d extension="$PWD/modules/metal.so" -r 'exit(extension_loaded("metal") ? 0 : 1);'
-          php -n -d extension="$PWD/modules/metal.so" --ri metal
+          php -n -d extension="$PWD/appkit/modules/appkit.so" -d extension="$PWD/modules/metal.so" -r 'exit(extension_loaded("metal") ? 0 : 1);'
+          php -n -d extension="$PWD/appkit/modules/appkit.so" -d extension="$PWD/modules/metal.so" --ri metal
