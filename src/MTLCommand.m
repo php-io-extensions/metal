@@ -578,6 +578,26 @@ ZEND_METHOD(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCount)
 	METAL_END
 }
 
+ZEND_METHOD(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCountInstanceCount)
+{
+	zend_object *primitive;
+	zend_long start, count, instances;
+
+	ZEND_PARSE_PARAMETERS_START(4, 4)
+		Z_PARAM_OBJ_OF_CLASS(primitive, metal_ce_MTLPrimitiveType)
+		Z_PARAM_LONG(start)
+		Z_PARAM_LONG(count)
+		Z_PARAM_LONG(instances)
+	ZEND_PARSE_PARAMETERS_END();
+
+	METAL_BEGIN
+		[(id<MTLRenderCommandEncoder>) THIS_ID drawPrimitives:(MTLPrimitiveType) metal_enum_param(primitive, 0)
+			vertexStart:(NSUInteger) start
+			vertexCount:(NSUInteger) count
+			instanceCount:(NSUInteger) instances];
+	METAL_END
+}
+
 ZEND_METHOD(MTLRenderCommandEncoder, drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset)
 {
 	zend_object *primitive, *index_type, *buffer;

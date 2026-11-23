@@ -1,5 +1,5 @@
 /* This is a generated file, edit the .stub.php file instead.
- * Stub hash: 4cb838094f343deb6b43b23964fcd133f49f754d */
+ * Stub hash: 8dbfc0271bc89fa37394f1e33b77b6e2bf91bf6b */
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_class_MTLCommandQueue___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
@@ -235,6 +235,13 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_dr
 	ZEND_ARG_TYPE_INFO(0, vertexCount, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_drawPrimitivesVertexStartVertexCountInstanceCount, 0, 4, IS_VOID, 0)
+	ZEND_ARG_OBJ_INFO(0, primitiveType, MTLPrimitiveType, 0)
+	ZEND_ARG_TYPE_INFO(0, vertexStart, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, vertexCount, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, instanceCount, IS_LONG, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_MTLRenderCommandEncoder_drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset, 0, 5, IS_VOID, 0)
 	ZEND_ARG_OBJ_INFO(0, primitiveType, MTLPrimitiveType, 0)
 	ZEND_ARG_TYPE_INFO(0, indexCount, IS_LONG, 0)
@@ -377,6 +384,7 @@ ZEND_METHOD(MTLRenderCommandEncoder, setFragmentSamplerStateAtIndex);
 ZEND_METHOD(MTLRenderCommandEncoder, setViewport);
 ZEND_METHOD(MTLRenderCommandEncoder, setScissorRect);
 ZEND_METHOD(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCount);
+ZEND_METHOD(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCountInstanceCount);
 ZEND_METHOD(MTLRenderCommandEncoder, drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset);
 ZEND_METHOD(MTLRenderCommandEncoder, endEncoding);
 ZEND_METHOD(MTLRenderCommandEncoder, pointer);
@@ -499,6 +507,7 @@ static const zend_function_entry class_MTLRenderCommandEncoder_methods[] = {
 	ZEND_ME(MTLRenderCommandEncoder, setViewport, arginfo_class_MTLRenderCommandEncoder_setViewport, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderCommandEncoder, setScissorRect, arginfo_class_MTLRenderCommandEncoder_setScissorRect, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCount, arginfo_class_MTLRenderCommandEncoder_drawPrimitivesVertexStartVertexCount, ZEND_ACC_PUBLIC)
+	ZEND_ME(MTLRenderCommandEncoder, drawPrimitivesVertexStartVertexCountInstanceCount, arginfo_class_MTLRenderCommandEncoder_drawPrimitivesVertexStartVertexCountInstanceCount, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderCommandEncoder, drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset, arginfo_class_MTLRenderCommandEncoder_drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderCommandEncoder, endEncoding, arginfo_class_MTLRenderCommandEncoder_endEncoding, ZEND_ACC_PUBLIC)
 	ZEND_ME(MTLRenderCommandEncoder, pointer, arginfo_class_MTLRenderCommandEncoder_pointer, ZEND_ACC_PUBLIC)

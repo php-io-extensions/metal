@@ -1,5 +1,9 @@
 # Log
 
+## 2026-11-19
+
+* `MTLRenderCommandEncoder::drawPrimitivesVertexStartVertexCountInstanceCount` binds `drawPrimitives:vertexStart:vertexCount:instanceCount:`. Zero instances leave the clear; one instance draws the triangle. NTS and ZTS: 55 passed, 12 probes skipped. The on-screen layer present was not run. [bindings](api/bindings.md)
+
 ## 2026-11-06 (1:1 pass)
 
 * **API**: under ext-guard's audit (0 findings). `NSError**` is `?NSError &$error` (ext-appkit's `NSError`), nil is `null`; `MTLCommandBuffer::error()` is `?NSError`. An `NSException` is the PHP `NSException`; `MetalException` moved to jovian/venusian-metal. `drawableSize` is ext-appkit's `NSSize` (metal's `CGSize` is gone); `colorspace` is `?CGColorSpace`. `isBlendingEnabled()` / `isDepthWriteEnabled()`. `getBytes…(int $pixelBytes, …): void`, the string mode moved to jovian. `fromPointer()` is `?static` with no class check. `ZEND_MOD_REQUIRED("appkit")`. NTS and ZTS: 48 passed, 12 probes skipped; probe build: 12 probes pass. `LayerTest` (GUI) not run.

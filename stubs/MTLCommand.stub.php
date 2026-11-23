@@ -221,6 +221,8 @@ final class MTLRenderCommandEncoder
 
     public function drawPrimitivesVertexStartVertexCount(MTLPrimitiveType $primitiveType, int $vertexStart, int $vertexCount): void {}
 
+    public function drawPrimitivesVertexStartVertexCountInstanceCount(MTLPrimitiveType $primitiveType, int $vertexStart, int $vertexCount, int $instanceCount): void {}
+
     public function drawIndexedPrimitivesIndexCountIndexTypeIndexBufferIndexBufferOffset(MTLPrimitiveType $primitiveType, int $indexCount, MTLIndexType $indexType, MTLBuffer $indexBuffer, int $indexBufferOffset): void {}
 
     public function endEncoding(): void {}
